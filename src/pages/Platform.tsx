@@ -1,0 +1,134 @@
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+import PlatformGame from "../components/PlatformGame";
+import useDocumentTitle from "../hooks/useDocumentTitle";
+import { useLanguage } from "../i18n/LanguageContext";
+
+const STRINGS = {
+  fr: {
+    pageTitle: "Plateforme | Securify",
+    heading: "plateforme",
+    intro:
+      "notre plateforme neutralise les menaces couche par couche. teste par toi-même avec ces deux mini-jeux — choisis ton camp.",
+    back: "← retour aux jeux",
+    games: {
+      ballscrush: {
+        tag: "casse-briques · dans la page",
+        title: "Balls Crush",
+        description:
+          "lance la balle, enchaîne les blocs sans en rater pour faire grimper ton combo, et attrape les bonus qui tombent sur 3 niveaux de difficulté croissante.",
+        cta: "jouer",
+        icon: "🧱",
+      },
+      eldenring: {
+        tag: "action-RPG 3D · nouvel onglet",
+        title: "Elden Ring",
+        description:
+          "trois seigneurs veillent sur des ruines en cendres. combat à l'épée, roulade, verrouillage de cible, fioles de soin et coup de grâce — le tout dans ton navigateur.",
+        cta: "jouer",
+        icon: "⚔️",
+      },
+    },
+  },
+  en: {
+    pageTitle: "Platform | Securify",
+    heading: "platform",
+    intro:
+      "our platform breaks down threats layer by layer. try it yourself with these two mini-games — pick your side.",
+    back: "← back to games",
+    games: {
+      ballscrush: {
+        tag: "breakout · in this page",
+        title: "Balls Crush",
+        description:
+          "launch the ball, chain blocks without missing to grow your combo, and catch falling bonuses across 3 levels of rising difficulty.",
+        cta: "play",
+        icon: "🧱",
+      },
+      eldenring: {
+        tag: "3D action-RPG · new tab",
+        title: "Elden Ring",
+        description:
+          "three lords watch over a world of ash. sword combat, dodge rolls, target lock-on, healing flasks and a finishing blow — all in your browser.",
+        cta: "play",
+        icon: "⚔️",
+      },
+    },
+  },
+} as const;
+
+type View = "hub" | "ballscrush";
+
+const Platform = () => {
+  const { lang } = useLanguage();
+  const s = STRINGS[lang];
+  const [view, setView] = useState<View>("hub");
+  useDocumentTitle(s.pageTitle);
+
+  if (view === "ballscrush") {
+    return (
+      <>
+        <Navbar />
+        <div className="bg-black pt-24">
+          <div className="max-w-[1280px] mx-auto px-6 md:px-10">
+            <button
+              onClick={() => setView("hub")}
+              className="text-sm text-white/60 hover:text-white transition-colors"
+            >
+              {s.back}
+            </button>
+          </div>
+        </div>
+        <PlatformGame />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Navbar />
+      <section className="relative min-h-screen w-full bg-black text-white px-6 md:px-10 py-24">
+        <div className="max-w-[1280px] mx-auto mb-10">
+          <h1 className="hero-title text-5xl md:text-7xl font-medium">{s.heading}</h1>
+          <p className="mt-4 max-w-md text-[15px] leading-snug text-white/70">{s.intro}</p>
+        </div>
+
+        <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <button
+            onClick={() => setView("ballscrush")}
+            className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"
+          >
+            <div className="h-40 rounded-2xl mb-6 flex items-center justify-center text-6xl bg-gradient-to-br from-amber-400/20 via-rose-500/10 to-neutral-900">
+              {s.games.ballscrush.icon}
+            </div>
+            <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{s.games.ballscrush.tag}</div>
+            <h2 className="text-2xl font-medium mb-2">{s.games.ballscrush.title}</h2>
+            <p className="text-sm text-white/60 mb-6">{s.games.ballscrush.description}</p>
+            <span className="inline-block rounded-full bg-white text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-neutral-200">
+              {s.games.ballscrush.cta}
+            </span>
+          </button>
+
+          <a
+            href="/games/elden-ring.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"
+          >
+            <div className="h-40 rounded-2xl mb-6 flex items-center justify-center text-6xl bg-gradient-to-br from-orange-700/20 via-neutral-800/40 to-black">
+              {s.games.eldenring.icon}
+            </div>
+            <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{s.games.eldenring.tag}</div>
+            <h2 className="text-2xl font-medium mb-2">{s.games.eldenring.title}</h2>
+            <p className="text-sm text-white/60 mb-6">{s.games.eldenring.description}</p>
+            <span className="inline-block rounded-full bg-white text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-neutral-200">
+              {s.games.eldenring.cta}
+            </span>
+          </a>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Platform;
