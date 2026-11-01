@@ -19,8 +19,8 @@ const ALL_REGIONS = ["US", "EU", "APAC"] as const;
 
 const STRINGS = {
   fr: {
-    pageTitle: "Solutions | Securify",
-    heroLine1: "défense",
+    pageTitle: "Solutions | Benjamin Morel",
+    heroLine1: "Défense",
     heroLine2: "conçue.",
     heroParagraph:
       "une infrastructure de sécurité modulaire pour les équipes qui avancent vite et ne peuvent pas se permettre d'improviser. chiffrement, contrôle d'accès et surveillance, assemblés sur mesure.",
@@ -59,8 +59,8 @@ const STRINGS = {
     ],
   },
   en: {
-    pageTitle: "Solutions | Securify",
-    heroLine1: "engineered",
+    pageTitle: "Solutions | Benjamin Morel",
+    heroLine1: "Engineered",
     heroLine2: "defense.",
     heroParagraph:
       "modular security infrastructure for teams who ship fast and can't afford to guess. encryption, access control and monitoring, assembled to fit.",

@@ -3,14 +3,16 @@ import logo from "../assets/logo-bm.png";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const NAV_LINKS = [
-  { key: "platform", to: "/platform", fr: "plateforme", en: "platform" },
-  { key: "music", to: "/music", fr: "musique", en: "music" },
-  { key: "solutions", to: "/solutions", fr: "solutions", en: "solutions" },
-  { key: "company", to: "/company", fr: "entreprise", en: "company" },
-  { key: "contact", to: "/contact", fr: "contact", en: "contact" },
+  { key: "platform", to: "/platform", fr: "Projets", en: "Projects" },
+  { key: "music", to: "/music", fr: "Playlist", en: "Playlist" },
+  { key: "solutions", to: "/solutions", fr: "Solutions", en: "Solutions" },
+  { key: "company", to: "/company", fr: "Entreprise", en: "Company" },
+  { key: "parcours", to: "/parcours", fr: "Parcours", en: "Background" },
+  { key: "contact", to: "/contact", fr: "Contact", en: "Contact" },
+  { key: "test", to: "/test", fr: "Test", en: "Test" },
 ] as const;
 
-const GET_STARTED = { fr: "commencer", en: "get started" };
+const GET_STARTED = { fr: "Commencer", en: "Get started" };
 
 const Navbar = () => {
   const { lang, toggleLang } = useLanguage();

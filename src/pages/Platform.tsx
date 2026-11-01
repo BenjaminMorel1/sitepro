@@ -6,8 +6,8 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
   fr: {
-    pageTitle: "Plateforme | Securify",
-    heading: "plateforme",
+    pageTitle: "Projets | Benjamin Morel",
+    heading: "Projets",
     intro:
       "notre plateforme neutralise les menaces couche par couche. teste par toi-même avec ces deux mini-jeux — choisis ton camp.",
     back: "← retour aux jeux",
@@ -31,8 +31,8 @@ const STRINGS = {
     },
   },
   en: {
-    pageTitle: "Platform | Securify",
-    heading: "platform",
+    pageTitle: "Projects | Benjamin Morel",
+    heading: "Projects",
     intro:
       "our platform breaks down threats layer by layer. try it yourself with these two mini-games — pick your side.",
     back: "← back to games",
@@ -110,7 +110,7 @@ const Platform = () => {
           </button>
 
           <a
-            href="/games/elden-ring.html"
+            href={`${import.meta.env.BASE_URL}games/elden-ring.html`}
             target="_blank"
             rel="noopener noreferrer"
             className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"

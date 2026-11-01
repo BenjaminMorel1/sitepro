@@ -3,14 +3,14 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
   fr: {
-    pageTitle: "Entreprise | Securify",
-    title: "entreprise",
+    pageTitle: "Entreprise | Benjamin Morel",
+    title: "Entreprise",
     description:
       "Securify a été conçu pour offrir aux startups une protection des données de niveau entreprise, sans la complexité qui va avec.",
   },
   en: {
-    pageTitle: "Company | Securify",
-    title: "company",
+    pageTitle: "Company | Benjamin Morel",
+    title: "Company",
     description:
       "Securify was built to give startups enterprise-grade data protection without the enterprise complexity.",
   },

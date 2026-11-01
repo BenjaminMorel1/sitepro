@@ -8,8 +8,8 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
   fr: {
-    pageTitle: "Contact | Securify",
-    heading: "contact",
+    pageTitle: "Contact | Benjamin Morel",
+    heading: "Contact",
     education: [
       {
         title: "Baccalauréat spécialités Mathématiques-Sciences économiques et sociales",
@@ -34,8 +34,8 @@ const STRINGS = {
     ],
   },
   en: {
-    pageTitle: "Contact | Securify",
-    heading: "contact",
+    pageTitle: "Contact | Benjamin Morel",
+    heading: "Contact",
     education: [
       {
         title: "High school diploma, Mathematics-Economics & Social Sciences track",
@@ -95,7 +95,7 @@ const Contact = () => {
       <img
         src={avatar}
         alt="Benjamin Morel"
-        className="absolute z-20 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] shrink-0 rounded-full object-cover ring-1 ring-white/30"
+        className="absolute z-20 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] md:h-[clamp(3.5rem,min(18vmin,13vw),18rem)] md:w-[clamp(3.5rem,min(18vmin,13vw),18rem)] shrink-0 rounded-full object-cover ring-1 ring-white/30"
       />
 
       <div className="flex min-h-screen flex-col items-start justify-center px-6 md:px-24 pt-24">

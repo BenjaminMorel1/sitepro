@@ -8,8 +8,8 @@ import { useLanguage } from "./i18n/LanguageContext";
 
 const STRINGS = {
   fr: {
-    pageTitle: "Musique | Securify",
-    heading: "musique",
+    pageTitle: "Playlist | Benjamin Morel",
+    heading: "Playlist",
     paragraph:
       "une petite playlist, chargée un morceau à la fois — rien ne se télécharge avant que tu cliques sur play, et la musique continue pendant que tu navigues sur le site.",
     pause: (title: string) => `mettre en pause ${title}`,
@@ -17,8 +17,8 @@ const STRINGS = {
     seek: (title: string) => `avancer dans ${title}`,
   },
   en: {
-    pageTitle: "Music | Securify",
-    heading: "music",
+    pageTitle: "Playlist | Benjamin Morel",
+    heading: "Playlist",
     paragraph:
       "a small playlist, loaded one track at a time — nothing downloads until you hit play, and the music keeps playing while you browse the site.",
     pause: (title: string) => `pause ${title}`,

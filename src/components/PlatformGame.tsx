@@ -4,7 +4,7 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
   fr: {
-    heading: "plateforme",
+    heading: "Projets",
     intro:
       "notre plateforme neutralise les menaces couche par couche. teste par toi-même — lance la balle, enchaîne les blocs sans en rater pour faire grimper ton multiplicateur de combo, et attrape les bonus qui tombent sur 3 niveaux de difficulté croissante.",
     launchHint: "clique ou appuie sur espace pour lancer",
@@ -30,7 +30,7 @@ const STRINGS = {
       "déplace la barre, lance la balle, enchaîne les blocs pour des points de combo et attrape les bonus — appuie sur P ou Échap pour mettre en pause.",
   },
   en: {
-    heading: "platform",
+    heading: "Projects",
     intro:
       "our platform breaks down threats layer by layer. try it yourself — launch the ball, chain blocks without missing to grow your combo multiplier, and grab falling bonuses across 3 levels of rising difficulty.",
     launchHint: "click or press space to launch",

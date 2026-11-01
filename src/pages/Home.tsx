@@ -12,7 +12,7 @@ const STRINGS = {
     title: "Coder, créer, partager",
     words: ["coder", "créer", "partager"],
     paragraph:
-      "salut, moi c'est benjamin — étudiant en classe préparatoire (cpge ecg), puis en licence miashs à lille, entre maths, info et économie. je partage ici mes projets et ce qui m'intéresse.",
+      "Salut, moi c'est Benjamin — étudiant de 20 ans à l'université Paris Cité. Je partage ici mes projets et ce qui m'intéresse.",
     stat1Label: "startups nous font confiance",
     stat2Label: "go de données protégées",
     stat3Label: "téléchargements",
@@ -22,7 +22,7 @@ const STRINGS = {
     title: "Create, code, share",
     words: ["create", "code", "share"],
     paragraph:
-      "hi there, i'm benjamin — after a business & economics prep program (cpge ecg), i'm now studying math, cs and economics (miashs) at the university of lille. i share my projects and interests here.",
+      "Hi there, I'm Benjamin — a 20-year-old student at Université Paris Cité. I share my projects and interests here.",
     stat1Label: "startups use",
     stat2Label: "gb data was protected",
     stat3Label: "downloads",
@@ -57,7 +57,7 @@ const Home = () => {
       <img
         src={avatar}
         alt="Benjamin Morel"
-        className="absolute z-30 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] shrink-0 rounded-full object-cover ring-1 ring-white/30"
+        className="absolute z-30 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] md:h-[clamp(3.5rem,min(18vmin,13vw),18rem)] md:w-[clamp(3.5rem,min(18vmin,13vw),18rem)] shrink-0 rounded-full object-cover ring-1 ring-white/30"
       />
 
       {/* contenu au premier plan — z-10 au-dessus de la vidéo */}
