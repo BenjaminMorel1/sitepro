@@ -3,13 +3,13 @@ import logo from "../assets/logo-bm.png";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const NAV_LINKS = [
-  { key: "platform", to: "/platform", fr: "Projets", en: "Projects" },
-  { key: "music", to: "/music", fr: "Playlist", en: "Playlist" },
-  { key: "solutions", to: "/solutions", fr: "Solutions", en: "Solutions" },
-  { key: "company", to: "/company", fr: "Entreprise", en: "Company" },
-  { key: "parcours", to: "/parcours", fr: "Parcours", en: "Background" },
-  { key: "contact", to: "/contact", fr: "Contact", en: "Contact" },
-  { key: "test", to: "/test", fr: "Test", en: "Test" },
+  { key: "platform", to: "/platform", fr: "projets", en: "projects" },
+  { key: "music", to: "/music", fr: "playlist", en: "playlist" },
+  { key: "blog", to: "/blog", fr: "blog", en: "blog" },
+  { key: "lectures", to: "/lectures", fr: "lectures", en: "readings" },
+  { key: "blog2", to: "/blog2", fr: "blog 2", en: "blog 2" },
+  { key: "contact", to: "/contact", fr: "contact", en: "contact" },
+  { key: "test", to: "/test", fr: "test", en: "test" },
 ] as const;
 
 const GET_STARTED = { fr: "Commencer", en: "Get started" };

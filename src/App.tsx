@@ -3,10 +3,10 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { MotionConfig } from "motion/react";
 import Home from "./pages/Home";
 import Platform from "./pages/Platform";
-import Solutions from "./pages/Solutions";
-import Company from "./pages/Company";
+import Blog from "./pages/Blog";
+import Lectures from "./pages/Lectures";
+import Blog2 from "./pages/Blog2";
 import Contact from "./pages/Contact";
-import Parcours from "./pages/Parcours";
 import Test from "./pages/Test";
 import MusicPage from "./MusicPage";
 import MusicWidget from "./components/MusicWidget";
@@ -41,9 +41,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/platform" element={<Platform />} />
           <Route path="/music" element={<MusicPage />} />
-          <Route path="/solutions" element={<Solutions />} />
-          <Route path="/company" element={<Company />} />
-          <Route path="/parcours" element={<Parcours />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/lectures" element={<Lectures />} />
+          <Route path="/blog2" element={<Blog2 />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/test" element={<Test />} />
         </Routes>

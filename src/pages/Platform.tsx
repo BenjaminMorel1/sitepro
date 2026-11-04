@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import PlatformGame from "../components/PlatformGame";
+import AppShowcase from "../components/AppShowcase";
+import rayonnPreview from "../assets/rayonn-phone-01.webp";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -10,8 +12,15 @@ const STRINGS = {
     heading: "Projets",
     intro:
       "notre plateforme neutralise les menaces couche par couche. teste par toi-même avec ces deux mini-jeux — choisis ton camp.",
-    back: "← retour aux jeux",
+    back: "← retour aux projets",
     games: {
+      rayonn: {
+        tag: "appli mobile · dans la page",
+        title: "RayOnn",
+        description:
+          "réviser avec régularité, sans pression : sessions de concentration chronométrées, tâches et habitudes du jour, niveaux et XP pour rester motivé.",
+        cta: "découvrir",
+      },
       ballscrush: {
         tag: "casse-briques · dans la page",
         title: "Balls Crush",
@@ -35,8 +44,15 @@ const STRINGS = {
     heading: "Projects",
     intro:
       "our platform breaks down threats layer by layer. try it yourself with these two mini-games — pick your side.",
-    back: "← back to games",
+    back: "← back to projects",
     games: {
+      rayonn: {
+        tag: "mobile app · in this page",
+        title: "RayOnn",
+        description:
+          "study consistently, without the pressure: timed focus sessions, daily tasks and habits, levels and XP to stay motivated.",
+        cta: "discover",
+      },
       ballscrush: {
         tag: "breakout · in this page",
         title: "Balls Crush",
@@ -57,7 +73,7 @@ const STRINGS = {
   },
 } as const;
 
-type View = "hub" | "ballscrush";
+type View = "hub" | "ballscrush" | "rayonn";
 
 const Platform = () => {
   const { lang } = useLanguage();
@@ -65,7 +81,7 @@ const Platform = () => {
   const [view, setView] = useState<View>("hub");
   useDocumentTitle(s.pageTitle);
 
-  if (view === "ballscrush") {
+  if (view !== "hub") {
     return (
       <>
         <Navbar />
@@ -79,7 +95,13 @@ const Platform = () => {
             </button>
           </div>
         </div>
-        <PlatformGame />
+        {view === "ballscrush" ? (
+          <PlatformGame />
+        ) : (
+          <div className="bg-black text-white">
+            <AppShowcase />
+          </div>
+        )}
       </>
     );
   }
@@ -93,7 +115,22 @@ const Platform = () => {
           <p className="mt-4 max-w-md text-[15px] leading-snug text-white/70">{s.intro}</p>
         </div>
 
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <button
+            onClick={() => setView("rayonn")}
+            className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"
+          >
+            <div className="h-40 rounded-2xl mb-6 flex items-end justify-center overflow-hidden bg-gradient-to-br from-sky-400/20 via-indigo-500/10 to-neutral-900">
+              <img src={rayonnPreview} alt="" className="w-24 translate-y-6 select-none" draggable={false} />
+            </div>
+            <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{s.games.rayonn.tag}</div>
+            <h2 className="text-2xl font-medium mb-2">{s.games.rayonn.title}</h2>
+            <p className="text-sm text-white/60 mb-6">{s.games.rayonn.description}</p>
+            <span className="inline-block rounded-full bg-white text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-neutral-200">
+              {s.games.rayonn.cta}
+            </span>
+          </button>
+
           <button
             onClick={() => setView("ballscrush")}
             className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"

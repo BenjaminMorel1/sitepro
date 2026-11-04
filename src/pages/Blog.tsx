@@ -19,7 +19,7 @@ const ALL_REGIONS = ["US", "EU", "APAC"] as const;
 
 const STRINGS = {
   fr: {
-    pageTitle: "Solutions | Benjamin Morel",
+    pageTitle: "Blog | Benjamin Morel",
     heroLine1: "Défense",
     heroLine2: "conçue.",
     heroParagraph:
@@ -59,7 +59,7 @@ const STRINGS = {
     ],
   },
   en: {
-    pageTitle: "Solutions | Benjamin Morel",
+    pageTitle: "Blog | Benjamin Morel",
     heroLine1: "Engineered",
     heroLine2: "defense.",
     heroParagraph:
@@ -100,7 +100,7 @@ const STRINGS = {
   },
 } as const;
 
-const Solutions = () => {
+const Blog = () => {
   const { lang } = useLanguage();
   const s = STRINGS[lang];
   useDocumentTitle(s.pageTitle);
@@ -327,4 +327,4 @@ const Solutions = () => {
   );
 };
 
-export default Solutions;
+export default Blog;
