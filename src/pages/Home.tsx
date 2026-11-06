@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import heroPoster from "../assets/hero-poster.jpg";
 import avatar from "../assets/avatar.png";
@@ -34,6 +35,53 @@ const STRINGS = {
 
 const START_MUSIC_LABEL = { fr: "lancer la musique", en: "play music" } as const;
 
+/* vidéo de fond de l'accueil, hébergée sur le site (public/media/home/) :
+   - téléphone (écran vertical ou étroit) : version recadrée en portrait, 540×962, ~1,2 Mo ;
+   - ordinateur : version 1280×712, ~2,2 Mo (l'originale faisait 23 Mo et bloquait sur mobile).
+   Lancement fiabilisé pour iOS : « muted » posé sur l'élément avant tout play(), puis nouvel
+   essai quand la vidéo est prête, quand l'onglet redevient visible et au premier toucher.
+   Si le navigateur refuse quand même (mode économie d'énergie…), l'image fixe reste affichée. */
+const BackgroundVideo = () => {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [mobile] = useState(() => window.matchMedia("(max-width: 767px), (orientation: portrait)").matches);
+  const src = `${import.meta.env.BASE_URL}media/home/${mobile ? "fond-mobile" : "fond-1280"}.mp4`;
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute("muted", "");
+    const tryPlay = () => {
+      if (v.paused) v.play().catch(() => {});
+    };
+    tryPlay();
+    v.addEventListener("canplay", tryPlay);
+    const onVisible = () => document.visibilityState === "visible" && tryPlay();
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("touchstart", tryPlay, { once: true, passive: true });
+    return () => {
+      v.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("touchstart", tryPlay);
+    };
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      className="absolute inset-0 z-0 w-full h-full object-cover"
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="auto"
+      poster={heroPoster}
+      src={src}
+    />
+  );
+};
+
 const Home = () => {
   const { lang } = useLanguage();
   const s = STRINGS[lang];
@@ -43,16 +91,7 @@ const Home = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
       {/* vidéo de fond — z-0 explicite pour clarté */}
-      <video
-        className="absolute inset-0 z-0 w-full h-full object-cover"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster={heroPoster}
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4"
-      />
+      <BackgroundVideo />
 
       <Navbar />
 
