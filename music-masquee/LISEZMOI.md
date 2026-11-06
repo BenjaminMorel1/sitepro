@@ -22,3 +22,9 @@ site en noir et blanc + paroles). Pour tout remettre :
 - `src/tracks.ts` : `export const DOUBT_SRC = asset("music/twenty-one-pilots-doubt-demo.mp3");`
   et la ligne `{ title: "doubt (demo)", artist: "twenty one pilots", src: DOUBT_SRC }` dans TRACKS_2
 - `src/App.tsx` : importer `DoubtEasterEgg` et ajouter `<DoubtEasterEgg />` après `<MusicWidget />`
+
+## music.mp3
+
+Musique d'ambiance de la page d'accueil (« thème du site »), retirée avec le bouton ▶ de
+l'accueil. Pour la remettre : la replacer dans `public/`, recréer `HOME_TRACK` dans
+`src/tracks.ts` et le bouton qui la lance dans `src/pages/Home.tsx`.

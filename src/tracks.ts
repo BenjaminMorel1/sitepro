@@ -4,9 +4,6 @@ export type Track = { title: string; artist: string; src: string; cover?: string
 /* chemins relatifs au dossier public, préfixés par la base du site (/site/ en ligne) */
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 
-/* piste d'ambiance jouée sur la page d'accueil — hors playlist */
-export const HOME_TRACK = asset("music.mp3");
-
 /* playlist principale affichée sur la page "musique"
    (onglet masqué : ses fichiers sont rangés dans music-masquee/ à la racine, voir LISEZMOI.md) */
 export const TRACKS: Track[] = [
@@ -31,7 +28,7 @@ export const TRACKS_2: Track[] = [
 ];
 
 /* hidden : onglet masqué sur la page (à remettre plus tard en retirant hidden) */
-/* troisième playlist « playlist 1 » — vide pour l'instant, ajoute des morceaux ici (fichiers dans public/music/) */
+/* troisième playlist « playlist » — vide pour l'instant, ajoute des morceaux ici (fichiers dans public/music/) */
 export const TRACKS_3: Track[] = [];
 
 export type Playlist = { key: string; name: string; tracks: Track[]; hidden?: boolean };
@@ -39,6 +36,6 @@ export type Playlist = { key: string; name: string; tracks: Track[]; hidden?: bo
 /* les playlists de la page "musique", dans l'ordre des onglets */
 export const PLAYLISTS: Playlist[] = [
   { key: "mystery", name: "?", tracks: TRACKS_2 },
-  { key: "playlist-1", name: "playlist 1", tracks: TRACKS_3 },
+  { key: "playlist-1", name: "playlist", tracks: TRACKS_3 },
   { key: "main", name: "playlist", tracks: TRACKS, hidden: true },
 ];

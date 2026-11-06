@@ -1,7 +1,7 @@
 import type { ChangeEvent, PointerEvent as ReactPointerEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import { musicPlayer, useMusicPlayer } from "../musicPlayer";
-import { HOME_TRACK, PLAYLISTS } from "../tracks";
+import { PLAYLISTS } from "../tracks";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
@@ -124,7 +124,7 @@ export default function MusicWidget() {
   const canChangeTrack = trackIndex >= 0;
 
   const toggle = () => {
-    if (src) musicPlayer.toggle(src, { volume: src === HOME_TRACK ? 0.35 : 0.6, loop: src === HOME_TRACK });
+    if (src) musicPlayer.toggle(src, { volume: 0.6 });
   };
 
   const playAt = (index: number) => {
