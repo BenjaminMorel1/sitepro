@@ -11,7 +11,7 @@ const STRINGS = {
     pageTitle: "Projets | Benjamin Morel",
     heading: "Projets",
     intro:
-      "notre plateforme neutralise les menaces couche par couche. teste par toi-même avec ces deux mini-jeux — choisis ton camp.",
+      "ce que je construis sur mon temps libre : une appli pour réviser et deux jeux jouables directement dans le navigateur. clique sur une carte pour l'essayer.",
     back: "← retour aux projets",
     games: {
       rayonn: {
@@ -30,7 +30,7 @@ const STRINGS = {
         icon: "🧱",
       },
       eldenring: {
-        tag: "action-RPG 3D · nouvel onglet",
+        tag: "action-RPG 3D · au clavier, sur ordinateur",
         title: "Elden Ring",
         description:
           "trois seigneurs veillent sur des ruines en cendres. combat à l'épée, roulade, verrouillage de cible, fioles de soin et coup de grâce — le tout dans ton navigateur.",
@@ -43,7 +43,7 @@ const STRINGS = {
     pageTitle: "Projects | Benjamin Morel",
     heading: "Projects",
     intro:
-      "our platform breaks down threats layer by layer. try it yourself with these two mini-games — pick your side.",
+      "what I build in my free time: an app for studying and two games you can play right in your browser. click a card to try it.",
     back: "← back to projects",
     games: {
       rayonn: {
@@ -62,7 +62,7 @@ const STRINGS = {
         icon: "🧱",
       },
       eldenring: {
-        tag: "3D action-RPG · new tab",
+        tag: "3D action-RPG · keyboard, desktop only",
         title: "Elden Ring",
         description:
           "three lords watch over a world of ash. sword combat, dodge rolls, target lock-on, healing flasks and a finishing blow — all in your browser.",

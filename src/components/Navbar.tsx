@@ -70,11 +70,12 @@ const Navbar = () => {
           </span>
         </button>
 
-        {/* thème noir / blanc pour tout le site, placé sous fr/en sans décaler la barre */}
+        {/* thème noir / blanc pour tout le site, placé sous fr/en sans décaler la barre
+            (sur mobile il est dans le menu ☰, sinon il chevauche les titres des pages) */}
         <button
           onClick={toggleTheme}
           aria-label={theme === "dark" ? t.toLight : t.toDark}
-          className="absolute left-1/2 top-full mt-2 -translate-x-1/2 flex items-center gap-1 bg-neutral-900/90 backdrop-blur rounded-full px-1 py-1 text-xs font-medium whitespace-nowrap"
+          className="absolute left-1/2 top-full mt-2 -translate-x-1/2 hidden md:flex items-center gap-1 bg-neutral-900/90 backdrop-blur rounded-full px-1 py-1 text-xs font-medium whitespace-nowrap"
         >
           <span className={`px-3 py-2 rounded-full transition-colors ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}>
             {t.dark}
@@ -116,6 +117,29 @@ const Navbar = () => {
               {lang === "fr" ? fr : en}
             </Link>
           ))}
+
+          {/* sur mobile : thème noir / blanc et « Commencer » rangés ici */}
+          <div className="mt-2 flex items-center justify-between gap-3 border-t border-white/10 px-2 pt-3">
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? t.toLight : t.toDark}
+              className="flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 text-xs font-medium"
+            >
+              <span className={`px-3 py-2 rounded-full transition-colors ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}>
+                {t.dark}
+              </span>
+              <span className={`px-3 py-2 rounded-full transition-colors ${theme === "light" ? "bg-white text-black" : "text-neutral-400"}`}>
+                {t.light}
+              </span>
+            </button>
+            <Link
+              to="/bientot"
+              onClick={() => setMenuOpen(false)}
+              className="sm:hidden bg-white text-black text-sm rounded-full px-5 py-2.5"
+            >
+              {lang === "fr" ? GET_STARTED.fr : GET_STARTED.en}
+            </Link>
+          </div>
         </div>
       )}
     </nav>

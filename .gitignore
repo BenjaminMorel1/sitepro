@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# paroles de doubt (protégées) : gardées seulement en local
+music-masquee/doubt/doubt.lrc

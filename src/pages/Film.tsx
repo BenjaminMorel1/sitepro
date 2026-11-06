@@ -348,20 +348,27 @@ const Film = ({ version = "full" }: { version?: Version }) => {
       <Navbar />
 
       {/* ouverture : premier plan de la première scène, plein écran */}
-      <section className="relative flex min-h-screen items-end overflow-hidden">
+      {/* sur téléphone (écran vertical) : l'image paysage s'affiche en entier en haut, le titre
+          dessous ; à partir de md : image plein écran derrière le titre, comme avant */}
+      <section className="relative flex flex-col md:flex-row md:min-h-screen md:items-end overflow-hidden pt-24 md:pt-0">
         {hero && (
           <img
             src={src(hero, v.variant)}
             alt={hero.description}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="relative aspect-video w-full object-cover md:absolute md:inset-0 md:aspect-auto md:h-full"
             fetchPriority="high"
           />
         )}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden md:block"
           style={{ background: `linear-gradient(to top, ${NIGHT} 5%, ${NIGHT}cc 35%, transparent 75%)` }}
         />
-        <div className="relative z-10 w-full px-6 md:px-16 pb-20 md:pb-28">
+        {/* fondu entre l'image et le texte sur téléphone */}
+        <div
+          className="pointer-events-none relative -mt-16 h-16 w-full md:hidden"
+          style={{ background: `linear-gradient(to top, ${NIGHT}, transparent)` }}
+        />
+        <div className="relative z-10 w-full px-6 md:px-16 pt-4 md:pt-0 pb-14 md:pb-28">
           <p className="text-xs uppercase tracking-[0.3em]" style={{ color: WARM }}>
             {s.kicker}
           </p>

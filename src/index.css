@@ -6,10 +6,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* mobile : 100vh inclut la zone sous la barre d'adresse (bas des pages plein écran caché) ;
+   100svh = hauteur réellement visible. Gardé en 100vh pour les vieux navigateurs. */
+@supports (height: 100svh) {
+  .h-screen {
+    height: 100svh;
+  }
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
+
 html,
 body,
 #root {
   height: 100%;
+}
+
+html {
+  /* iOS : pas de grossissement automatique du texte en paysage */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* pas de rectangle gris au tap sur les liens et boutons */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -56,4 +75,3 @@ body {
 .flickity-slider {
   will-change: transform;
 }
-

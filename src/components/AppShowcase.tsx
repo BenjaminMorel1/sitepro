@@ -122,7 +122,9 @@ const AppShowcase = () => {
             on le recrée plutôt que de laisser React les mettre à jour. */}
         <div key={lang} ref={carouselRef} aria-label={s.carousel} className="cursor-grab outline-none active:cursor-grabbing">
           {Array.from({ length: PAGES }, (_, page) => (
-            <div key={page} className="w-full [container-type:inline-size]">
+            // sur petit écran, chaque page est plus large que l'écran (on glisse dedans) :
+            // les téléphones restent assez grands pour être lisibles
+            <div key={page} className="w-[260%] sm:w-[170%] lg:w-full [container-type:inline-size]">
               {/* seuls les téléphones qui touchent cette page sont rendus ; page de la même hauteur que les diapos de la référence */}
               <div className="relative h-[52.77cqw] select-none overflow-hidden">
                 {PHONES.map((src, i) => {

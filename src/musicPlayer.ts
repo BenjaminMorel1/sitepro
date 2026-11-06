@@ -82,6 +82,10 @@ export const musicPlayer = {
       play(src, options);
     }
   },
+  // position exacte de la lecture (plus précise que `current`, mis à jour ~4 fois/s)
+  getTime(): number {
+    return audio ? audio.currentTime : 0;
+  },
   seek(time: number) {
     if (!audio || !isFinite(audio.duration)) return;
     audio.currentTime = time;

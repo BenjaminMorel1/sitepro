@@ -71,23 +71,24 @@ const Home = () => {
         <h1 className="sr-only">{s.title}</h1>
 
         {/* trois mots géants décalés (présentation uniquement, retirés de l'arbre d'accessibilité) */}
-        <div aria-hidden="true" className="hero-title absolute text-white font-medium text-[14vw] md:text-[13vw] left-4 md:left-10 top-[18%] transition-transform duration-300 ease-out hover:-translate-y-3">
+        <div aria-hidden="true" className="hero-title absolute text-white font-medium text-[18vw] md:text-[13vw] left-5 md:left-10 top-[16%] md:top-[18%] transition-transform duration-300 ease-out hover:-translate-y-3">
           {s.words[0]}
         </div>
-        <div aria-hidden="true" className="hero-title absolute text-white font-medium text-[14vw] md:text-[13vw] right-4 md:right-10 top-[38%] transition-transform duration-300 ease-out hover:-translate-y-3">
+        <div aria-hidden="true" className="hero-title absolute text-white font-medium text-[18vw] md:text-[13vw] right-5 md:right-10 top-[28%] md:top-[38%] transition-transform duration-300 ease-out hover:-translate-y-3">
           {s.words[1]}
         </div>
-        <div aria-hidden="true" className="hero-title absolute text-white font-medium text-[14vw] md:text-[13vw] left-[18%] md:left-[28%] top-[58%] transition-transform duration-300 ease-out hover:-translate-y-3">
+        <div aria-hidden="true" className="hero-title absolute text-white font-medium text-[18vw] md:text-[13vw] left-[12%] md:left-[28%] top-[40%] md:top-[58%] transition-transform duration-300 ease-out hover:-translate-y-3">
           {s.words[2]}
         </div>
 
         {/* paragraphe descriptif */}
-        <p className="absolute left-6 md:left-10 top-[46%] max-w-[240px] text-[15px] leading-snug text-white/90">
+        {/* sur téléphone : sous les trois mots ; sur ordinateur : entre eux, à gauche */}
+        <p className="absolute left-6 right-6 md:right-auto md:left-10 top-[56%] md:top-[46%] max-w-[320px] md:max-w-[240px] text-[15px] leading-snug text-white/90">
           {s.paragraph}
         </p>
 
-        {/* stat haut-droite */}
-        <div className="absolute right-6 md:right-24 top-[14%]">
+        {/* stat haut-droite (ordinateur/tablette ; sur téléphone : rangée en bas) */}
+        <div className="hidden md:block absolute right-6 md:right-24 top-[14%]">
           <div className="flex items-center gap-3 justify-end">
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[20deg]" />
             <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">3</span>
@@ -99,7 +100,7 @@ const Home = () => {
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black" />
 
         {/* stat bas-gauche */}
-        <div className="absolute left-6 md:left-20 bottom-20 md:bottom-24">
+        <div className="hidden md:block absolute left-6 md:left-20 bottom-20 md:bottom-24">
           <div className="flex items-center gap-3">
             <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">3</span>
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[-20deg]" />
@@ -108,12 +109,25 @@ const Home = () => {
         </div>
 
         {/* stat bas-droite */}
-        <div className="absolute right-6 md:right-20 bottom-16 md:bottom-20">
+        <div className="hidden md:block absolute right-6 md:right-20 bottom-16 md:bottom-20">
           <div className="flex items-center gap-3 justify-end">
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[-20deg]" />
             <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">2</span>
           </div>
           <div className="text-xs md:text-sm text-white/70 mt-1 text-right">{s.stat3Label}</div>
+        </div>
+        {/* téléphone : les trois chiffres alignés en bas, au-dessus du bouton musique */}
+        <div className="md:hidden absolute left-6 right-6 bottom-24 grid grid-cols-3 gap-3">
+          {[
+            ["3", s.stat1Label],
+            ["3", s.stat2Label],
+            ["2", s.stat3Label],
+          ].map(([n, label]) => (
+            <div key={label}>
+              <span className="block text-3xl font-medium tracking-tight text-white">{n}</span>
+              <span className="mt-1 block text-[11px] leading-tight text-white/70">{label}</span>
+            </div>
+          ))}
         </div>
       </div>
 

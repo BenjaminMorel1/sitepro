@@ -1,0 +1,49 @@
+/* à recoller à la fin de src/index.css, avec en haut :
+   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"); */
+
+/* easter egg « doubt » : paroles en grand, une seule typo classique (Playfair Display)
+   (src/components/doubt/SyncedLyrics.tsx) */
+.lyric-caption {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #fff;
+  /* ombre pour rester lisible sur les pages claires comme sombres */
+  text-shadow: 0 0.04em 0.12em rgba(0, 0, 0, 0.55), 0 0 0.6em rgba(0, 0, 0, 0.35);
+}
+
+.lyric-word {
+  display: inline-block;
+  transition: opacity 0.6s ease, text-shadow 0.6s ease;
+  animation: lyric-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* mot en cours : lueur d'un blanc argenté (un peu gris-bleuté) pour rester visible sur fond blanc */
+.lyric-word--now {
+  text-shadow: 0 0.03em 0.08em rgba(60, 64, 80, 0.5), 0 0 0.3em rgba(190, 196, 214, 0.95),
+    0 0 0.8em rgba(170, 178, 200, 0.7), 0 0 1.5em rgba(150, 160, 190, 0.4);
+}
+
+.lyric-word--past {
+  opacity: 0.55;
+}
+
+@keyframes lyric-in {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(0.18em) scale(1.25);
+    letter-spacing: 0.08em;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyric-word {
+    animation: none;
+  }
+}

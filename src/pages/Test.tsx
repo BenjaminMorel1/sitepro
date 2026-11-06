@@ -62,7 +62,7 @@ const STRINGS: Record<
       },
       {
         title: "Elden Ring",
-        tag: "action-RPG 3D · nouvel onglet",
+        tag: "action-RPG 3D · au clavier, sur ordinateur",
         description: "Combat à l'épée, roulade, verrouillage de cible et fioles de soin.",
         image: shotEldenRing,
         href: `${import.meta.env.BASE_URL}games/elden-ring.html`,
@@ -98,7 +98,7 @@ const STRINGS: Record<
       },
       {
         title: "Elden Ring",
-        tag: "3D action-RPG · new tab",
+        tag: "3D action-RPG · keyboard, desktop only",
         description: "Sword combat, dodge rolls, target lock-on and healing flasks.",
         image: shotEldenRing,
         href: `${import.meta.env.BASE_URL}games/elden-ring.html`,
@@ -203,8 +203,11 @@ const Test = () => {
               {s.marquee.map((item) => (
                 <span key={item} className="font-display italic font-light text-[clamp(2.5rem,7vw,6rem)] whitespace-nowrap px-8">
                   {item}
-                  <span className="pl-16" style={{ color: ACCENT }}>
-                    ✳
+                  {/* étoile dessinée en SVG : le caractère ✳ devient un emoji vert sur iPhone */}
+                  <span className="pl-16 inline-flex align-middle" style={{ color: ACCENT }}>
+                    <svg viewBox="0 0 24 24" className="h-[0.5em] w-[0.5em]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
+                      <path d="M12 2.5v19M2.5 12h19M5.3 5.3l13.4 13.4M18.7 5.3 5.3 18.7" />
+                    </svg>
                   </span>
                 </span>
               ))}
