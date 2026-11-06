@@ -6,7 +6,8 @@ const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 /* piste d'ambiance jouée sur la page d'accueil — hors playlist */
 export const HOME_TRACK = asset("music.mp3");
 
-/* playlist principale affichée sur la page "musique" */
+/* playlist principale affichée sur la page "musique"
+   (onglet masqué : ses fichiers sont rangés dans music-masquee/ à la racine, voir LISEZMOI.md) */
 export const TRACKS: Track[] = [
   { title: "gimme! gimme! gimme! (a man after midnight)", artist: "abba", src: asset("music/abba-gimme-gimme-gimme.mp3") },
   { title: "lay all your love on me", artist: "abba", src: asset("music/abba-lay-all-your-love-on-me.mp3") },

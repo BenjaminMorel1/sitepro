@@ -1,6 +1,9 @@
 import Navbar from "../components/Navbar";
 import heroPoster from "../assets/hero-poster.jpg";
 import avatar from "../assets/avatar.png";
+
+/* photo masquée pour l'instant : passer à true pour la remettre */
+const SHOW_AVATAR = false;
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { musicPlayer, useMusicPlayer } from "../musicPlayer";
 import { HOME_TRACK } from "../tracks";
@@ -54,11 +57,13 @@ const Home = () => {
       <Navbar />
 
       {/* avatar à droite du nom dans la navbar — sibling de la navbar (z-30) pour rester devant les pilules même en resize */}
-      <img
-        src={avatar}
-        alt="Benjamin Morel"
-        className="absolute z-30 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] md:h-[clamp(3.5rem,min(18vmin,13vw),18rem)] md:w-[clamp(3.5rem,min(18vmin,13vw),18rem)] shrink-0 rounded-full object-cover ring-1 ring-white/30"
-      />
+      {SHOW_AVATAR && (
+        <img
+          src={avatar}
+          alt="Benjamin Morel"
+          className="absolute z-30 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] md:h-[clamp(3.5rem,min(18vmin,13vw),18rem)] md:w-[clamp(3.5rem,min(18vmin,13vw),18rem)] shrink-0 rounded-full object-cover ring-1 ring-white/30"
+        />
+      )}
 
       {/* contenu au premier plan — z-10 au-dessus de la vidéo */}
       <div className="relative z-10 h-full w-full">

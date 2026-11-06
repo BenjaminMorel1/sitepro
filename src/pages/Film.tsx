@@ -279,6 +279,8 @@ const VERSIONS: Record<
     plainScenes?: boolean;
     /* true : section des voix intérieures masquée (à remettre plus tard) */
     hideVoices?: boolean;
+    /* true : frise « De 1 à 20 ans » masquée (à remettre plus tard) */
+    hideAges?: boolean;
     text?: VersionText;
   }
 > = {
@@ -292,6 +294,7 @@ const VERSIONS: Record<
     variantScenes: ["scene_paris"],
     plainScenes: true,
     hideVoices: true,
+    hideAges: true,
     text: {
       fr: {
         pageTitle: PARIS_TEXT.fr.pageTitle,
@@ -393,7 +396,7 @@ const Film = ({ version = "full" }: { version?: Version }) => {
         )}
 
         {/* frise des âges */}
-        {ages.length > 0 && (
+        {ages.length > 0 && !v.hideAges && (
           <section className="py-16">
             <div className="flex items-end justify-between gap-4">
               <SectionTitle label={s.agesLabel} />
