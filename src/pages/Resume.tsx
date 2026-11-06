@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import ShareButton from "../components/ShareButton";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -265,7 +266,12 @@ const Resume = () => {
               </Link>
             </p>
           </div>
-          <div className="md:col-span-4 md:self-end flex md:justify-end">
+          <div className="md:col-span-4 md:self-end flex flex-wrap items-center gap-4 md:justify-end">
+            {/* partager le résumé (menu de partage du téléphone, ou copie du lien) */}
+            <ShareButton
+              title="Benjamin Morel — résumé"
+              className="border border-[#141414]/30 dark:border-white/40 px-6 py-4 text-[12px] uppercase tracking-[2px] text-[#141414] dark:text-white hover:border-[#141414] dark:hover:border-white transition-colors"
+            />
             <Link
               to="/contact"
               className="group inline-block border border-[#141414] bg-[#141414] px-14 py-4 text-[12px] tracking-[2px] text-white transition-colors hover:bg-white hover:text-[#141414] dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white"

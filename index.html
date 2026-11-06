@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- installable comme une appli (« Ajouter à l'écran d'accueil ») : icône BM, plein écran -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="B. Morel" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Benjamin Morel | Étudiant & développeur</title>
@@ -50,10 +59,10 @@
       async
       src="//gc.zgo.at/count.js"
     ></script>
-    <!-- thème noir posé avant l'affichage, pour éviter un flash (même clé que src/theme.ts) -->
+    <!-- thème sombre posé avant l'affichage s'il est actif sur l'appareil (voir src/theme.ts) -->
     <script>
       try {
-        if (localStorage.getItem("sitepro-theme") === "dark") document.documentElement.classList.add("dark");
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.classList.add("dark");
       } catch (e) {}
     </script>
   </head>

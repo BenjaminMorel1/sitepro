@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import './index.css'
+import './theme' // thème sombre / clair selon l'appareil
 import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(

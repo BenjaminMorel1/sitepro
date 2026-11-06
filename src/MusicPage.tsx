@@ -135,7 +135,8 @@ const MusicPage = () => {
                 </div>
 
                 {isActive && (
-                  <div className="flex shrink-0 items-center gap-3">
+                  // sur téléphone, la progression est dans la barre du bas (MusicWidget)
+                  <div className="hidden sm:flex shrink-0 items-center gap-3">
                     <span className="w-9 text-right text-[11px] tabular-nums text-[#141414]/50 dark:text-white/50">
                       {formatTime(current)}
                     </span>

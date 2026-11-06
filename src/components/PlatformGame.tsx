@@ -6,8 +6,8 @@ const STRINGS = {
   fr: {
     heading: "Projets",
     intro:
-      "notre plateforme neutralise les menaces couche par couche. teste par toi-même — lance la balle, enchaîne les blocs sans en rater pour faire grimper ton multiplicateur de combo, et attrape les bonus qui tombent sur 3 niveaux de difficulté croissante.",
-    launchHint: "clique ou appuie sur espace pour lancer",
+      "un casse-briques codé à la main : lance la balle, enchaîne les blocs sans en rater pour faire grimper ton multiplicateur de combo, et attrape les bonus qui tombent sur 3 niveaux de difficulté croissante.",
+    launchHint: "touche, clique ou appuie sur espace pour lancer",
     score: "score :",
     best: "meilleur :",
     combo: (mult: number) => `combo ×${mult}`,
@@ -16,7 +16,7 @@ const STRINGS = {
     soundOff: "son désactivé",
     lives: "vies :",
     idleInstructions:
-      "déplace la barre avec la souris (ou ← →), lance la balle d'un clic ou avec espace, et détruis tous les blocs. enchaîne les coups pour booster ton combo, évite les obstacles indestructibles et attrape les bonus qui tombent : barre plus large, vie en plus, ralenti ou multi-balle. appuie sur P pour mettre en pause. 3 niveaux, trois vies perdues et c'est terminé.",
+      "déplace la barre au doigt ou à la souris (ou ← →), lance la balle d'un toucher, d'un clic ou avec espace, et détruis tous les blocs. enchaîne les coups pour booster ton combo, évite les obstacles indestructibles et attrape les bonus qui tombent : barre plus large, vie en plus, ralenti ou multi-balle. appuie sur P pour mettre en pause. 3 niveaux, trois vies perdues et c'est terminé.",
     startGame: "lancer la partie",
     paused: "pause",
     resume: "reprendre",
@@ -32,8 +32,8 @@ const STRINGS = {
   en: {
     heading: "Projects",
     intro:
-      "our platform breaks down threats layer by layer. try it yourself — launch the ball, chain blocks without missing to grow your combo multiplier, and grab falling bonuses across 3 levels of rising difficulty.",
-    launchHint: "click or press space to launch",
+      "a hand-coded breakout game: launch the ball, chain blocks without missing to grow your combo multiplier, and grab falling bonuses across 3 levels of rising difficulty.",
+    launchHint: "tap, click or press space to launch",
     score: "score:",
     best: "best:",
     combo: (mult: number) => `combo ×${mult}`,
@@ -42,7 +42,7 @@ const STRINGS = {
     soundOff: "sound off",
     lives: "lives:",
     idleInstructions:
-      "move the bar with your mouse (or ← →), launch the ball with a click or space, and smash every block. chain hits to boost your combo, dodge indestructible obstacles and catch falling bonuses: wider bar, extra life, slow motion, or multi-ball. press P to pause. 3 levels, three misses and it's over.",
+      "move the bar with your finger or mouse (or ← →), launch the ball with a tap, a click or space, and smash every block. chain hits to boost your combo, dodge indestructible obstacles and catch falling bonuses: wider bar, extra life, slow motion, or multi-ball. press P to pause. 3 levels, three misses and it's over.",
     startGame: "start game",
     paused: "paused",
     resume: "resume",
@@ -66,8 +66,12 @@ const STRINGS = {
 /* screen shake et meilleur score persistant.                          */
 /* ------------------------------------------------------------------ */
 
-const WIDTH = 1200;
-const HEIGHT = 720;
+/* téléphone tenu en vertical (au chargement de la page) : plateau en format portrait,
+   plus haut que large, avec moins de colonnes de briques ; sinon format paysage habituel */
+const PORTRAIT =
+  typeof window !== "undefined" && window.matchMedia("(max-width: 767px) and (orientation: portrait)").matches;
+const WIDTH = PORTRAIT ? 720 : 1200;
+const HEIGHT = PORTRAIT ? 1100 : 720;
 
 const BASE_PADDLE_WIDTH = 165;
 const PADDLE_HEIGHT = 20;
@@ -85,7 +89,11 @@ const SUPER_MULTI_BALLS = 99;
 const SUPER_MULTI_CHANCE = 1 / 3;
 const TRAIL_LENGTH = 7;
 
-const COLS = 14;
+const COLS = PORTRAIT ? 9 : 14;
+/* les obstacles des niveaux sont placés sur la grille de 14 colonnes : on les ramène
+   proportionnellement sur la grille du format portrait */
+const LEVEL_COLS = 14;
+const toCol = (col: number) => (COLS === LEVEL_COLS ? col : Math.round((col * (COLS - 1)) / (LEVEL_COLS - 1)));
 const BRICK_HEIGHT = 24;
 const BRICK_GAP = 6;
 const SIDE_OFFSET = 32;
@@ -162,6 +170,15 @@ const LEVELS: LevelConfig[] = [
   },
 ];
 
+/* petite vibration du téléphone (Android ; sans effet ailleurs) */
+function vibrate(pattern: number | number[]) {
+  try {
+    navigator.vibrate?.(pattern);
+  } catch {
+    /* non disponible */
+  }
+}
+
 function gridPosition(row: number, col: number) {
   return {
     x: SIDE_OFFSET + col * (BRICK_WIDTH + BRICK_GAP),
@@ -171,7 +188,7 @@ function gridPosition(row: number, col: number) {
 
 function createLevel(levelIndex: number): { bricks: Brick[]; obstacles: Obstacle[] } {
   const config = LEVELS[levelIndex];
-  const obstacleCells = new Set(config.obstacles.map((o) => `${o.row},${o.col}`));
+  const obstacleCells = new Set(config.obstacles.map((o) => `${o.row},${toCol(o.col)}`));
   const bricks: Brick[] = [];
   const obstacles: Obstacle[] = [];
 
@@ -600,9 +617,11 @@ export default function PlatformGame() {
       saveBest();
       playTone(160, 350, "sawtooth", 0.05);
       playTone(105, 450, "sawtooth", 0.05, 160);
+      vibrate([80, 60, 160]);
       return;
     }
     playTone(180, 220, "sawtooth", 0.04);
+    vibrate(90);
     paddleWidthRef.current = BASE_PADDLE_WIDTH;
     paddleGrowUntilRef.current = 0;
     paddleXRef.current = (WIDTH - paddleWidthRef.current) / 2;
@@ -711,6 +730,7 @@ export default function PlatformGame() {
           triggerShake(4);
           // note plus aiguë pour les rangées hautes (qui rapportent plus)
           playTone(320 + (ROW_COLORS.length - brick.row) * 35, 80, "square", 0.035);
+          vibrate(12);
           if (Math.random() < POWERUP_CHANCE) {
             powerupsRef.current.push({
               x: brick.x + BRICK_WIDTH / 2,

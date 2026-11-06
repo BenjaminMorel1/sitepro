@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import Navbar from "../components/Navbar";
+import ShareButton from "../components/ShareButton";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 import data from "../data/biographie-assets.json";
@@ -374,6 +375,11 @@ const Film = ({ version = "full" }: { version?: Version }) => {
           </p>
           <h1 className="hero-title mt-4 text-[22vw] md:text-[12vw] font-medium leading-none text-white">{s.title}</h1>
           <p className="mt-6 max-w-xl text-base md:text-lg leading-relaxed text-white/75">{s.subtitle}</p>
+          {/* partager la page (menu de partage du téléphone, ou copie du lien) */}
+          <ShareButton
+            title={s.pageTitle}
+            className="mt-6 rounded-full border border-white/25 px-5 py-2.5 text-sm text-white/85 hover:border-white/60 hover:text-white transition-colors"
+          />
         </div>
       </section>
 

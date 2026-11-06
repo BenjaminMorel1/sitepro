@@ -39,6 +39,8 @@ const STRINGS = {
 /* ------------------------------------------------------------------ */
 
 const POSITION_KEY = "securify-music-widget-pos";
+/* pochette par défaut (thème du site, morceaux sans pochette) */
+const DEFAULT_COVER = `${import.meta.env.BASE_URL}og-image.jpg`;
 const MARGIN = 12;
 
 type Position = { x: number; y: number };
@@ -112,22 +114,79 @@ export default function MusicWidget() {
     return () => removeEventListener("resize", clampToViewport);
   }, [pos]);
 
-  if (!src) return null;
-
   /* la playlist qui contient la piste en cours : suivant/précédent restent dedans */
   const tracks = PLAYLISTS.find((p) => p.tracks.some((t) => t.src === src))?.tracks ?? [];
   const trackIndex = tracks.findIndex((t) => t.src === src);
   const track = trackIndex >= 0 ? tracks[trackIndex] : null;
   const title = track ? track.title : s.homeTitle;
   const artist = track ? track.artist : s.homeArtist;
+  const cover = track?.cover ?? DEFAULT_COVER;
   const canChangeTrack = trackIndex >= 0;
 
-  const toggle = () => musicPlayer.toggle(src, { volume: src === HOME_TRACK ? 0.35 : 0.6, loop: src === HOME_TRACK });
+  const toggle = () => {
+    if (src) musicPlayer.toggle(src, { volume: src === HOME_TRACK ? 0.35 : 0.6, loop: src === HOME_TRACK });
+  };
 
   const playAt = (index: number) => {
+    if (!tracks.length) return;
     const next = tracks[(index + tracks.length) % tracks.length];
     musicPlayer.play(next.src, { volume: 0.6 });
   };
+
+  /* écran verrouillé / centre de contrôle du téléphone (Media Session) :
+     titre, artiste, pochette, et boutons lecture/pause/précédent/suivant/avance */
+  const actionsRef = useRef({ toggle, playAt, trackIndex });
+  useEffect(() => {
+    actionsRef.current = { toggle, playAt, trackIndex };
+  });
+  useEffect(() => {
+    if (!("mediaSession" in navigator)) return;
+    const ms = navigator.mediaSession;
+    if (!src) {
+      ms.metadata = null;
+      return;
+    }
+    ms.metadata = new MediaMetadata({
+      title,
+      artist,
+      album: "benjamin morel",
+      artwork: [{ src: new URL(cover, window.location.href).href, sizes: "512x512", type: "image/jpeg" }],
+    });
+    const set = (action: MediaSessionAction, handler: MediaSessionActionHandler | null) => {
+      try {
+        ms.setActionHandler(action, handler);
+      } catch {
+        /* action non gérée par ce navigateur */
+      }
+    };
+    set("play", () => actionsRef.current.toggle());
+    set("pause", () => musicPlayer.pause());
+    set("previoustrack", canChangeTrack ? () => actionsRef.current.playAt(actionsRef.current.trackIndex - 1) : null);
+    set("nexttrack", canChangeTrack ? () => actionsRef.current.playAt(actionsRef.current.trackIndex + 1) : null);
+    set("seekto", (d) => {
+      if (d.seekTime !== undefined) musicPlayer.seek(d.seekTime);
+    });
+  }, [src, title, artist, cover, canChangeTrack]);
+  useEffect(() => {
+    if ("mediaSession" in navigator) navigator.mediaSession.playbackState = src ? (playing ? "playing" : "paused") : "none";
+  }, [src, playing]);
+
+  /* téléphone : la barre du bas ne doit pas cacher la fin des pages */
+  useEffect(() => {
+    if (!src) return;
+    const mq = window.matchMedia("(max-width: 767px)");
+    const apply = () => {
+      document.body.style.paddingBottom = mq.matches ? "calc(76px + env(safe-area-inset-bottom))" : "";
+    };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => {
+      mq.removeEventListener("change", apply);
+      document.body.style.paddingBottom = "";
+    };
+  }, [src]);
+
+  if (!src) return null;
 
   const seek = (e: ChangeEvent<HTMLInputElement>) => {
     musicPlayer.seek(Number(e.target.value));
@@ -252,11 +311,79 @@ export default function MusicWidget() {
     }
   };
 
+  const progress = isFinite(duration) && duration > 0 ? Math.min(100, (current / duration) * 100) : 0;
+
   return (
+    <>
+    {/* téléphone : barre fine en bas, sur toute la largeur, comme les applis de musique */}
+    <div
+      className="md:hidden fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-neutral-900/95 backdrop-blur text-white"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+    >
+      {/* progression (touchable pour avancer) */}
+      <div className="relative h-1 w-full bg-white/10">
+        <div className="absolute inset-y-0 left-0 bg-white" style={{ width: `${progress}%` }} />
+        <input
+          type="range"
+          min={0}
+          max={isFinite(duration) && duration > 0 ? duration : 0}
+          step={0.1}
+          value={current}
+          onChange={seek}
+          disabled={!isFinite(duration) || duration === 0}
+          aria-label={s.seek}
+          className="absolute -top-2 left-0 h-5 w-full cursor-pointer opacity-0"
+        />
+      </div>
+      <div className="flex items-center gap-3 px-3 py-2">
+        <img src={cover} alt="" className="h-11 w-11 shrink-0 rounded-md object-cover" />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium">{title}</p>
+          <p className="truncate text-xs text-white/50">{artist}</p>
+        </div>
+        {canChangeTrack && (
+          <button onClick={() => playAt(trackIndex - 1)} aria-label={s.prev} className="p-1.5 text-white/70">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M7 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-4.6l8.47 5.4A1 1 0 0 0 18 17.9V6.1a1 1 0 0 0-1.53-.85L8 10.6V6a1 1 0 0 0-1-1H7Z" />
+            </svg>
+          </button>
+        )}
+        <button
+          onClick={toggle}
+          aria-label={playing ? s.pause : s.play}
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black ${loading ? "opacity-50" : ""}`}
+        >
+          {playing ? (
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+              <rect x="6" y="5" width="4" height="14" rx="1" />
+              <rect x="14" y="5" width="4" height="14" rx="1" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="h-4 w-4 translate-x-[1px]" fill="currentColor" aria-hidden="true">
+              <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5Z" />
+            </svg>
+          )}
+        </button>
+        {canChangeTrack && (
+          <button onClick={() => playAt(trackIndex + 1)} aria-label={s.next} className="p-1.5 text-white/70">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+              <path d="M17 5a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-4.6l-8.47 5.4A1 1 0 0 1 6 17.9V6.1a1 1 0 0 1 1.53-.85L16 10.6V6a1 1 0 0 1 1-1h1Z" />
+            </svg>
+          </button>
+        )}
+        <button onClick={() => musicPlayer.stop()} aria-label={s.stop} className="p-1.5 text-white/50">
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+            <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {/* ordinateur / tablette : carte flottante déplaçable */}
     <div
       ref={widgetRef}
       style={pos ? { left: pos.x, top: pos.y } : undefined}
-      className={`fixed z-40 w-72 rounded-2xl border border-white/10 bg-neutral-900/95 backdrop-blur p-4 text-white shadow-lg shadow-black/40 ${
+      className={`hidden md:block fixed z-40 w-72 rounded-2xl border border-white/10 bg-neutral-900/95 backdrop-blur p-4 text-white shadow-lg shadow-black/40 ${
         pos ? "" : "bottom-6 left-6"
       }`}
     >
@@ -343,5 +470,6 @@ export default function MusicWidget() {
         <span className="w-9 shrink-0 text-[11px] tabular-nums text-white/50">{formatTime(duration)}</span>
       </div>
     </div>
+    </>
   );
 }

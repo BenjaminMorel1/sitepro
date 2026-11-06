@@ -1,4 +1,5 @@
-export type Track = { title: string; artist: string; src: string };
+/* cover : pochette (public/music/covers/), affichée dans le lecteur et sur l'écran verrouillé du téléphone */
+export type Track = { title: string; artist: string; src: string; cover?: string };
 
 /* chemins relatifs au dossier public, préfixés par la base du site (/site/ en ligne) */
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
@@ -24,9 +25,9 @@ export const TRACKS: Track[] = [
 
 /* deuxième playlist "?" — ajoute des morceaux ici (fichiers dans public/music/) */
 export const TRACKS_2: Track[] = [
-  { title: "downtown train", artist: "yowshi", src: asset("music/yowshi-downtown-train.mp3") },
-  { title: "love me not", artist: "ravyn lenae", src: asset("music/ravyn-lenae-love-me-not.mp3") },
-  { title: "art of now", artist: "dennis korn", src: asset("music/dennis-korn-art-of-now.mp3") },
+  { title: "downtown train", artist: "yowshi", src: asset("music/yowshi-downtown-train.mp3"), cover: asset("music/covers/yowshi-downtown-train.jpg") },
+  { title: "love me not", artist: "ravyn lenae", src: asset("music/ravyn-lenae-love-me-not.mp3"), cover: asset("music/covers/ravyn-lenae-love-me-not.jpg") },
+  { title: "art of now", artist: "dennis korn", src: asset("music/dennis-korn-art-of-now.mp3"), cover: asset("music/covers/dennis-korn-art-of-now.jpg") },
 ];
 
 /* hidden : onglet masqué sur la page (à remettre plus tard en retirant hidden) */

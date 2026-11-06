@@ -13,6 +13,7 @@ import { useLanguage } from "../i18n/LanguageContext";
 const GITHUB_URL = "https://github.com/BenjaminMorel1";
 const YOUTUBE_URL = "https://www.youtube.com/@pardise3604";
 const EMAIL = "benjaminmorelproject@gmail.com";
+const LINKEDIN_URL = "https://www.linkedin.com/in/benjamin-morel-bb839a3ab/";
 
 // mise en page inspirée d'une fiche académique : identité, présentation, parcours, projets
 const STRINGS = {
@@ -47,6 +48,8 @@ const STRINGS = {
       },
     ],
     projectsLink: "voir les projets →",
+    writeMe: "m'écrire",
+    linkedin: "LinkedIn",
     privacy: "Ce site utilise Google Analytics et GoatCounter pour compter les visites.",
   },
   en: {
@@ -80,6 +83,8 @@ const STRINGS = {
       },
     ],
     projectsLink: "see the projects →",
+    writeMe: "email me",
+    linkedin: "LinkedIn",
     privacy: "This site uses Google Analytics and GoatCounter to count visits.",
   },
 } as const;
@@ -140,6 +145,31 @@ const Contact = () => {
             >
               youtube.com/@pardise3604
             </a>
+
+            {/* contact en un tap : gros boutons, pleine largeur sur téléphone */}
+            <div className="mt-4 grid grid-cols-2 gap-3 sm:flex sm:w-fit">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="flex items-center justify-center gap-2 rounded-full bg-[#141414] dark:bg-white px-6 py-3.5 text-sm font-medium text-white dark:text-black transition-colors hover:bg-[#333333] dark:hover:bg-neutral-200"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m4 7 8 6 8-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {s.writeMe}
+              </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-full border border-[#141414]/20 dark:border-white/25 px-6 py-3.5 text-sm font-medium text-[#141414] dark:text-white transition-colors hover:border-[#141414]/50 dark:hover:border-white/60"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm7 0h3.8v1.6h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12v5.33h-4v-4.73c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5v4.81h-4v-11Z" />
+                </svg>
+                {s.linkedin}
+              </a>
+            </div>
           </div>
 
           <div className="flex flex-col gap-3">

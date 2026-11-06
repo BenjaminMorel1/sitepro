@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo-bm.png";
 import { useLanguage } from "../i18n/LanguageContext";
-import { toggleTheme, useTheme } from "../theme";
 
 const NAV_LINKS = [
   { key: "platform", to: "/platform", fr: "projets", en: "projects" },
@@ -20,21 +19,43 @@ const NAV_LINKS = [
 
 const GET_STARTED = { fr: "Commencer", en: "Get started" };
 
-const THEME_LABELS = {
-  fr: { dark: "noir", light: "blanc", toDark: "passer en thème noir", toLight: "passer en thème blanc" },
-  en: { dark: "dark", light: "light", toDark: "switch to dark theme", toLight: "switch to light theme" },
-} as const;
 
 const Navbar = () => {
   const { lang, toggleLang } = useLanguage();
-  const theme = useTheme();
-  const t = THEME_LABELS[lang];
   const [menuOpen, setMenuOpen] = useState(false);
+  // le menu se referme quand on change de page
   const { pathname } = useLocation();
-  useEffect(() => setMenuOpen(false), [pathname]);
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setMenuOpen(false);
+  }
+
+  /* menu toujours accessible : la barre reste en haut de l'écran en défilant,
+     se cache quand on descend et réapparaît dès qu'on remonte un peu */
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+  useEffect(() => {
+    lastY.current = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const dy = y - lastY.current;
+      if (y < 80) setHidden(false);
+      else if (dy > 6) setHidden(true);
+      else if (dy < -6) setHidden(false);
+      if (Math.abs(dy) > 6 || y < 80) lastY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const isHidden = hidden && !menuOpen;
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-20 px-6 md:px-10 pt-6 flex items-center justify-between gap-4">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-30 px-6 md:px-10 pt-6 flex items-center justify-between gap-4 transition-transform duration-300 ease-out ${
+        isHidden ? "-translate-y-[130%]" : "translate-y-0"
+      }`}
+    >
       {/* pilule gauche : logo + marque */}
       <Link to="/" className="flex items-center gap-2 bg-neutral-900/90 backdrop-blur rounded-full pl-4 pr-6 py-3">
         <img src={logo} alt="Benjamin Morel" className="h-4 w-auto object-contain" />
@@ -70,20 +91,6 @@ const Navbar = () => {
           </span>
         </button>
 
-        {/* thème noir / blanc pour tout le site, placé sous fr/en sans décaler la barre
-            (sur mobile il est dans le menu ☰, sinon il chevauche les titres des pages) */}
-        <button
-          onClick={toggleTheme}
-          aria-label={theme === "dark" ? t.toLight : t.toDark}
-          className="absolute left-1/2 top-full mt-2 -translate-x-1/2 hidden md:flex items-center gap-1 bg-neutral-900/90 backdrop-blur rounded-full px-1 py-1 text-xs font-medium whitespace-nowrap"
-        >
-          <span className={`px-3 py-2 rounded-full transition-colors ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}>
-            {t.dark}
-          </span>
-          <span className={`px-3 py-2 rounded-full transition-colors ${theme === "light" ? "bg-white text-black" : "text-neutral-400"}`}>
-            {t.light}
-          </span>
-        </button>
         </div>
 
 
@@ -118,20 +125,8 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* sur mobile : thème noir / blanc et « Commencer » rangés ici */}
-          <div className="mt-2 flex items-center justify-between gap-3 border-t border-white/10 px-2 pt-3">
-            <button
-              onClick={toggleTheme}
-              aria-label={theme === "dark" ? t.toLight : t.toDark}
-              className="flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 text-xs font-medium"
-            >
-              <span className={`px-3 py-2 rounded-full transition-colors ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}>
-                {t.dark}
-              </span>
-              <span className={`px-3 py-2 rounded-full transition-colors ${theme === "light" ? "bg-white text-black" : "text-neutral-400"}`}>
-                {t.light}
-              </span>
-            </button>
+          {/* sur mobile : « Commencer » rangé ici */}
+          <div className="mt-2 flex items-center justify-end gap-3 border-t border-white/10 px-2 pt-3 sm:hidden">
             <Link
               to="/bientot"
               onClick={() => setMenuOpen(false)}
