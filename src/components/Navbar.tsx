@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo-bm.png";
 import { useLanguage } from "../i18n/LanguageContext";
+import { toggleTheme, useTheme } from "../theme";
 
 const NAV_LINKS = [
   { key: "platform", to: "/platform", fr: "projets", en: "projects" },
@@ -19,9 +20,16 @@ const NAV_LINKS = [
 
 const GET_STARTED = { fr: "Commencer", en: "Get started" };
 
+const THEME_LABELS = {
+  fr: { dark: "noir", light: "blanc", toDark: "passer en thème noir", toLight: "passer en thème blanc" },
+  en: { dark: "dark", light: "light", toDark: "switch to dark theme", toLight: "switch to light theme" },
+} as const;
+
 
 const Navbar = () => {
   const { lang, toggleLang } = useLanguage();
+  const theme = useTheme();
+  const t = THEME_LABELS[lang];
   const [menuOpen, setMenuOpen] = useState(false);
   // le menu se referme quand on change de page
   const { pathname } = useLocation();
@@ -91,6 +99,20 @@ const Navbar = () => {
           </span>
         </button>
 
+        {/* thème noir / blanc (par défaut : celui de l'appareil) — sous fr/en sur ordinateur */}
+        <button
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? t.toLight : t.toDark}
+          className="absolute left-1/2 top-full mt-2 -translate-x-1/2 hidden md:flex items-center gap-1 bg-neutral-900/90 backdrop-blur rounded-full px-1 py-1 text-xs font-medium whitespace-nowrap"
+        >
+          <span className={`px-3 py-2 rounded-full transition-colors ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}>
+            {t.dark}
+          </span>
+          <span className={`px-3 py-2 rounded-full transition-colors ${theme === "light" ? "bg-white text-black" : "text-neutral-400"}`}>
+            {t.light}
+          </span>
+        </button>
+
         </div>
 
 
@@ -125,8 +147,20 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* sur mobile : « Commencer » rangé ici */}
-          <div className="mt-2 flex items-center justify-end gap-3 border-t border-white/10 px-2 pt-3 sm:hidden">
+          {/* sur mobile : thème noir / blanc et « Commencer » rangés ici */}
+          <div className="mt-2 flex items-center justify-between gap-3 border-t border-white/10 px-2 pt-3">
+            <button
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? t.toLight : t.toDark}
+          className=" flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 text-xs font-medium whitespace-nowrap"
+        >
+          <span className={`px-3 py-2 rounded-full transition-colors ${theme === "dark" ? "bg-white text-black" : "text-neutral-400"}`}>
+            {t.dark}
+          </span>
+          <span className={`px-3 py-2 rounded-full transition-colors ${theme === "light" ? "bg-white text-black" : "text-neutral-400"}`}>
+            {t.light}
+          </span>
+        </button>
             <Link
               to="/bientot"
               onClick={() => setMenuOpen(false)}

@@ -62,7 +62,9 @@
     <!-- thème sombre posé avant l'affichage s'il est actif sur l'appareil (voir src/theme.ts) -->
     <script>
       try {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.classList.add("dark");
+        var c = localStorage.getItem("sitepro-theme");
+        if (c === "dark" || (c !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches))
+          document.documentElement.classList.add("dark");
       } catch (e) {}
     </script>
   </head>

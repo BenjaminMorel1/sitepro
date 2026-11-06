@@ -5,7 +5,7 @@ import "flickity/css/flickity.css";
 import { useLanguage } from "../i18n/LanguageContext";
 
 // Section « appli mobile » : une bande continue de 12 téléphones montrant le
-// parcours dans l'appli StudyApp, découpée en 4 pages de la largeur de l'écran
+// parcours dans l'appli RayOnn 2, découpée en 4 pages de la largeur de l'écran
 // (les téléphones à cheval entre deux pages sont coupés). Mêmes proportions que
 // le carrousel de référence : tout est relatif à la largeur du carrousel, donc la
 // bande garde le même rendu quelle que soit la largeur. Le glissement est fait par
@@ -13,21 +13,21 @@ import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
   fr: {
-    label: "Application mobile",
-    title: "StudyApp, pour réviser avec régularité, sans pression.",
+    label: "Application web",
+    title: "RayOnn 2, réviser ensemble, comme on s'entraîne.",
     description:
-      "Sessions de concentration chronométrées, tâches et habitudes du jour, niveaux et XP pour rester motivé. Les données restent sur le téléphone, sans compte.",
-    stack: "Expo · React Native · TypeScript",
-    carousel: "Écrans de l'appli StudyApp",
+      "Enregistre tes sessions d'étude avec leur profil de concentration, partage-les avec tes amis, trouve une bibliothèque sur la carte et relève des défis en groupe.",
+    stack: "React · Vite · Firebase · Mapbox",
+    carousel: "Écrans de l'appli RayOnn 2",
     screen: "Écran",
   },
   en: {
-    label: "Mobile app",
-    title: "StudyApp, to study consistently, without the pressure.",
+    label: "Web app",
+    title: "RayOnn 2, study together, like you train.",
     description:
-      "Timed focus sessions, daily tasks and habits, levels and XP to stay motivated. Data stays on the phone, no account needed.",
-    stack: "Expo · React Native · TypeScript",
-    carousel: "StudyApp app screens",
+      "Log your study sessions with their focus profile, share them with friends, find a library on the map and take on group challenges.",
+    stack: "React · Vite · Firebase · Mapbox",
+    carousel: "RayOnn 2 app screens",
     screen: "Screen",
   },
 } as const;

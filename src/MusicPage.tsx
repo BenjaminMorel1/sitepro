@@ -52,8 +52,8 @@ const MusicPage = () => {
 
   const { src, playing, loading, current, duration } = useMusicPlayer();
 
-  /* onglet ouvert par défaut : la playlist "?" */
-  const [activeKey, setActiveKey] = useState("mystery");
+  /* onglet ouvert par défaut : la playlist « playlist » (principale) */
+  const [activeKey, setActiveKey] = useState("playlist-1");
   const playlist = PLAYLISTS.find((p) => p.key === activeKey) ?? PLAYLISTS[0];
   const tracks = playlist.tracks;
 

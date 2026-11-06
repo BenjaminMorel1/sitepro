@@ -9,6 +9,7 @@ import Platform from "./pages/Platform";
 import Contact from "./pages/Contact";
 import Resume from "./pages/Resume";
 import Film from "./pages/Film";
+// import Vfx from "./pages/Vfx"; // page VFX retirée du site (fichier gardé)
 import Bientot from "./pages/Bientot";
 import Test from "./pages/Test";
 import MusicPage from "./MusicPage";

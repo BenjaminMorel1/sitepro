@@ -35,7 +35,7 @@ export type Playlist = { key: string; name: string; tracks: Track[]; hidden?: bo
 
 /* les playlists de la page "musique", dans l'ordre des onglets */
 export const PLAYLISTS: Playlist[] = [
-  { key: "mystery", name: "?", tracks: TRACKS_2 },
   { key: "playlist-1", name: "playlist", tracks: TRACKS_3 },
+  { key: "mystery", name: "?", tracks: TRACKS_2 },
   { key: "main", name: "playlist", tracks: TRACKS, hidden: true },
 ];

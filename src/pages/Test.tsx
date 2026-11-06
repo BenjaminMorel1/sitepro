@@ -12,7 +12,7 @@ import { scrollToElement } from "../smoothScroll";
 
 // Page d'essai des effets : phrase d'ouverture animée mot par mot, flèche,
 // bandeau défilant, cartes qui apparaissent au défilement, téléphones de l'appli
-// StudyApp, curseur personnalisé.
+// RayOnn 2, curseur personnalisé.
 
 // bordeaux de l'Université Paris Cité, éclairci pour rester lisible sur fond noir
 const ACCENT = "#dd5a7e";
@@ -44,7 +44,7 @@ const STRINGS: Record<
       { text: " et une " },
       { text: "licence MIASHS", to: "/contact" },
       { text: " à Lille. Je crée une appli de révision, " },
-      { text: "StudyApp", to: "/platform" },
+      { text: "RayOnn 2", to: "/platform" },
       { text: ", et un " },
       { text: "film d'animation", to: "/animation-2-1" },
       { text: " entièrement généré par IA." },
@@ -80,7 +80,7 @@ const STRINGS: Record<
       { text: " and a " },
       { text: "MIASHS Bachelor's", to: "/contact" },
       { text: " in Lille. I'm building a revision app, " },
-      { text: "StudyApp", to: "/platform" },
+      { text: "RayOnn 2", to: "/platform" },
       { text: ", and an " },
       { text: "animated film", to: "/animation-2-1" },
       { text: " entirely generated with AI." },
