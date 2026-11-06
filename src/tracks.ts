@@ -27,10 +27,11 @@ export const TRACKS_2: Track[] = [
   { title: "love me not", artist: "ravyn lenae", src: asset("music/ravyn-lenae-love-me-not.mp3") },
 ];
 
-export type Playlist = { key: string; name: string; tracks: Track[] };
+/* hidden : onglet masqué sur la page (à remettre plus tard en retirant hidden) */
+export type Playlist = { key: string; name: string; tracks: Track[]; hidden?: boolean };
 
 /* les playlists de la page "musique", dans l'ordre des onglets */
 export const PLAYLISTS: Playlist[] = [
   { key: "mystery", name: "?", tracks: TRACKS_2 },
-  { key: "main", name: "playlist", tracks: TRACKS },
+  { key: "main", name: "playlist", tracks: TRACKS, hidden: true },
 ];

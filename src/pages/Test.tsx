@@ -12,7 +12,7 @@ import { scrollToElement } from "../smoothScroll";
 
 // Page d'essai des effets : phrase d'ouverture animée mot par mot, flèche,
 // bandeau défilant, cartes qui apparaissent au défilement, téléphones de l'appli
-// RayOnn, curseur personnalisé.
+// StudyApp, curseur personnalisé.
 
 // bordeaux de l'Université Paris Cité, éclairci pour rester lisible sur fond noir
 const ACCENT = "#dd5a7e";
@@ -33,7 +33,7 @@ const STRINGS: Record<
   }
 > = {
   fr: {
-    pageTitle: "Test | Benjamin Morel",
+    pageTitle: "Intro | Benjamin Morel",
     intro: [
       { text: "Benjamin Morel ✳ étudiant en " },
       { text: "Licence 3 de mathématiques", to: "/contact" },
@@ -72,7 +72,7 @@ const STRINGS: Record<
     ],
   },
   en: {
-    pageTitle: "Test | Benjamin Morel",
+    pageTitle: "Intro | Benjamin Morel",
     intro: [
       { text: "Benjamin Morel ✳ " },
       { text: "3rd-year Mathematics", to: "/contact" },

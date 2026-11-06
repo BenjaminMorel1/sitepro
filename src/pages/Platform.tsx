@@ -16,7 +16,7 @@ const STRINGS = {
     games: {
       rayonn: {
         tag: "appli mobile · dans la page",
-        title: "RayOnn",
+        title: "StudyApp",
         description:
           "réviser avec régularité, sans pression : sessions de concentration chronométrées, tâches et habitudes du jour, niveaux et XP pour rester motivé.",
         cta: "découvrir",
@@ -48,7 +48,7 @@ const STRINGS = {
     games: {
       rayonn: {
         tag: "mobile app · in this page",
-        title: "RayOnn",
+        title: "StudyApp",
         description:
           "study consistently, without the pressure: timed focus sessions, daily tasks and habits, levels and XP to stay motivated.",
         cta: "discover",

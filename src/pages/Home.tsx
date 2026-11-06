@@ -13,9 +13,9 @@ const STRINGS = {
     words: ["explorer", "créer", "partager"],
     paragraph:
       "Salut, moi c'est Benjamin — étudiant de 20 ans à l'université Paris Cité. Je partage ici mes projets et ce qui m'intéresse.",
-    stat1Label: "startups nous font confiance",
-    stat2Label: "go de données protégées",
-    stat3Label: "téléchargements",
+    stat1Label: "villes : Reims, Lille, Paris",
+    stat2Label: "formations depuis 2024",
+    stat3Label: "projets (App, animation)",
   },
   en: {
     pageTitle: "Benjamin Morel | Student & Developer",
@@ -23,9 +23,9 @@ const STRINGS = {
     words: ["explore", "create", "share"],
     paragraph:
       "Hi there, I'm Benjamin — a 20-year-old student at Université Paris Cité. I share my projects and interests here.",
-    stat1Label: "startups use",
-    stat2Label: "gb data was protected",
-    stat3Label: "downloads",
+    stat1Label: "cities: Reims, Lille, Paris",
+    stat2Label: "programs since 2024",
+    stat3Label: "projects (App, animation)",
   },
 } as const;
 
@@ -85,7 +85,7 @@ const Home = () => {
         <div className="absolute right-6 md:right-24 top-[14%]">
           <div className="flex items-center gap-3 justify-end">
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[20deg]" />
-            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">+65k</span>
+            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">3</span>
           </div>
           <div className="text-xs md:text-sm text-white/70 mt-1 text-right">{s.stat1Label}</div>
         </div>
@@ -96,7 +96,7 @@ const Home = () => {
         {/* stat bas-gauche */}
         <div className="absolute left-6 md:left-20 bottom-20 md:bottom-24">
           <div className="flex items-center gap-3">
-            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">+1.5b</span>
+            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">3</span>
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[-20deg]" />
           </div>
           <div className="text-xs md:text-sm text-white/70 mt-1">{s.stat2Label}</div>
@@ -106,7 +106,7 @@ const Home = () => {
         <div className="absolute right-6 md:right-20 bottom-16 md:bottom-20">
           <div className="flex items-center gap-3 justify-end">
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[-20deg]" />
-            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">+300k</span>
+            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">2</span>
           </div>
           <div className="text-xs md:text-sm text-white/70 mt-1 text-right">{s.stat3Label}</div>
         </div>

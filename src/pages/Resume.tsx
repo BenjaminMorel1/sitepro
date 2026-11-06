@@ -84,7 +84,7 @@ const STRINGS: Record<"fr" | "en", Strings> = {
         place: "Film d'animation généré par IA",
         role: "Projet personnel · en cours",
         description:
-          "Biographie animée en 3D, de la naissance à 20 ans, entièrement générée par IA (images et vidéos sur ElevenLabs) : un personnage décliné en 7 âges, 8 voix intérieures et une première scène, « Paris, le soir ».",
+          "Biographie animée en 3D, de la naissance à 20 ans, entièrement générée par IA (images et vidéos sur ElevenLabs) : un personnage décliné en 7 âges et une première scène, « Paris, le soir ».",
       },
       {
         name: "Ce site",
@@ -149,7 +149,7 @@ const STRINGS: Record<"fr" | "en", Strings> = {
         place: "AI-generated animated film",
         role: "Personal project · in progress",
         description:
-          "An animated 3D biography, from birth to age 20, entirely generated with AI (images and videos on ElevenLabs): one character across 7 ages, 8 inner voices and a first scene, “Paris, in the evening”.",
+          "An animated 3D biography, from birth to age 20, entirely generated with AI (images and videos on ElevenLabs): one character across 7 ages and a first scene, “Paris, in the evening”.",
       },
       {
         name: "This website",

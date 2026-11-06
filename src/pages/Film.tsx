@@ -277,6 +277,8 @@ const VERSIONS: Record<
     variantScenes?: string[];
     /* true : scènes présentées comme dans animation 1 (sans ambiance propre) */
     plainScenes?: boolean;
+    /* true : section des voix intérieures masquée (à remettre plus tard) */
+    hideVoices?: boolean;
     text?: VersionText;
   }
 > = {
@@ -289,6 +291,7 @@ const VERSIONS: Record<
     variant: "cheveux_noirs",
     variantScenes: ["scene_paris"],
     plainScenes: true,
+    hideVoices: true,
     text: {
       fr: {
         pageTitle: PARIS_TEXT.fr.pageTitle,
@@ -417,7 +420,7 @@ const Film = ({ version = "full" }: { version?: Version }) => {
         )}
 
         {/* voix intérieures */}
-        {voiceAssets.length > 0 && (
+        {voiceAssets.length > 0 && !v.hideVoices && (
           <section className="py-16">
             <SectionTitle label={s.voicesLabel} text={s.voicesText} />
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

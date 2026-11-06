@@ -79,7 +79,7 @@ const MusicPage = () => {
         <p className="mt-4 text-sm text-[#141414]/70 dark:text-white/70">{s.paragraph}</p>
 
         <div role="tablist" aria-label={s.tabs} className="mt-10 flex gap-2">
-          {PLAYLISTS.map((p) => {
+          {PLAYLISTS.filter((p) => !p.hidden).map((p) => {
             const selected = p.key === playlist.key;
             return (
               <button

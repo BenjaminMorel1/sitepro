@@ -6,11 +6,13 @@ import { toggleTheme, useTheme } from "../theme";
 const NAV_LINKS = [
   { key: "platform", to: "/platform", fr: "projets", en: "projects" },
   { key: "animation-2-1", to: "/animation-2-1", fr: "animation 2.1", en: "animation 2.1" },
-  { key: "test", to: "/test", fr: "test", en: "test" },
+  { key: "intro", to: "/intro", fr: "intro", en: "intro" },
   { key: "music", to: "/music", fr: "playlist", en: "playlist" },
+  /* masqués pour l'instant, à remettre plus tard :
   { key: "blog", to: "/blog", fr: "blog", en: "blog" },
   { key: "lectures", to: "/lectures", fr: "lectures", en: "readings" },
   { key: "blog2", to: "/blog2", fr: "blog 2", en: "blog 2" },
+  */
   { key: "resume", to: "/resume", fr: "résumé", en: "résumé" },
   { key: "contact", to: "/contact", fr: "contact", en: "contact" },
 ] as const;
