@@ -9,6 +9,7 @@ import Platform from "./pages/Platform";
 import Contact from "./pages/Contact";
 import Resume from "./pages/Resume";
 import Film from "./pages/Film";
+import Bientot from "./pages/Bientot";
 import Test from "./pages/Test";
 import MusicPage from "./MusicPage";
 import MusicWidget from "./components/MusicWidget";
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/intro" element={<Test />} />
+          <Route path="/bientot" element={<Bientot />} />
         </Routes>
         <MusicWidget />
       </LanguageProvider>

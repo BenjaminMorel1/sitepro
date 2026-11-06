@@ -97,9 +97,10 @@ const Navbar = () => {
           <span className={`block h-0.5 w-5 bg-white transition-transform ${menuOpen ? "-translate-y-1 -rotate-45" : ""}`} />
         </button>
 
-        <button className="hidden sm:block bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors">
+        {/* « Commencer » mène à une page « en développement » pour l'instant */}
+        <Link to="/bientot" className="hidden sm:block bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors">
           {lang === "fr" ? GET_STARTED.fr : GET_STARTED.en}
-        </button>
+        </Link>
       </div>
 
       {/* menu déroulant mobile */}
