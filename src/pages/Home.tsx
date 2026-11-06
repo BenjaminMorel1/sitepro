@@ -6,8 +6,6 @@ import avatar from "../assets/avatar.png";
 /* photo masquée pour l'instant : passer à true pour la remettre */
 const SHOW_AVATAR = false;
 import useDocumentTitle from "../hooks/useDocumentTitle";
-import { musicPlayer, useMusicPlayer } from "../musicPlayer";
-import { HOME_TRACK } from "../tracks";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
@@ -33,7 +31,6 @@ const STRINGS = {
   },
 } as const;
 
-const START_MUSIC_LABEL = { fr: "lancer la musique", en: "play music" } as const;
 
 /* vidéo de fond de l'accueil, hébergée sur le site (public/media/home/) :
    - téléphone (écran vertical ou étroit) : version recadrée en portrait, 540×962, ~1,2 Mo ;
@@ -86,7 +83,6 @@ const Home = () => {
   const { lang } = useLanguage();
   const s = STRINGS[lang];
   useDocumentTitle(s.pageTitle);
-  const { src } = useMusicPlayer();
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
@@ -170,18 +166,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* déclenche la musique d'ambiance — masqué une fois lancé, le mini-lecteur flottant prend le relais */}
-      {!src && (
-        <button
-          onClick={() => musicPlayer.toggle(HOME_TRACK, { volume: 0.35, loop: true })}
-          aria-label={START_MUSIC_LABEL[lang]}
-          className="fixed bottom-6 left-6 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900/90 backdrop-blur border border-white/10 text-white hover:bg-neutral-800 transition-colors"
-        >
-          <svg viewBox="0 0 24 24" className="h-4 w-4 translate-x-[1px]" fill="currentColor" aria-hidden="true">
-            <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5Z" />
-          </svg>
-        </button>
-      )}
     </section>
   );
 };

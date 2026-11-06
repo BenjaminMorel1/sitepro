@@ -31,10 +31,14 @@ export const TRACKS_2: Track[] = [
 ];
 
 /* hidden : onglet masqué sur la page (à remettre plus tard en retirant hidden) */
+/* troisième playlist « playlist 1 » — vide pour l'instant, ajoute des morceaux ici (fichiers dans public/music/) */
+export const TRACKS_3: Track[] = [];
+
 export type Playlist = { key: string; name: string; tracks: Track[]; hidden?: boolean };
 
 /* les playlists de la page "musique", dans l'ordre des onglets */
 export const PLAYLISTS: Playlist[] = [
   { key: "mystery", name: "?", tracks: TRACKS_2 },
+  { key: "playlist-1", name: "playlist 1", tracks: TRACKS_3 },
   { key: "main", name: "playlist", tracks: TRACKS, hidden: true },
 ];
