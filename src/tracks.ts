@@ -26,6 +26,7 @@ export const TRACKS: Track[] = [
 export const TRACKS_2: Track[] = [
   { title: "downtown train", artist: "yowshi", src: asset("music/yowshi-downtown-train.mp3") },
   { title: "love me not", artist: "ravyn lenae", src: asset("music/ravyn-lenae-love-me-not.mp3") },
+  { title: "doubt (demo)", artist: "twenty one pilots", src: asset("music/twenty-one-pilots-doubt-demo.mp3") },
 ];
 
 /* hidden : onglet masqué sur la page (à remettre plus tard en retirant hidden) */

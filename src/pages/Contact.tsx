@@ -47,6 +47,7 @@ const STRINGS = {
       },
     ],
     projectsLink: "voir les projets →",
+    privacy: "Ce site utilise Google Analytics et GoatCounter pour compter les visites.",
   },
   en: {
     pageTitle: "Contact | Benjamin Morel",
@@ -79,6 +80,7 @@ const STRINGS = {
       },
     ],
     projectsLink: "see the projects →",
+    privacy: "This site uses Google Analytics and GoatCounter to count visits.",
   },
 } as const;
 
@@ -185,6 +187,9 @@ const Contact = () => {
               {s.projectsLink}
             </Link>
           </div>
+
+          {/* mention de la mesure d'audience (demandée par les conditions de Google Analytics) */}
+          <p className="text-xs text-[#141414]/40 dark:text-white/40">{s.privacy}</p>
         </div>
       </div>
     </section>
