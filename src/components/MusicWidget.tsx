@@ -1,7 +1,7 @@
 import type { ChangeEvent, PointerEvent as ReactPointerEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import { musicPlayer, useMusicPlayer } from "../musicPlayer";
-import { HOME_TRACK, TRACKS } from "../tracks";
+import { HOME_TRACK, PLAYLISTS } from "../tracks";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const STRINGS = {
@@ -114,8 +114,10 @@ export default function MusicWidget() {
 
   if (!src) return null;
 
-  const trackIndex = TRACKS.findIndex((t) => t.src === src);
-  const track = trackIndex >= 0 ? TRACKS[trackIndex] : null;
+  /* la playlist qui contient la piste en cours : suivant/précédent restent dedans */
+  const tracks = PLAYLISTS.find((p) => p.tracks.some((t) => t.src === src))?.tracks ?? [];
+  const trackIndex = tracks.findIndex((t) => t.src === src);
+  const track = trackIndex >= 0 ? tracks[trackIndex] : null;
   const title = track ? track.title : s.homeTitle;
   const artist = track ? track.artist : s.homeArtist;
   const canChangeTrack = trackIndex >= 0;
@@ -123,7 +125,7 @@ export default function MusicWidget() {
   const toggle = () => musicPlayer.toggle(src, { volume: src === HOME_TRACK ? 0.35 : 0.6, loop: src === HOME_TRACK });
 
   const playAt = (index: number) => {
-    const next = TRACKS[(index + TRACKS.length) % TRACKS.length];
+    const next = tracks[(index + tracks.length) % tracks.length];
     musicPlayer.play(next.src, { volume: 0.6 });
   };
 

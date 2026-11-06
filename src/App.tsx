@@ -7,6 +7,8 @@ import Blog from "./pages/Blog";
 import Lectures from "./pages/Lectures";
 import Blog2 from "./pages/Blog2";
 import Contact from "./pages/Contact";
+import Resume from "./pages/Resume";
+import Film from "./pages/Film";
 import Test from "./pages/Test";
 import MusicPage from "./MusicPage";
 import MusicWidget from "./components/MusicWidget";
@@ -44,6 +46,8 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/lectures" element={<Lectures />} />
           <Route path="/blog2" element={<Blog2 />} />
+          <Route path="/animation-2-1" element={<Film version="paris-full" />} />
+          <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/test" element={<Test />} />
         </Routes>

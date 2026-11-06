@@ -145,7 +145,7 @@ const Test = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="bg-black text-white"
+      className="bg-white dark:bg-black text-[#141414] dark:text-white"
     >
       <CustomCursor />
       <Navbar />
@@ -156,7 +156,7 @@ const Test = () => {
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.035, delayChildren: 0.2 }}
-          className="font-display font-light text-center text-white/90 max-w-5xl text-[clamp(1.6rem,3.4vw,3.25rem)] leading-[1.25]"
+          className="font-display font-light text-center text-[#141414]/90 dark:text-white/90 max-w-5xl text-[clamp(1.6rem,3.4vw,3.25rem)] leading-[1.25]"
         >
           {s.intro.map((seg, i) => {
             if (!seg.to && !seg.href && !seg.games) return <AnimatedText key={i} text={seg.text} />;
@@ -190,7 +190,7 @@ const Test = () => {
           type="button"
           onClick={goToGames}
           aria-label={s.scrollLabel}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 text-white/70 hover:text-white"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 text-[#141414]/70 dark:text-white/70 hover:text-[#141414] dark:hover:text-white"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -201,7 +201,7 @@ const Test = () => {
       </section>
 
       {/* bandeau de texte qui défile ; contenu dupliqué pour une boucle sans saut */}
-      <div className="marquee overflow-hidden border-y border-white/10 py-6">
+      <div className="marquee overflow-hidden border-y border-[#141414]/10 dark:border-white/10 py-6">
         <div className="marquee-track flex w-max">
           {[0, 1].map((copy) => (
             <div key={copy} aria-hidden={copy === 1} className="flex shrink-0">
@@ -264,11 +264,11 @@ const Test = () => {
                   }}
                   className="mt-6"
                 >
-                  <p className="text-xs uppercase tracking-wide text-white/40">{game.tag}</p>
+                  <p className="text-xs uppercase tracking-wide text-[#141414]/40 dark:text-white/40">{game.tag}</p>
                   <h3 className="mt-2 text-2xl md:text-3xl font-medium transition-transform duration-500 group-hover:translate-x-3">
                     {game.title} <span style={{ color: ACCENT }}>→</span>
                   </h3>
-                  <p className="mt-2 text-sm text-white/60">{game.description}</p>
+                  <p className="mt-2 text-sm text-[#141414]/60 dark:text-white/60">{game.description}</p>
                 </motion.div>
               </motion.div>
             );

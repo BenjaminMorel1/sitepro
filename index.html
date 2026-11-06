@@ -50,6 +50,12 @@
       async
       src="//gc.zgo.at/count.js"
     ></script>
+    <!-- thème noir posé avant l'affichage, pour éviter un flash (même clé que src/theme.ts) -->
+    <script>
+      try {
+        if (localStorage.getItem("sitepro-theme") === "dark") document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

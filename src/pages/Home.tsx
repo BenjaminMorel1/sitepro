@@ -9,8 +9,8 @@ import { useLanguage } from "../i18n/LanguageContext";
 const STRINGS = {
   fr: {
     pageTitle: "Benjamin Morel | Étudiant & développeur",
-    title: "Coder, créer, partager",
-    words: ["coder", "créer", "partager"],
+    title: "Explorer, créer, partager",
+    words: ["explorer", "créer", "partager"],
     paragraph:
       "Salut, moi c'est Benjamin — étudiant de 20 ans à l'université Paris Cité. Je partage ici mes projets et ce qui m'intéresse.",
     stat1Label: "startups nous font confiance",
@@ -19,8 +19,8 @@ const STRINGS = {
   },
   en: {
     pageTitle: "Benjamin Morel | Student & Developer",
-    title: "Create, code, share",
-    words: ["create", "code", "share"],
+    title: "Explore, create, share",
+    words: ["explore", "create", "share"],
     paragraph:
       "Hi there, I'm Benjamin — a 20-year-old student at Université Paris Cité. I share my projects and interests here.",
     stat1Label: "startups use",

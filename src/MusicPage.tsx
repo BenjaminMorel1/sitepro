@@ -1,9 +1,9 @@
 import type { ChangeEvent } from "react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Navbar from "./components/Navbar";
 import useDocumentTitle from "./hooks/useDocumentTitle";
 import { musicPlayer, useMusicPlayer } from "./musicPlayer";
-import { TRACKS } from "./tracks";
+import { PLAYLISTS } from "./tracks";
 import { useLanguage } from "./i18n/LanguageContext";
 
 const STRINGS = {
@@ -15,6 +15,8 @@ const STRINGS = {
     pause: (title: string) => `mettre en pause ${title}`,
     play: (title: string) => `lire ${title}`,
     seek: (title: string) => `avancer dans ${title}`,
+    empty: "rien ici pour l'instant.",
+    tabs: "choisir une playlist",
   },
   en: {
     pageTitle: "Playlist | Benjamin Morel",
@@ -24,6 +26,8 @@ const STRINGS = {
     pause: (title: string) => `pause ${title}`,
     play: (title: string) => `play ${title}`,
     seek: (title: string) => `seek in ${title}`,
+    empty: "nothing here yet.",
+    tabs: "choose a playlist",
   },
 } as const;
 
@@ -48,33 +52,61 @@ const MusicPage = () => {
 
   const { src, playing, loading, current, duration } = useMusicPlayer();
 
-  const handleTrackClick = useCallback((index: number) => {
-    musicPlayer.toggle(TRACKS[index].src, { volume: 0.6 });
-  }, []);
+  /* onglet ouvert par défaut : la playlist "?" */
+  const [activeKey, setActiveKey] = useState("mystery");
+  const playlist = PLAYLISTS.find((p) => p.key === activeKey) ?? PLAYLISTS[0];
+  const tracks = playlist.tracks;
+
+  const handleTrackClick = useCallback(
+    (index: number) => {
+      musicPlayer.toggle(tracks[index].src, { volume: 0.6 });
+    },
+    [tracks]
+  );
 
   const seek = (e: ChangeEvent<HTMLInputElement>) => {
     musicPlayer.seek(Number(e.target.value));
   };
 
   return (
-    <section className="relative min-h-screen w-full bg-black text-white">
+    <section className="relative min-h-screen w-full bg-white dark:bg-black text-[#141414] dark:text-white">
       <Navbar />
 
       <div className="px-6 pt-40 pb-24 md:px-10">
-        <h1 className="hero-title text-white font-medium text-[16vw] md:text-[9vw] leading-none">
+        <h1 className="hero-title text-[#141414] dark:text-white font-medium text-[16vw] md:text-[9vw] leading-none">
           {s.heading}
         </h1>
-        <p className="mt-4 text-sm text-white/70">{s.paragraph}</p>
+        <p className="mt-4 text-sm text-[#141414]/70 dark:text-white/70">{s.paragraph}</p>
 
-        <div className="mt-12 max-w-3xl">
-          {TRACKS.map((track, index) => {
+        <div role="tablist" aria-label={s.tabs} className="mt-10 flex gap-2">
+          {PLAYLISTS.map((p) => {
+            const selected = p.key === playlist.key;
+            return (
+              <button
+                key={p.key}
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActiveKey(p.key)}
+                className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
+                  selected ? "border-[#141414] dark:border-white bg-[#141414] dark:bg-white text-white dark:text-black" : "border-[#141414]/20 dark:border-white/20 text-[#141414]/70 dark:text-white/70 hover:border-[#141414]/50 dark:hover:border-white/50 hover:text-[#141414] dark:hover:text-white"
+                }`}
+              >
+                {p.name}
+              </button>
+            );
+          })}
+        </div>
+
+        <div role="tabpanel" className="mt-8 max-w-3xl">
+          {tracks.length === 0 && <p className="px-2 py-4 text-sm text-[#141414]/40 dark:text-white/40">{s.empty}</p>}
+          {tracks.map((track, index) => {
             const isActive = src === track.src;
             return (
               <div
                 key={track.src}
-                className="flex items-center gap-4 border-b border-white/10 px-2 py-4 transition-colors hover:bg-white/5"
+                className="flex items-center gap-4 border-b border-[#141414]/10 dark:border-white/10 px-2 py-4 transition-colors hover:bg-[#141414]/5 dark:hover:bg-white/5"
               >
-                <span className="w-6 shrink-0 text-sm tabular-nums text-white/40">
+                <span className="w-6 shrink-0 text-sm tabular-nums text-[#141414]/40 dark:text-white/40">
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
@@ -82,7 +114,7 @@ const MusicPage = () => {
                   onClick={() => handleTrackClick(index)}
                   aria-label={isActive && playing ? s.pause(track.title) : s.play(track.title)}
                   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors ${
-                    isActive ? "border-white bg-white text-black" : "border-white/20 text-white hover:border-white/50"
+                    isActive ? "border-[#141414] dark:border-white bg-[#141414] dark:bg-white text-white dark:text-black" : "border-[#141414]/20 dark:border-white/20 text-[#141414] dark:text-white hover:border-[#141414]/50 dark:hover:border-white/50"
                   } ${isActive && loading ? "opacity-50" : ""}`}
                 >
                   {isActive && playing ? (
@@ -98,13 +130,13 @@ const MusicPage = () => {
                 </button>
 
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm text-white">{track.title}</p>
-                  <p className="truncate text-xs text-white/50">{track.artist}</p>
+                  <p className="truncate text-sm text-[#141414] dark:text-white">{track.title}</p>
+                  <p className="truncate text-xs text-[#141414]/50 dark:text-white/50">{track.artist}</p>
                 </div>
 
                 {isActive && (
                   <div className="flex shrink-0 items-center gap-3">
-                    <span className="w-9 text-right text-[11px] tabular-nums text-white/50">
+                    <span className="w-9 text-right text-[11px] tabular-nums text-[#141414]/50 dark:text-white/50">
                       {formatTime(current)}
                     </span>
                     <input
@@ -116,9 +148,9 @@ const MusicPage = () => {
                       onChange={seek}
                       disabled={!isFinite(duration) || duration === 0}
                       aria-label={s.seek(track.title)}
-                      className="h-1 w-24 cursor-pointer accent-white disabled:opacity-30 sm:w-40"
+                      className="h-1 w-24 cursor-pointer accent-[#141414] dark:accent-white disabled:opacity-30 sm:w-40"
                     />
-                    <span className="w-9 text-[11px] tabular-nums text-white/50">{formatTime(duration)}</span>
+                    <span className="w-9 text-[11px] tabular-nums text-[#141414]/50 dark:text-white/50">{formatTime(duration)}</span>
                   </div>
                 )}
               </div>

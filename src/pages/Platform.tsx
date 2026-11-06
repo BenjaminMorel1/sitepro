@@ -109,39 +109,39 @@ const Platform = () => {
   return (
     <>
       <Navbar />
-      <section className="relative min-h-screen w-full bg-black text-white px-6 md:px-10 py-24">
+      <section className="relative min-h-screen w-full bg-white dark:bg-black text-[#141414] dark:text-white px-6 md:px-10 py-24">
         <div className="max-w-[1280px] mx-auto mb-10">
           <h1 className="hero-title text-5xl md:text-7xl font-medium">{s.heading}</h1>
-          <p className="mt-4 max-w-md text-[15px] leading-snug text-white/70">{s.intro}</p>
+          <p className="mt-4 max-w-md text-[15px] leading-snug text-[#141414]/70 dark:text-white/70">{s.intro}</p>
         </div>
 
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <button
             onClick={() => setView("rayonn")}
-            className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"
+            className="group text-left rounded-3xl border border-[#141414]/10 dark:border-white/10 bg-[#f9fafe] dark:bg-neutral-900/40 p-8 transition-colors hover:border-[#141414]/30 dark:hover:border-white/30 hover:bg-[#f0f2f8] dark:hover:bg-neutral-900/70"
           >
             <div className="h-40 rounded-2xl mb-6 flex items-end justify-center overflow-hidden bg-gradient-to-br from-sky-400/20 via-indigo-500/10 to-neutral-900">
               <img src={rayonnPreview} alt="" className="w-24 translate-y-6 select-none" draggable={false} />
             </div>
-            <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{s.games.rayonn.tag}</div>
+            <div className="text-xs uppercase tracking-wide text-[#141414]/40 dark:text-white/40 mb-2">{s.games.rayonn.tag}</div>
             <h2 className="text-2xl font-medium mb-2">{s.games.rayonn.title}</h2>
-            <p className="text-sm text-white/60 mb-6">{s.games.rayonn.description}</p>
-            <span className="inline-block rounded-full bg-white text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-neutral-200">
+            <p className="text-sm text-[#141414]/60 dark:text-white/60 mb-6">{s.games.rayonn.description}</p>
+            <span className="inline-block rounded-full bg-[#141414] dark:bg-white text-white dark:text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-[#333333] dark:group-hover:bg-neutral-200">
               {s.games.rayonn.cta}
             </span>
           </button>
 
           <button
             onClick={() => setView("ballscrush")}
-            className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"
+            className="group text-left rounded-3xl border border-[#141414]/10 dark:border-white/10 bg-[#f9fafe] dark:bg-neutral-900/40 p-8 transition-colors hover:border-[#141414]/30 dark:hover:border-white/30 hover:bg-[#f0f2f8] dark:hover:bg-neutral-900/70"
           >
             <div className="h-40 rounded-2xl mb-6 flex items-center justify-center text-6xl bg-gradient-to-br from-amber-400/20 via-rose-500/10 to-neutral-900">
               {s.games.ballscrush.icon}
             </div>
-            <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{s.games.ballscrush.tag}</div>
+            <div className="text-xs uppercase tracking-wide text-[#141414]/40 dark:text-white/40 mb-2">{s.games.ballscrush.tag}</div>
             <h2 className="text-2xl font-medium mb-2">{s.games.ballscrush.title}</h2>
-            <p className="text-sm text-white/60 mb-6">{s.games.ballscrush.description}</p>
-            <span className="inline-block rounded-full bg-white text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-neutral-200">
+            <p className="text-sm text-[#141414]/60 dark:text-white/60 mb-6">{s.games.ballscrush.description}</p>
+            <span className="inline-block rounded-full bg-[#141414] dark:bg-white text-white dark:text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-[#333333] dark:group-hover:bg-neutral-200">
               {s.games.ballscrush.cta}
             </span>
           </button>
@@ -150,15 +150,15 @@ const Platform = () => {
             href={`${import.meta.env.BASE_URL}games/elden-ring.html`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8 transition-colors hover:border-white/30 hover:bg-neutral-900/70"
+            className="group text-left rounded-3xl border border-[#141414]/10 dark:border-white/10 bg-[#f9fafe] dark:bg-neutral-900/40 p-8 transition-colors hover:border-[#141414]/30 dark:hover:border-white/30 hover:bg-[#f0f2f8] dark:hover:bg-neutral-900/70"
           >
-            <div className="h-40 rounded-2xl mb-6 flex items-center justify-center text-6xl bg-gradient-to-br from-orange-700/20 via-neutral-800/40 to-black">
+            <div className="h-40 rounded-2xl mb-6 flex items-center justify-center text-6xl bg-gradient-to-br from-orange-700/20 via-neutral-800/40 to-white dark:to-black">
               {s.games.eldenring.icon}
             </div>
-            <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{s.games.eldenring.tag}</div>
+            <div className="text-xs uppercase tracking-wide text-[#141414]/40 dark:text-white/40 mb-2">{s.games.eldenring.tag}</div>
             <h2 className="text-2xl font-medium mb-2">{s.games.eldenring.title}</h2>
-            <p className="text-sm text-white/60 mb-6">{s.games.eldenring.description}</p>
-            <span className="inline-block rounded-full bg-white text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-neutral-200">
+            <p className="text-sm text-[#141414]/60 dark:text-white/60 mb-6">{s.games.eldenring.description}</p>
+            <span className="inline-block rounded-full bg-[#141414] dark:bg-white text-white dark:text-black text-sm font-normal px-6 py-2.5 transition-colors group-hover:bg-[#333333] dark:group-hover:bg-neutral-200">
               {s.games.eldenring.cta}
             </span>
           </a>

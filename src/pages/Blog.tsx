@@ -20,10 +20,10 @@ const ALL_REGIONS = ["US", "EU", "APAC"] as const;
 const STRINGS = {
   fr: {
     pageTitle: "Blog | Benjamin Morel",
-    heroLine1: "Défense",
-    heroLine2: "conçue.",
+    heroLine1: "Notes",
+    heroLine2: "ouvertes.",
     heroParagraph:
-      "une infrastructure de sécurité modulaire pour les équipes qui avancent vite et ne peuvent pas se permettre d'improviser. chiffrement, contrôle d'accès et surveillance, assemblés sur mesure.",
+      "ce que j'apprends en maths, ce que je code et ce qui m'inspire : des billets courts, écrits au fil de l'eau, sans filtre.",
     viewModules: "voir les modules",
     imageCaption: "solutions 004",
     modulesHeading: "modules",
@@ -60,10 +60,10 @@ const STRINGS = {
   },
   en: {
     pageTitle: "Blog | Benjamin Morel",
-    heroLine1: "Engineered",
-    heroLine2: "defense.",
+    heroLine1: "Open",
+    heroLine2: "notes.",
     heroParagraph:
-      "modular security infrastructure for teams who ship fast and can't afford to guess. encryption, access control and monitoring, assembled to fit.",
+      "what I learn in maths, what I build and what inspires me: short posts, written as they come, unfiltered.",
     viewModules: "view modules",
     imageCaption: "solutions 004",
     modulesHeading: "modules",
@@ -106,7 +106,7 @@ const Blog = () => {
   useDocumentTitle(s.pageTitle);
 
   return (
-    <div className="relative bg-[#f2f2f2] text-[#0a0a0a]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+    <div className="relative bg-white dark:bg-[#f2f2f2] text-[#0a0a0a]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
       <style>{`
         @import url("https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap");
       `}</style>

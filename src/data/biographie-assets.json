@@ -1,0 +1,597 @@
+{
+  "projet": "Biographie animée en 3D – la vie de [prénom] de la naissance à 20 ans",
+  "espace_elevenlabs": "https://elevenlabs.io/app/flows/rcVMQkEy5XYNSP2lS6eH",
+  "note": "Les liens elevenlabs_url demandent d'être connecté au compte ElevenLabs du propriétaire. Les fichiers doivent être téléchargés manuellement puis placés dans le projet au chemin fichier_suggere (relatif au dossier média du site).",
+  "assets": [
+    {
+      "id": "perso-principal-16ans",
+      "type": "image",
+      "categorie": "personnage_principal",
+      "titre": "Lui à 16 ans (référence)",
+      "description": "Planche de référence du personnage principal : 4 vues (face, 3/4, profil, dos) + 3 expressions. Sweat oversize blanc cassé, jean baggy bleu clair, grosses baskets blanches, chaîne argentée.",
+      "fichier_suggere": "personnages/principal/16-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "SmPwPhZkUieqferVnyGS",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=SmPwPhZkUieqferVnyGS",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/principal/16-ans.png",
+          "elevenlabs_generation_id": "iL0zJtbPXwIjIKhYC71r"
+        }
+      }
+    },
+    {
+      "id": "age-bebe",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "Bébé (1 an)",
+      "description": "Grands yeux bleus, touffe de cheveux châtains, grenouillère blanc cassé.",
+      "fichier_suggere": "personnages/ages/00-bebe.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "ZKj8hOHMZJ1621bl9cMx",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=ZKj8hOHMZJ1621bl9cMx",
+      "age": 1,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/ages/00-bebe.png",
+          "elevenlabs_generation_id": "y2YXvHB29IphaBCJ9kjW"
+        }
+      }
+    },
+    {
+      "id": "age-5",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "5 ans",
+      "description": "Visage rond, cheveux ébouriffés, petit sweat blanc cassé, baskets à scratch.",
+      "fichier_suggere": "personnages/ages/05-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "wfq0AH8s0nHst3r8rhpt",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=wfq0AH8s0nHst3r8rhpt",
+      "age": 5,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/ages/05-ans.png",
+          "elevenlabs_generation_id": "4H55aPygd80oRhigc5jn"
+        }
+      }
+    },
+    {
+      "id": "age-10",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "10 ans",
+      "description": "Coupe courte simple, sweat, jean, petit sac à dos.",
+      "fichier_suggere": "personnages/ages/10-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "Hb8OjWKFx8MZJSjCQRdm",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=Hb8OjWKFx8MZJSjCQRdm",
+      "age": 10,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/ages/10-ans.png",
+          "elevenlabs_generation_id": "UcdOoTwipsHDggq1aqQe"
+        }
+      }
+    },
+    {
+      "id": "age-13",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "13 ans",
+      "description": "Visage plus doux, premier dégradé sur les côtés, sweat oversize.",
+      "fichier_suggere": "personnages/ages/13-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "IsRERJsFihdMXzVKWaC6",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=IsRERJsFihdMXzVKWaC6",
+      "age": 13,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/ages/13-ans.png",
+          "elevenlabs_generation_id": "PLL0FMlsnidAnqBAswRH"
+        }
+      }
+    },
+    {
+      "id": "age-16",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "16 ans",
+      "description": "Même image que la référence principale.",
+      "fichier_suggere": "personnages/principal/16-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "SmPwPhZkUieqferVnyGS",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=SmPwPhZkUieqferVnyGS",
+      "age": 16,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/principal/16-ans.png",
+          "elevenlabs_generation_id": "iL0zJtbPXwIjIKhYC71r"
+        }
+      }
+    },
+    {
+      "id": "age-18",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "18 ans",
+      "description": "Mâchoire plus marquée, coupe taper, veste en jean ouverte sur le sweat.",
+      "fichier_suggere": "personnages/ages/18-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "BBN2u2oXMNklQOwDCYT1",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=BBN2u2oXMNklQOwDCYT1",
+      "age": 18,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/ages/18-ans.png",
+          "elevenlabs_generation_id": "dw1mlQ7rNgI7waeCfTgs"
+        }
+      }
+    },
+    {
+      "id": "age-20",
+      "type": "image",
+      "categorie": "ages",
+      "titre": "20 ans",
+      "description": "Jeune adulte, légère barbe, coupe taper soignée.",
+      "fichier_suggere": "personnages/ages/20-ans.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "FjgIWk8GGzkcTnJMkr9U",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=FjgIWk8GGzkcTnJMkr9U",
+      "age": 20,
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/ages/20-ans.png",
+          "elevenlabs_generation_id": "hKPwdmXNECICy5sfbAyM"
+        }
+      }
+    },
+    {
+      "id": "voix-groupe-1",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Les 8 voix intérieures (groupe, variante 1)",
+      "description": "Les 8 versions de lui alignées côte à côte avec leur nom.",
+      "fichier_suggere": "personnages/voix/groupe-1.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "ilusQFF1Xll4koGKbtGw",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=ilusQFF1Xll4koGKbtGw",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/groupe-1.png",
+          "elevenlabs_generation_id": "3II2pCAIYkHfEvVUcqbp"
+        }
+      }
+    },
+    {
+      "id": "voix-groupe-2",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Les 8 voix intérieures (groupe, variante 2)",
+      "description": "Variante de l'image de groupe.",
+      "fichier_suggere": "personnages/voix/groupe-2.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "06O3xbFJTfOgOKOfKtz0",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=06O3xbFJTfOgOKOfKtz0"
+    },
+    {
+      "id": "voix-reveur",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Rêveur",
+      "description": "Tête dans les nuages, ambitieux. Gilet lavande à étoiles, carnet de croquis, petites lumières flottantes.",
+      "fichier_suggere": "personnages/voix/reveur.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "eYL6rsxlJhoYpSpzkXHN",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=eYL6rsxlJhoYpSpzkXHN",
+      "couleur": "#9B7FD4",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/reveur.png",
+          "elevenlabs_generation_id": "hqQmizihwsnOv9exP6n6"
+        }
+      }
+    },
+    {
+      "id": "voix-anxieux",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "L'Anxieux",
+      "description": "Doute de tout, stresse. Capuche à moitié relevée, lacets défaits, lumière froide verdâtre.",
+      "fichier_suggere": "personnages/voix/anxieux.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "Oj7zZ6W1lEPMMAp5dqxV",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=Oj7zZ6W1lEPMMAp5dqxV",
+      "couleur": "#8FA89A",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/anxieux.png",
+          "elevenlabs_generation_id": "w4M2KJdHp6YxI4A81zqO"
+        }
+      }
+    },
+    {
+      "id": "voix-rigolo",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Rigolo",
+      "description": "Fait le clown, dédramatise. Casquette à l'envers, baskets dépareillées.",
+      "fichier_suggere": "personnages/voix/rigolo.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "uGbig7ruFvN0f6hWyIPK",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=uGbig7ruFvN0f6hWyIPK",
+      "couleur": "#F2B33D",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/rigolo.png",
+          "elevenlabs_generation_id": "LGUySW3olt77MAahNiew"
+        }
+      }
+    },
+    {
+      "id": "voix-rebelle-1",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Rebelle (tenue normale, variante 1)",
+      "description": "Colérique, impulsif. Sweat gris chiné, t-shirt blanc, jean bleu usé, pansement sur la joue, bras croisés.",
+      "fichier_suggere": "personnages/voix/rebelle.png",
+      "statut": "a_choisir_entre_variante_1_et_2",
+      "elevenlabs_generation_id": "BSyCmlDgsMyMp7J4RwGC",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=BSyCmlDgsMyMp7J4RwGC",
+      "couleur": "#C8372D",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/rebelle.png",
+          "elevenlabs_generation_id": "51FQFPJKqTUpBiqqZKFG"
+        }
+      }
+    },
+    {
+      "id": "voix-rebelle-2",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Rebelle (tenue normale, variante 2)",
+      "description": "Variante 2 du Rebelle en tenue normale.",
+      "fichier_suggere": "personnages/voix/rebelle-v2.png",
+      "statut": "a_choisir_entre_variante_1_et_2",
+      "elevenlabs_generation_id": "CP2FS8hacTnA82eu5092",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=CP2FS8hacTnA82eu5092",
+      "couleur": "#C8372D",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/rebelle-v2.png",
+          "elevenlabs_generation_id": "PZ3DqC2Nw3dq2rkHn1W5"
+        }
+      }
+    },
+    {
+      "id": "voix-sensible",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Sensible",
+      "description": "Émotif, nostalgique. Gros pull bleu ciel, serre une vieille photo contre lui.",
+      "fichier_suggere": "personnages/voix/sensible.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "eTh4epDuudaihotcaxZ6",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=eTh4epDuudaihotcaxZ6",
+      "couleur": "#8EC5E8",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/sensible.png",
+          "elevenlabs_generation_id": "wZTc1bs6GZXosxqOgMuR"
+        }
+      }
+    },
+    {
+      "id": "voix-bosseur",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Bosseur",
+      "description": "Discipliné, sérieux. Chemise, pull sans manches marine, lunettes, agenda.",
+      "fichier_suggere": "personnages/voix/bosseur.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "p5TpX7JrUdJYVy1CieYN",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=p5TpX7JrUdJYVy1CieYN",
+      "couleur": "#1F3A5F",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/bosseur.png",
+          "elevenlabs_generation_id": "jZ93jodB5klWMmfHQxkM"
+        }
+      }
+    },
+    {
+      "id": "voix-sportif",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Sportif",
+      "description": "Compétiteur, énergique. Maillot vert et blanc, bandeau, ballon.",
+      "fichier_suggere": "personnages/voix/sportif.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "rEcrOmijPTc3xTC0TVCf",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=rEcrOmijPTc3xTC0TVCf",
+      "couleur": "#2FA84F",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/sportif.png",
+          "elevenlabs_generation_id": "gdNrkdtphmtxaKsCt5JR"
+        }
+      }
+    },
+    {
+      "id": "voix-flemmard",
+      "type": "image",
+      "categorie": "voix_interieures",
+      "titre": "Le Flemmard",
+      "description": "Veut rester tranquille. Pyjama, chaussons, manette, casque autour du cou.",
+      "fichier_suggere": "personnages/voix/flemmard.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "jjavGwtBDFkuc5QQi475",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=jjavGwtBDFkuc5QQi475",
+      "couleur": "#B89B7A",
+      "variantes": {
+        "cheveux_noirs": {
+          "fichier": "variante-cheveux-noirs/personnages/voix/flemmard.png",
+          "elevenlabs_generation_id": "LG5JKsmyWIeAenezJXTX"
+        }
+      }
+    },
+    {
+      "id": "scene1-plan1",
+      "type": "image",
+      "categorie": "scene_derniere_lumiere",
+      "titre": "Plan 1 – La lumière au loin",
+      "description": "Nuit, pluie, rue résidentielle. Seul, capuche relevée, il voit au loin la C1 blanche éteinte sous le dernier lampadaire allumé.",
+      "fichier_suggere": "scenes/derniere-lumiere/plan-1.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "NTnVwIJUjgBOF4J4Y7Jh",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=NTnVwIJUjgBOF4J4Y7Jh",
+      "ordre": 1
+    },
+    {
+      "id": "scene1-plan2",
+      "type": "image",
+      "categorie": "scene_derniere_lumiere",
+      "titre": "Plan 2 – La rue",
+      "description": "Rue avec maisons, C1 garée dans le sens du trottoir, à moitié dessus, sous le lampadaire. Il la regarde depuis le milieu de la rue.",
+      "fichier_suggere": "scenes/derniere-lumiere/plan-2.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "CZaujlZhqjyqog5pRXWB",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=CZaujlZhqjyqog5pRXWB",
+      "ordre": 2
+    },
+    {
+      "id": "scene1-plan3",
+      "type": "image",
+      "categorie": "scene_derniere_lumiere",
+      "titre": "Plan 3 – L'approche",
+      "description": "Il marche vers la voiture, main tendue, le visage commence à être éclairé.",
+      "fichier_suggere": "scenes/derniere-lumiere/plan-3.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "D1WFcMoa3OrRHXrEmyam",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=D1WFcMoa3OrRHXrEmyam",
+      "ordre": 3
+    },
+    {
+      "id": "scene1-plan4",
+      "type": "image",
+      "categorie": "scene_derniere_lumiere",
+      "titre": "Plan 4 – L'arrivée",
+      "description": "Capuche baissée, près de la portière, main sur le toit mouillé, visage éclairé, yeux brillants.",
+      "fichier_suggere": "scenes/derniere-lumiere/plan-4.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "BYYZuhwLYnl8rA9emx9i",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=BYYZuhwLYnl8rA9emx9i",
+      "ordre": 4
+    },
+    {
+      "id": "scene1-clip1",
+      "type": "video",
+      "categorie": "scene_derniere_lumiere",
+      "titre": "Clip 1 – Plan 1 → Plan 2 (Kling 4)",
+      "description": "Il relève la tête, remarque la lumière et se met à marcher vers la voiture. Caméra qui le suit de dos. Son : pluie, vent.",
+      "fichier_suggere": "scenes/derniere-lumiere/clip-1.mp4",
+      "statut": "test_a_valider",
+      "elevenlabs_generation_id": "pdzQapMsyy9VAcsGD3qp",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=pdzQapMsyy9VAcsGD3qp",
+      "ordre": 5
+    },
+    {
+      "id": "bouquet-planA",
+      "type": "video",
+      "categorie": "scene_bouquet",
+      "titre": "Bouquet – Plan A : l'approche (Veo 3.1 Lite)",
+      "description": "Il marche vers l'arrière de la C1 avec un bouquet flou (tache rouge) et s'arrête derrière la voiture.",
+      "fichier_suggere": "scenes/bouquet/plan-a.mp4",
+      "statut": "a_valider",
+      "elevenlabs_generation_id": "918m64GRCIiD6o9uCxm9",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=918m64GRCIiD6o9uCxm9",
+      "ordre": 1
+    },
+    {
+      "id": "bouquet-planB",
+      "type": "video",
+      "categorie": "scene_bouquet",
+      "titre": "Bouquet – Plan B : gros plan vitre arrière (Veo 3.1 Lite)",
+      "description": "Il glisse le bouquet flou sous l'essuie-glace arrière et repose l'essuie-glace. Caméra fixe.",
+      "fichier_suggere": "scenes/bouquet/plan-b.mp4",
+      "statut": "a_valider",
+      "elevenlabs_generation_id": "GvyQ93VhLqR2RBf1QlX5",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=GvyQ93VhLqR2RBf1QlX5",
+      "ordre": 2
+    },
+    {
+      "id": "bouquet-planB-debut",
+      "type": "image",
+      "categorie": "scene_bouquet",
+      "titre": "Bouquet – image début du gros plan",
+      "description": "Main qui soulève l'essuie-glace, bouquet flou près de la vitre. Peut servir d'affiche (poster) au plan B.",
+      "fichier_suggere": "scenes/bouquet/plan-b-debut.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "ZB0jwRgk7PZrkfasmtpc",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=ZB0jwRgk7PZrkfasmtpc"
+    },
+    {
+      "id": "bouquet-planB-fin",
+      "type": "image",
+      "categorie": "scene_bouquet",
+      "titre": "Bouquet – image fin du gros plan",
+      "description": "Bouquet flou coincé sous l'essuie-glace, vitre mouillée.",
+      "fichier_suggere": "scenes/bouquet/plan-b-fin.png",
+      "statut": "valide",
+      "elevenlabs_generation_id": "M4pa1oIAEw3ZuK2j5FxP",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=M4pa1oIAEw3ZuK2j5FxP"
+    },
+    {
+      "id": "bouquet-version-veo",
+      "type": "video",
+      "categorie": "scene_bouquet_essais",
+      "titre": "Bouquet – plan unique (Veo 3.1 Lite)",
+      "description": "Version en un seul plan, appréciée malgré des incohérences d'essuie-glace.",
+      "fichier_suggere": "scenes/bouquet/essais/veo-lite.mp4",
+      "statut": "essai_apprecie",
+      "elevenlabs_generation_id": "LOy8G118ocxgpjkAmhX5",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=LOy8G118ocxgpjkAmhX5"
+    },
+    {
+      "id": "bouquet-version-minimax",
+      "type": "video",
+      "categorie": "scene_bouquet_essais",
+      "titre": "Bouquet – plan unique (MiniMax H3)",
+      "description": "Essai apprécié.",
+      "fichier_suggere": "scenes/bouquet/essais/minimax-h3.mp4",
+      "statut": "essai_apprecie",
+      "elevenlabs_generation_id": "C6Vz1XibPV8TKQ82gJtU",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=C6Vz1XibPV8TKQ82gJtU"
+    },
+    {
+      "id": "bouquet-version-gemini",
+      "type": "video",
+      "categorie": "scene_bouquet_essais",
+      "titre": "Bouquet – plan unique (Gemini Omni 1.1 Flash)",
+      "description": "Essai apprécié.",
+      "fichier_suggere": "scenes/bouquet/essais/gemini-omni.mp4",
+      "statut": "essai_apprecie",
+      "elevenlabs_generation_id": "gAGaQrQrtL2W3dCWMqVL",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=gAGaQrQrtL2W3dCWMqVL"
+    },
+    {
+      "id": "paris-plan1-image",
+      "type": "image",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 1 – Le Trocadéro",
+      "description": "Plan large au coucher du soleil : il est de dos sur l'esplanade du Trocadéro, face à la tour Eiffel.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-1-trocadero.png",
+      "statut": "valide",
+      "ordre": 1,
+      "elevenlabs_generation_id": "NNrJRo6LbZ8y506vWBD5",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=NNrJRo6LbZ8y506vWBD5",
+      "role": "poster_de",
+      "poster_de": "paris-plan1-video"
+    },
+    {
+      "id": "paris-plan1-video",
+      "type": "video",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 1 – Le Trocadéro (animation)",
+      "description": "Il se met à marcher vers la vue, des pigeons s'envolent, la caméra s'élève et révèle Paris. Son : vent, ailes de pigeons, ville au loin.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-1-trocadero.mp4",
+      "statut": "valide",
+      "ordre": 1,
+      "elevenlabs_generation_id": "tArcWHvRHG1mNVhiYpqX",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=tArcWHvRHG1mNVhiYpqX"
+    },
+    {
+      "id": "paris-plan2-image",
+      "type": "image",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 2 – Les quais de Seine",
+      "description": "Il marche le long de la Seine, mains dans la poche du sweat, la tour Eiffel derrière lui, feuilles d'automne.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-2-quais.png",
+      "statut": "valide",
+      "ordre": 2,
+      "elevenlabs_generation_id": "mcnW2ihVITtlwyJsipHd",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=mcnW2ihVITtlwyJsipHd",
+      "role": "poster_de",
+      "poster_de": "paris-plan2-video"
+    },
+    {
+      "id": "paris-plan2-video",
+      "type": "video",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 2 – Les quais de Seine (animation)",
+      "description": "Il avance vers la caméra et regarde l'eau avec un petit sourire, les feuilles tombent. Son : pas sur les pavés, clapotis. Version gardée volontairement malgré un petit défaut quand il tourne la tête.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-2-quais.mp4",
+      "statut": "valide_avec_petit_defaut",
+      "ordre": 2,
+      "elevenlabs_generation_id": "w9ESM60HR6bZpyr2Sy14",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=w9ESM60HR6bZpyr2Sy14"
+    },
+    {
+      "id": "paris-plan3-image",
+      "type": "image",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 3 – Dans son regard",
+      "description": "Très gros plan sur son œil bleu où se reflètent la tour Eiffel et le ciel du coucher de soleil.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-3-oeil.png",
+      "statut": "valide",
+      "ordre": 3,
+      "elevenlabs_generation_id": "k4m5hZa5i3Zslg6nDHz7",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=k4m5hZa5i3Zslg6nDHz7",
+      "role": "poster_de",
+      "poster_de": "paris-plan3-video"
+    },
+    {
+      "id": "paris-plan3-video",
+      "type": "video",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 3 – Dans son regard (animation)",
+      "description": "Zoom continu de son visage jusque dans son œil, où se reflète la tour Eiffel. Le son de la ville s'efface jusqu'à un battement de cœur. Le plan de fin est stable pour y ajouter au montage l'effet des couleurs des voix intérieures dans l'iris.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-3-oeil.mp4",
+      "statut": "valide",
+      "ordre": 3,
+      "elevenlabs_generation_id": "JcJxN5EwgGgCgE9QRKYL",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=JcJxN5EwgGgCgE9QRKYL"
+    },
+    {
+      "id": "paris-plan4-image",
+      "type": "image",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 4 – Le Champ-de-Mars",
+      "description": "Assis dans l'herbe face à la tour Eiffel, à la tombée de la nuit, les premières lumières de la ville.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-4-champ-de-mars.png",
+      "statut": "valide",
+      "ordre": 4,
+      "elevenlabs_generation_id": "nVA1DxDx6OWtvW2mJedk",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=image&generationId=nVA1DxDx6OWtvW2mJedk",
+      "role": "poster_de",
+      "poster_de": "paris-plan4-video"
+    },
+    {
+      "id": "paris-plan4-video",
+      "type": "video",
+      "categorie": "scene_paris",
+      "variante": "cheveux_noirs",
+      "titre": "Plan 4 – Le Champ-de-Mars (animation)",
+      "description": "Le ciel passe de l'orange au bleu, la ville s'allume, il s'adosse sur ses mains et regarde la tour, apaisé. Son : vent du soir, grillons.",
+      "fichier_suggere": "variante-cheveux-noirs/scenes/paris/plan-4-champ-de-mars.mp4",
+      "statut": "valide",
+      "ordre": 4,
+      "elevenlabs_generation_id": "BEZLbtKvkPjxtl64Db2s",
+      "elevenlabs_url": "https://elevenlabs.io/app/image-video/history?modality=video&generationId=BEZLbtKvkPjxtl64Db2s"
+    }
+  ],
+  "espaces_elevenlabs_supplementaires": [
+    {
+      "scene": "scene_paris",
+      "url": "https://elevenlabs.io/app/flows/yoXh8oav2vgtoeg3c8hT"
+    }
+  ]
+}

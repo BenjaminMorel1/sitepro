@@ -79,24 +79,24 @@ const Lectures = () => {
   return (
     <>
       <Navbar />
-      <section className="relative min-h-screen w-full bg-black text-white px-6 md:px-10 py-24">
+      <section className="relative min-h-screen w-full bg-white dark:bg-black text-[#141414] dark:text-white px-6 md:px-10 py-24">
         <div className="max-w-[1280px] mx-auto mb-10">
           <h1 className="hero-title text-5xl md:text-7xl font-medium">{s.title}</h1>
-          <p className="mt-4 max-w-lg text-[15px] leading-snug text-white/70">{s.description}</p>
+          <p className="mt-4 max-w-lg text-[15px] leading-snug text-[#141414]/70 dark:text-white/70">{s.description}</p>
         </div>
 
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {s.sections.map((section) => (
-            <div key={section.key} className="text-left rounded-3xl border border-white/10 bg-neutral-900/40 p-8">
+            <div key={section.key} className="text-left rounded-3xl border border-[#141414]/10 dark:border-white/10 bg-[#f9fafe] dark:bg-neutral-900/40 p-8">
               <div
                 className={`h-40 rounded-2xl mb-6 flex items-center justify-center text-5xl font-light bg-gradient-to-br ${section.gradient} to-neutral-900`}
               >
                 {section.icon}
               </div>
-              <div className="text-xs uppercase tracking-wide text-white/40 mb-2">{section.tag}</div>
+              <div className="text-xs uppercase tracking-wide text-[#141414]/40 dark:text-white/40 mb-2">{section.tag}</div>
               <h2 className="text-2xl font-medium mb-2">{section.title}</h2>
-              <p className="text-sm text-white/60 mb-6">{section.description}</p>
-              <span className="inline-block rounded-full border border-white/20 text-white/70 text-sm font-normal px-6 py-2.5">
+              <p className="text-sm text-[#141414]/60 dark:text-white/60 mb-6">{section.description}</p>
+              <span className="inline-block rounded-full border border-[#141414]/20 dark:border-white/20 text-[#141414]/70 dark:text-white/70 text-sm font-normal px-6 py-2.5">
                 {s.cta}
               </span>
             </div>
