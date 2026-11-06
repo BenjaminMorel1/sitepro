@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo-bm.png";
 import { useLanguage } from "../i18n/LanguageContext";
 import { toggleTheme, useTheme } from "../theme";
@@ -28,6 +29,9 @@ const Navbar = () => {
   const { lang, toggleLang } = useLanguage();
   const theme = useTheme();
   const t = THEME_LABELS[lang];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => setMenuOpen(false), [pathname]);
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-20 px-6 md:px-10 pt-6 flex items-center justify-between gap-4">
@@ -82,10 +86,37 @@ const Navbar = () => {
         </div>
 
 
-        <button className="bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors">
+        {/* bouton menu (mobile uniquement) */}
+        <button
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label={lang === "fr" ? "ouvrir le menu" : "open menu"}
+          aria-expanded={menuOpen}
+          className="md:hidden bg-neutral-900/90 backdrop-blur rounded-full w-11 h-11 flex flex-col items-center justify-center gap-1.5"
+        >
+          <span className={`block h-0.5 w-5 bg-white transition-transform ${menuOpen ? "translate-y-1 rotate-45" : ""}`} />
+          <span className={`block h-0.5 w-5 bg-white transition-transform ${menuOpen ? "-translate-y-1 -rotate-45" : ""}`} />
+        </button>
+
+        <button className="hidden sm:block bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors">
           {lang === "fr" ? GET_STARTED.fr : GET_STARTED.en}
         </button>
       </div>
+
+      {/* menu déroulant mobile */}
+      {menuOpen && (
+        <div className="md:hidden absolute left-6 right-6 top-full mt-14 flex flex-col bg-neutral-900/95 backdrop-blur rounded-3xl p-3">
+          {NAV_LINKS.map(({ key, to, fr, en }) => (
+            <Link
+              key={key}
+              to={to}
+              onClick={() => setMenuOpen(false)}
+              className="text-neutral-200 hover:text-white text-base px-5 py-3 rounded-2xl hover:bg-white/10"
+            >
+              {lang === "fr" ? fr : en}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
