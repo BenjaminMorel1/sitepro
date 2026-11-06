@@ -11,7 +11,7 @@ const STRINGS = {
     pageTitle: "Playlist | Benjamin Morel",
     heading: "Playlist",
     paragraph:
-      "une petite playlist, chargée un morceau à la fois — rien ne se télécharge avant que tu cliques sur play, et la musique continue pendant que tu navigues sur le site.",
+      "la musique continue pendant que tu navigues sur le site, et sur téléphone elle reste en arrière-plan, même quand tu changes d'appli ou que tu verrouilles l'écran.",
     pause: (title: string) => `mettre en pause ${title}`,
     play: (title: string) => `lire ${title}`,
     seek: (title: string) => `avancer dans ${title}`,
@@ -22,7 +22,7 @@ const STRINGS = {
     pageTitle: "Playlist | Benjamin Morel",
     heading: "Playlist",
     paragraph:
-      "a small playlist, loaded one track at a time — nothing downloads until you hit play, and the music keeps playing while you browse the site.",
+      "the music keeps playing while you browse the site, and on your phone it stays in the background, even when you switch apps or lock the screen.",
     pause: (title: string) => `pause ${title}`,
     play: (title: string) => `play ${title}`,
     seek: (title: string) => `seek in ${title}`,

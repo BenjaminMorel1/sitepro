@@ -155,11 +155,11 @@ const Home = () => {
           </div>
           <div className="text-xs md:text-sm text-white/70 mt-1 text-right">{s.stat3Label}</div>
         </div>
-        {/* téléphone : les trois chiffres alignés en bas, au-dessus du bouton musique */}
-        <div className="md:hidden absolute left-6 right-6 bottom-24 grid grid-cols-3 gap-3">
+        {/* téléphone : les chiffres alignés en bas, au-dessus du bouton musique
+            (« 3 formations » seulement sur ordinateur) */}
+        <div className="md:hidden absolute left-6 right-6 bottom-24 grid grid-cols-2 gap-3">
           {[
             ["3", s.stat1Label],
-            ["3", s.stat2Label],
             ["2", s.stat3Label],
           ].map(([n, label]) => (
             <div key={label}>
