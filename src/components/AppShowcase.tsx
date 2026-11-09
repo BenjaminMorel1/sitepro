@@ -19,6 +19,7 @@ const STRINGS = {
       "Enregistre tes sessions d'étude avec leur profil de concentration, partage-les avec tes amis, trouve une bibliothèque sur la carte et relève des défis en groupe.",
     stack: "React · Vite · Firebase · Mapbox",
     carousel: "Écrans de l'appli RayOnn 2",
+    open: "Ouvrir l'appli",
     screen: "Écran",
   },
   en: {
@@ -28,6 +29,7 @@ const STRINGS = {
       "Log your study sessions with their focus profile, share them with friends, find a library on the map and take on group challenges.",
     stack: "React · Vite · Firebase · Mapbox",
     carousel: "RayOnn 2 app screens",
+    open: "Open the app",
     screen: "Screen",
   },
 } as const;
@@ -40,6 +42,9 @@ const PHONES = Object.entries(
 )
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, src]) => src);
+
+// version en ligne de l'appli
+const RAYONN_URL = "https://rayonn-541fe.web.app/";
 
 // bande en % de la largeur d'une page, mesurée sur le carrousel de référence :
 // début, largeur d'un téléphone, pas entre deux
@@ -106,6 +111,16 @@ const AppShowcase = () => {
         <p className="mt-6 inline-block rounded-full border border-white/15 px-5 py-2 text-xs tracking-wide text-white/70">
           {s.stack}
         </p>
+        <div className="mt-8">
+          <a
+            href={RAYONN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-full bg-white px-6 py-2.5 text-sm text-black transition-colors hover:bg-neutral-200"
+          >
+            {s.open} ↗
+          </a>
+        </div>
       </motion.div>
 
       <motion.div

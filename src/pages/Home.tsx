@@ -14,7 +14,7 @@ const STRINGS = {
     title: "Explorer, créer, partager",
     words: ["explorer", "créer", "partager"],
     paragraph:
-      "Salut, moi c'est Benjamin — étudiant de 20 ans à l'université Paris Cité. Je partage ici mes projets et ce qui m'intéresse.",
+      "Étudiant de 20 ans à l'université Paris Cité, je développe des applications et des projets créatifs. Je cherche à gagner en expérience et à collaborer sur des projets concrets.",
     stat1Label: "villes : Reims, Lille, Paris",
     stat2Label: "formations depuis 2024",
     stat3Label: "projets (App, animation)",
@@ -24,7 +24,7 @@ const STRINGS = {
     title: "Explore, create, share",
     words: ["explore", "create", "share"],
     paragraph:
-      "Hi there, I'm Benjamin — a 20-year-old student at Université Paris Cité. I share my projects and interests here.",
+      "20-year-old student at Université Paris Cité, I build apps and creative projects. I'm looking to gain experience and collaborate on real-world projects.",
     stat1Label: "cities: Reims, Lille, Paris",
     stat2Label: "programs since 2024",
     stat3Label: "projects (App, animation)",
