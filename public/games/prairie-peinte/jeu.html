@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>La prairie peinte</title>
+    <link rel="icon" href="data:," />
+    <style>:root{--encre:#1c1512;--creme:#f3e3c3;--or:#f0b94a}html,body{background:var(--encre);height:100%;color:var(--creme);margin:0;font-family:Georgia,Times New Roman,serif;overflow:hidden}#vue,#vue canvas{width:100%;height:100%;display:block;position:fixed;inset:0}.ecran{text-align:center;background:radial-gradient(#1c151259,#1c1512c7);flex-direction:column;justify-content:center;align-items:center;gap:14px;display:none;position:fixed;inset:0}.ecran.visible{display:flex}.ecran h1{letter-spacing:.04em;text-shadow:0 2px 18px #0009;margin:0 0 6px;font-size:clamp(34px,6vw,68px);font-weight:400}.ecran p{opacity:.92;max-width:34em;margin:0;padding:0 20px;font-size:16px;line-height:1.5}.ecran .petit{opacity:.75;font-size:13.5px}button{letter-spacing:.04em;color:var(--creme);cursor:pointer;background:#1c14129e;border:1px solid #f3e3c359;border-radius:3px;min-width:250px;padding:12px 26px;font:17px/1 Georgia,serif}button:hover,button:focus-visible{color:var(--encre);background:#f3e3c3eb;outline:none}button.principal{border-color:var(--or)}button.discret{opacity:.85;min-width:0;padding:9px 16px;font-size:14px}.rangee{flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;display:flex}#chargement{background:var(--encre)}#barre{background:#f3e3c32e;width:min(320px,70vw);height:3px}#barre i{background:var(--or);width:0;height:100%;transition:width .25s;display:block}#hud{pointer-events:none;display:none;position:fixed;inset:0}#hud.visible{display:block}#hud>div{letter-spacing:.03em;background:#1c141280;border-radius:3px;padding:8px 14px;font-size:15px;position:absolute}#compteur{color:var(--or);top:18px;left:18px;font-size:20px!important}#temps{font-variant-numeric:tabular-nums;top:18px;right:18px}#objectif{white-space:nowrap;top:18px;left:50%;transform:translate(-50%)}#message{white-space:nowrap;opacity:0;transition:opacity .6s;bottom:96px;left:50%;transform:translate(-50%);font-size:17px!important}#message.visible{opacity:1}#indice{font-variant-numeric:tabular-nums;top:66px;left:18px}#indice i{color:var(--or);margin-right:6px;font-style:normal;transition:transform .12s linear;display:inline-block}#aide{text-align:center;width:max-content;max-width:94vw;line-height:1.55;transition:opacity 2s;bottom:18px;left:50%;transform:translate(-50%);font-size:13.5px!important}#aide b{color:var(--or);font-weight:400}#aide.efface{opacity:0}#tableaux{z-index:5;gap:6px;display:none;position:fixed;bottom:18px;left:18px}body:has(#titre.visible) #tableaux{display:flex}#tableaux button{background:#1c14128c;border-color:#f3e3c340;min-width:0;padding:8px 12px;font-size:13px}#tableaux button.on{color:var(--encre);cursor:default;background:#f3e3c3e6}</style>
+    <script type="module" crossorigin src="./assets/jeu-B8ZH7oXO.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/man-C3WYLH7W.js">
+    <link rel="modulepreload" crossorigin href="./assets/monde-CdlAoqs9.js">
+    <link rel="modulepreload" crossorigin href="./assets/camera-BQwrb13s.js">
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-khBccGFq.js">
+  </head>
+  <body>
+    <div id="vue"></div>
+    <div id="tableaux"><button data-page="index.html?scene=aurora" tabindex="-1">Aurora</button><button data-page="index.html?scene=autumn" tabindex="-1">Autumn wood</button><button class="on" tabindex="-1">La prairie peinte</button></div>
+    <script>
+      for (const b of document.querySelectorAll('#tableaux button[data-page]')) b.addEventListener('click', () => { location.href = b.dataset.page; });
+    </script>
+
+    <div id="hud">
+      <div id="compteur">✦ 0 / 8</div>
+      <div id="indice" hidden><i>↑</i><span></span></div>
+      <div id="objectif"></div>
+      <div id="temps">0:00</div>
+      <div id="message"></div>
+      <div id="aide"><b>Clic</b> regarder · <b>ZQSD / flèches</b> marcher · <b>Maj</b> sprinter · <b>Espace</b> sauter · <b>Molette</b> reculer la caméra<br /><b>V</b> vue 1re / 3e personne · <b>E</b> appeler le renard · <b>F</b> appeler le dragon, monter / descendre · <b>Échap / P</b> pause et réglages (rendu, vue, son)</div>
+    </div>
+
+    <div id="chargement" class="ecran visible">
+      <p id="etape">Préparation des couleurs…</p>
+      <div id="barre"><i></i></div>
+    </div>
+
+    <div id="titre" class="ecran">
+      <h1 id="nom-du-jeu">La prairie peinte</h1>
+      <p id="accroche">Trouve les lueurs dispersées dans la prairie, puis rejoins le cercle de pierres au bout du chemin.</p>
+      <button id="b-continuer" class="principal" hidden>Continuer</button>
+      <button id="b-nouvelle" class="principal">Nouvelle partie</button>
+      <button id="b-quete" hidden>La quête du crépuscule</button>
+      <div class="rangee">
+        <button id="b-rendu" class="discret">Rendu : peinture</button>
+        <button id="b-vue" class="discret">Vue : troisième personne</button>
+        <button id="b-son" class="discret">Son : oui</button>
+      </div>
+      <p id="record" class="petit"></p>
+    </div>
+
+    <div id="pause" class="ecran">
+      <h1>Pause</h1>
+      <button id="b-reprendre" class="principal">Reprendre</button>
+      <button id="b-recommencer">Recommencer</button>
+      <button id="b-menu">Menu principal</button>
+      <div class="rangee">
+        <button id="b-rendu2" class="discret">Rendu : peinture</button>
+        <button id="b-vue2" class="discret">Vue : troisième personne</button>
+        <button id="b-son2" class="discret">Son : oui</button>
+      </div>
+      <p class="petit">La partie est enregistrée automatiquement.</p>
+    </div>
+
+    <div id="victoire" class="ecran">
+      <h1>Le cercle s'éveille</h1>
+      <p id="bilan"></p>
+      <button id="b-rejouer" class="principal">Rejouer</button>
+      <button id="b-quete2" hidden>La quête du crépuscule</button>
+      <button id="b-menu2">Menu principal</button>
+    </div>
+
+  </body>
+</html>

@@ -15,9 +15,9 @@ const STRINGS = {
     words: ["explorer", "créer", "partager"],
     paragraph:
       "Étudiant de 20 ans à l'université Paris Cité, je développe des applications et des projets créatifs. Je cherche à gagner en expérience et à collaborer sur des projets concrets.",
-    stat1Label: "villes : Reims, Lille, Paris",
+    stat1Label: "Reims, Lille, Paris",
     stat2Label: "formations depuis 2024",
-    stat3Label: "projets (App, animation)",
+    stat3Label: "projets (appli, jeux, animation)",
   },
   en: {
     pageTitle: "Benjamin Morel | Student & Developer",
@@ -25,9 +25,9 @@ const STRINGS = {
     words: ["explore", "create", "share"],
     paragraph:
       "20-year-old student at Université Paris Cité, I build apps and creative projects. I'm looking to gain experience and collaborate on real-world projects.",
-    stat1Label: "cities: Reims, Lille, Paris",
+    stat1Label: "Reims, Lille, Paris",
     stat2Label: "programs since 2024",
-    stat3Label: "projects (App, animation)",
+    stat3Label: "projects (app, games, animation)",
   },
 } as const;
 
@@ -147,7 +147,7 @@ const Home = () => {
         <div className="hidden md:block absolute right-6 md:right-20 bottom-16 md:bottom-20">
           <div className="flex items-center gap-3 justify-end">
             <div className="hidden md:block h-px w-24 bg-white/40 rotate-[-20deg]" />
-            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">2</span>
+            <span className="text-4xl md:text-5xl font-medium tracking-tight text-white">5</span>
           </div>
           <div className="text-xs md:text-sm text-white/70 mt-1 text-right">{s.stat3Label}</div>
         </div>
@@ -156,7 +156,7 @@ const Home = () => {
         <div className="md:hidden absolute left-6 right-6 bottom-24 grid grid-cols-2 gap-3">
           {[
             ["3", s.stat1Label],
-            ["2", s.stat3Label],
+            ["5", s.stat3Label],
           ].map(([n, label]) => (
             <div key={label}>
               <span className="block text-3xl font-medium tracking-tight text-white">{n}</span>

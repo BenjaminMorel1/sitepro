@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { MotionConfig } from "motion/react";
 import Home from "./pages/Home";
 import Platform from "./pages/Platform";
@@ -7,7 +7,6 @@ import Platform from "./pages/Platform";
 // import Lectures from "./pages/Lectures"; // page masquée, à remettre plus tard
 // import Blog2 from "./pages/Blog2"; // page masquée, à remettre plus tard
 import Contact from "./pages/Contact";
-import Resume from "./pages/Resume";
 import Film from "./pages/Film";
 // import Vfx from "./pages/Vfx"; // page VFX retirée du site (fichier gardé)
 import Bientot from "./pages/Bientot";
@@ -51,10 +50,13 @@ const App = () => {
           <Route path="/blog2" element={<Blog2 />} />
           */}
           <Route path="/animation-2-1" element={<Film version="paris-full" />} />
-          <Route path="/resume" element={<Resume />} />
+          {/* ancienne page Résumé, fusionnée dans Contact (« à propos ») */}
+          <Route path="/resume" element={<Navigate to="/contact" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/intro" element={<Test />} />
           <Route path="/bientot" element={<Bientot />} />
+          {/* adresse inconnue : retour à l'accueil plutôt qu'une page vide */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <MusicWidget />
       </LanguageProvider>

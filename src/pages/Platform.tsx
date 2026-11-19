@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import PlatformGame from "../components/PlatformGame";
 import AppShowcase from "../components/AppShowcase";
 import rayonnPreview from "../assets/rayonn-phone-01.webp";
+import prairiePreview from "../assets/game-prairie.jpg";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -11,20 +12,20 @@ const STRINGS = {
     pageTitle: "Projets | Benjamin Morel",
     heading: "Projets",
     intro:
-      "ce que je construis sur mon temps libre : une appli pour réviser et deux jeux jouables directement dans le navigateur. clique sur une carte pour l'essayer.",
+      "ce que je construis sur mon temps libre : une appli pour réviser et trois jeux jouables directement dans le navigateur. clique sur une carte pour l'essayer.",
     back: "← retour aux projets",
     games: {
       rayonn: {
         tag: "appli web · dans la page",
-        title: "RayOnn 2",
+        title: "Mala",
         description:
           "réviser ensemble, comme on s'entraîne : sessions d'étude avec leur profil de concentration, fil d'activité entre amis, carte des bibliothèques, groupes et défis.",
         cta: "découvrir",
       },
       jeux: {
-        tag: "2 jeux · dans le navigateur",
+        tag: "3 jeux · dans le navigateur",
         title: "Jeux",
-        description: "deux jeux codés à la main, jouables directement dans le navigateur.",
+        description: "trois jeux jouables directement dans le navigateur.",
       },
       ballscrush: {
         tag: "casse-briques · dans la page",
@@ -42,26 +43,34 @@ const STRINGS = {
         cta: "jouer",
         icon: "⚔️",
       },
+      prairie: {
+        tag: "exploration 3D · au clavier, sur ordinateur",
+        title: "La prairie peinte",
+        description:
+          "une prairie en 3D peinte touche par touche, comme une toile à l'huile. trouve les lueurs, rallume les braseros avec le feu du dragon que tu chevauches, puis rejoins le cercle de pierres. deux autres tableaux à explorer : Aurora et Autumn wood.",
+        cta: "jouer",
+        icon: "🎨",
+      },
     },
   },
   en: {
     pageTitle: "Projects | Benjamin Morel",
     heading: "Projects",
     intro:
-      "what I build in my free time: an app for studying and two games you can play right in your browser. click a card to try it.",
+      "what I build in my free time: an app for studying and three games you can play right in your browser. click a card to try it.",
     back: "← back to projects",
     games: {
       rayonn: {
         tag: "web app · in this page",
-        title: "RayOnn 2",
+        title: "Mala",
         description:
           "study together, like you train: study sessions with their focus profile, a feed with friends, a map of libraries, groups and challenges.",
         cta: "discover",
       },
       jeux: {
-        tag: "2 games · in your browser",
+        tag: "3 games · in your browser",
         title: "Games",
-        description: "two hand-coded games you can play right in your browser.",
+        description: "three games you can play right in your browser.",
       },
       ballscrush: {
         tag: "breakout · in this page",
@@ -78,6 +87,14 @@ const STRINGS = {
           "three lords watch over a world of ash. sword combat, dodge rolls, target lock-on, healing flasks and a finishing blow — all in your browser.",
         cta: "play",
         icon: "⚔️",
+      },
+      prairie: {
+        tag: "3D exploration · keyboard, desktop only",
+        title: "The painted meadow",
+        description:
+          "a 3D meadow painted stroke by stroke, like an oil canvas. find the glows, relight the braziers with the fire of the dragon you ride, then reach the stone circle. two more paintings to explore: Aurora and Autumn wood.",
+        cta: "play",
+        icon: "🎨",
       },
     },
   },
@@ -141,9 +158,10 @@ const Platform = () => {
             </span>
           </button>
 
-          {/* carte « Jeux » : Balls Crush et Elden Ring regroupés */}
+          {/* carte « Jeux » : La prairie peinte (en premier), Balls Crush et Elden Ring regroupés */}
           <div className="text-left rounded-3xl border border-[#141414]/10 dark:border-white/10 bg-[#f9fafe] dark:bg-neutral-900/40 p-8">
             <div className="h-40 rounded-2xl mb-6 flex items-center justify-center gap-6 text-6xl bg-gradient-to-br from-amber-400/20 via-rose-500/10 to-neutral-900">
+              <span>{s.games.prairie.icon}</span>
               <span>{s.games.ballscrush.icon}</span>
               <span>{s.games.eldenring.icon}</span>
             </div>
@@ -151,6 +169,22 @@ const Platform = () => {
             <h2 className="text-2xl font-medium mb-2">{s.games.jeux.title}</h2>
             <p className="text-sm text-[#141414]/60 dark:text-white/60 mb-6">{s.games.jeux.description}</p>
             <div className="flex flex-col gap-3">
+              <div className="flex gap-4 rounded-2xl border border-[#141414]/10 dark:border-white/10 bg-white/60 dark:bg-black/30 p-4">
+                <img src={prairiePreview} alt="" className="h-14 w-14 shrink-0 rounded-xl object-cover" draggable={false} />
+                <div className="min-w-0 flex-1">
+                  <div className="text-[11px] uppercase tracking-wide text-[#141414]/40 dark:text-white/40">{s.games.prairie.tag}</div>
+                  <h3 className="mt-0.5 text-lg font-medium">{s.games.prairie.title}</h3>
+                  <p className="mt-1 text-sm text-[#141414]/60 dark:text-white/60">{s.games.prairie.description}</p>
+                  <a
+                    href={`${import.meta.env.BASE_URL}games/prairie-peinte/jeu.html`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-3 rounded-full bg-[#141414] dark:bg-white text-white dark:text-black text-sm font-normal px-5 py-2 transition-colors hover:bg-[#333333] dark:hover:bg-neutral-200"
+                  >
+                    {s.games.prairie.cta}
+                  </a>
+                </div>
+              </div>
               <div className="flex gap-4 rounded-2xl border border-[#141414]/10 dark:border-white/10 bg-white/60 dark:bg-black/30 p-4">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-3xl bg-gradient-to-br from-amber-400/20 via-rose-500/10 to-neutral-900">
                   {s.games.ballscrush.icon}

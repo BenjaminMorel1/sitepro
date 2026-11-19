@@ -5,20 +5,22 @@ import { useLanguage } from "../i18n/LanguageContext";
 import { toggleTheme, useTheme } from "../theme";
 
 const NAV_LINKS = [
-  { key: "platform", to: "/platform", fr: "projets", en: "projects" },
+  /* « projets » ouvre la page intro (phrase animée, jeux, Mala) ; l'ancienne page Projets reste à /platform */
+  { key: "intro", to: "/intro", fr: "projets", en: "projects" },
   { key: "animation-2-1", to: "/animation-2-1", fr: "animation 2.1", en: "animation 2.1" },
-  { key: "intro", to: "/intro", fr: "intro", en: "intro" },
   { key: "music", to: "/music", fr: "playlist", en: "playlist" },
   /* masqués pour l'instant, à remettre plus tard :
   { key: "blog", to: "/blog", fr: "blog", en: "blog" },
   { key: "lectures", to: "/lectures", fr: "lectures", en: "readings" },
   { key: "blog2", to: "/blog2", fr: "blog 2", en: "blog 2" },
   */
-  { key: "resume", to: "/resume", fr: "résumé", en: "résumé" },
-  { key: "contact", to: "/contact", fr: "contact", en: "contact" },
+  /* résumé et contact fusionnés en une seule page « à propos » */
+  { key: "contact", to: "/contact", fr: "à propos", en: "about" },
 ] as const;
 
-const GET_STARTED = { fr: "Commencer", en: "Get started" };
+/* bouton principal : ouvre l'appli Mala dans un nouvel onglet */
+const GET_STARTED = { fr: "Essayer Mala ↗", en: "Try Mala ↗" };
+const MALA_URL = "https://rayonn-541fe.web.app/";
 
 const THEME_LABELS = {
   fr: { dark: "noir", light: "blanc", toDark: "passer en thème noir", toLight: "passer en thème blanc" },
@@ -127,10 +129,14 @@ const Navbar = () => {
           <span className={`block h-0.5 w-5 bg-white transition-transform ${menuOpen ? "-translate-y-1 -rotate-45" : ""}`} />
         </button>
 
-        {/* « Commencer » mène à une page « en développement » pour l'instant */}
-        <Link to="/bientot" className="hidden sm:block bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors">
+        <a
+          href={MALA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden lg:block bg-white text-black text-sm font-normal rounded-full px-6 py-3 hover:bg-neutral-200 transition-colors whitespace-nowrap"
+        >
           {lang === "fr" ? GET_STARTED.fr : GET_STARTED.en}
-        </Link>
+        </a>
       </div>
 
       {/* menu déroulant mobile */}
@@ -147,7 +153,7 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* sur mobile : thème noir / blanc et « Commencer » rangés ici */}
+          {/* sur mobile : thème noir / blanc et « Essayer Mala » rangés ici */}
           <div className="mt-2 flex items-center justify-between gap-3 border-t border-white/10 px-2 pt-3">
             <button
           onClick={toggleTheme}
@@ -161,13 +167,15 @@ const Navbar = () => {
             {t.light}
           </span>
         </button>
-            <Link
-              to="/bientot"
+            <a
+              href={MALA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="sm:hidden bg-white text-black text-sm rounded-full px-5 py-2.5"
+              className="lg:hidden bg-white text-black text-sm rounded-full px-5 py-2.5 whitespace-nowrap"
             >
               {lang === "fr" ? GET_STARTED.fr : GET_STARTED.en}
-            </Link>
+            </a>
           </div>
         </div>
       )}

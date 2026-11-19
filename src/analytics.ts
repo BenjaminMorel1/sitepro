@@ -1,7 +1,7 @@
 // Statistiques de visite :
 //  - GoatCounter (script chargé dans index.html), sans cookies ;
 //  - Google Analytics 4, chargé ici si GA_MEASUREMENT_ID est rempli.
-// Le site utilise HashRouter : on envoie nous-mêmes le chemin de chaque page.
+// Le site change de page sans recharger (React Router) : on envoie nous-mêmes le chemin de chaque page.
 
 /* identifiant GA4 (Admin > Flux de données > Web), ex. "G-ABC123XYZ9" ; vide = GA4 désactivé */
 const GA_MEASUREMENT_ID = "G-B61J1J0RHB";
@@ -34,7 +34,7 @@ const initGA = () => {
   const consent = { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
   window.gtag("consent", "default", consent);
   window.gtag("js", new Date());
-  // pages vues envoyées à la main (HashRouter), pas de pub ni de signaux Google
+  // pages vues envoyées à la main (changements de page sans rechargement), pas de pub ni de signaux Google
   window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false, allow_google_signals: false });
 
   const script = document.createElement("script");
@@ -47,7 +47,7 @@ initGA();
 
 const trackGA = (path: string) => {
   if (!window.gtag) return;
-  // attend la mise à jour du titre par la page (useDocumentTitle) ; URL sans « # »
+  // attend la mise à jour du titre par la page (useDocumentTitle)
   // pour que GA4 distingue les pages (ex. https://…/sitepro/resume)
   setTimeout(() => {
     const base = `${window.location.origin}${import.meta.env.BASE_URL}`.replace(/\/$/, "");

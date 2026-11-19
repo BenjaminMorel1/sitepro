@@ -1,31 +1,124 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import avatar from "../assets/avatar.png";
-
-/* photo masquée pour l'instant : passer à true pour la remettre */
-const SHOW_AVATAR = false;
+import ShareButton from "../components/ShareButton";
 import logoMyPrepa from "../assets/logo-myprepa.png";
 import logoLille from "../assets/logo-lille.png";
 import logoParisCite from "../assets/logo-paris-cite.png";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 
+/* ------------------------------------------------------------------ */
+/* page « à propos » : fusion des anciennes pages Résumé et Contact.   */
+/* Mise en page reprise de abdussalam.pk/resume (grille 12 colonnes    */
+/* de 1170px, cartes compétences/outils/technologies, entrées décalées */
+/* de 2 colonnes, pied de page noir plein écran).                      */
+/* Polices : Contralto/Elza (Adobe Fonts, payantes) remplacées par     */
+/* Cormorant Garamond et Inter.                                        */
+/* ------------------------------------------------------------------ */
+
 const GITHUB_URL = "https://github.com/BenjaminMorel1";
 const YOUTUBE_URL = "https://www.youtube.com/@pardise3604";
-const EMAIL = "benjaminmorelproject@gmail.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/benjamin-morel-bb839a3ab/";
+const SITE_REPO_URL = "https://github.com/BenjaminMorel1/sitepro";
+const RAYONN_URL = "https://rayonn-541fe.web.app/";
+const EMAIL = "benjaminmorelproject@gmail.com";
 
-// mise en page inspirée d'une fiche académique : identité, présentation, parcours, projets
-const STRINGS = {
+type Item = { label: string; to?: string; href?: string };
+type Entry = { name: string; place: string; role: string; description: string; link?: Item };
+
+type Strings = {
+  pageTitle: string;
+  affiliation: string;
+  location: string;
+  projectsCta: string;
+  writeMe: string;
+  aboutLabel: string;
+  about: string;
+  skillsLabel: string;
+  skills: Item[];
+  toolsLabel: string;
+  tools: Item[];
+  techLabel: string;
+  tech: Item[];
+  projectsLabel: string;
+  entries: Entry[];
+  educationLabel: string;
+  timeline: { years: string; title: string; place: string }[];
+  tagline: [string, string];
+  getInTouch: string;
+  privacy: string;
+};
+
+const STRINGS: Record<"fr" | "en", Strings> = {
   fr: {
-    pageTitle: "Contact | Benjamin Morel",
-    heading: "Contact",
-    name: "Benjamin Morel",
-    affiliation: "Licence Mathématiques, Université Paris Cité — Paris 6ème",
-    aboutLabel: "Présentation.",
+    pageTitle: "À propos | Benjamin Morel",
+    affiliation: "Licence Mathématiques, Université Paris Cité",
+    location: "Paris, France",
+    projectsCta: "VOIR LES PROJETS →",
+    writeMe: "M'ÉCRIRE",
+    aboutLabel: "Présentation",
     about:
-      "Étudiant de 20 ans en licence de mathématiques à l'Université Paris Cité, après une classe préparatoire ECG et une licence MIASHS à Lille. Je m'intéresse aux mathématiques, à l'informatique et à l'économie, et je partage ici mes projets.",
-    timelineLabel: "Formation.",
+      "Étudiant de 20 ans en licence de mathématiques à l'Université Paris Cité, après une classe préparatoire ECG et une licence MIASHS à Lille. Je m'intéresse aux mathématiques, à l'informatique et à l'économie, et je développe des applications et des projets créatifs.",
+    skillsLabel: "COMPÉTENCES",
+    skills: [
+      { label: "Analyse et algèbre" },
+      { label: "Probabilités et statistiques" },
+      { label: "Raisonnement et démonstration" },
+      { label: "Modélisation mathématique" },
+      { label: "Algorithmique" },
+      { label: "Économie (micro et macro)" },
+      { label: "Développement web →", href: SITE_REPO_URL },
+      { label: "Création de jeux dans le navigateur →", to: "/platform" },
+      { label: "Langues : français (natif), anglais" },
+    ],
+    toolsLabel: "OUTILS",
+    tools: [
+      { label: "Papier & crayon" },
+      { label: "LaTeX" },
+      { label: "VS Code" },
+      { label: "Git & GitHub →", href: GITHUB_URL },
+      { label: "Excel / Google Sheets" },
+      { label: "Jupyter Notebook" },
+      { label: "Claude Code (extension VS Code)" },
+    ],
+    techLabel: "TECHNOLOGIES",
+    tech: [{ label: "Python" }, { label: "Pandas" }, { label: "Jupyter" }, { label: "React" }, { label: "Firebase" }],
+    projectsLabel: "Projets",
+    entries: [
+      {
+        name: "Mala",
+        place: "Appli de révision",
+        role: "Projet personnel · en ligne",
+        description:
+          "Réviser ensemble, comme on s'entraîne : sessions d'étude avec leur profil de concentration, fil d'activité entre amis, carte des bibliothèques, groupes et défis. React, Vite, Firebase et Mapbox.",
+        link: { label: "OUVRIR L'APPLI ↗", href: RAYONN_URL },
+      },
+      {
+        name: "Jeux dans le navigateur",
+        place: "Balls Crush · Elden Ring · La prairie peinte",
+        role: "Projets personnels",
+        description:
+          "Balls Crush : casse-briques jouable dans la page, avec combos, bonus et 3 niveaux de difficulté croissante. Elden Ring : action-RPG 3D avec combat à l'épée, roulade, verrouillage de cible et fioles de soin. La prairie peinte : exploration 3D peinte touche par touche comme une toile à l'huile.",
+        link: { label: "JOUER →", to: "/platform" },
+      },
+      {
+        name: "Animée",
+        place: "Film d'animation généré par IA",
+        role: "Projet personnel · en cours",
+        description:
+          "Biographie animée en 3D, de la naissance à 20 ans, entièrement générée par IA (images et vidéos sur ElevenLabs) : un personnage décliné en 7 âges et une première scène, « Paris, le soir ».",
+        link: { label: "VOIR →", to: "/animation-2-1" },
+      },
+      {
+        name: "Ce site",
+        place: "React, TypeScript, Tailwind CSS",
+        role: "Projet personnel",
+        description: "Site personnel avec projets, playlist et animation, en français et en anglais.",
+        link: { label: "CODE SOURCE ↗", href: SITE_REPO_URL },
+      },
+    ],
+    educationLabel: "Formation.",
     timeline: [
       { years: "2026 - 2027", title: "Licence Mathématiques", place: "Université Paris Cité, Paris 6ème" },
       { years: "2025 - 2026", title: "Licence MIASHS (Maths, Info, Économie)", place: "Université de Lille – Cité scientifique" },
@@ -36,31 +129,78 @@ const STRINGS = {
         place: "Lycée Georges Clémenceau, Reims",
       },
     ],
-    projectsLabel: "Projets.",
-    projects: [
-      {
-        title: "Balls Crush",
-        description: "Casse-briques jouable dans la page : combos, bonus et 3 niveaux de difficulté croissante.",
-      },
-      {
-        title: "Elden Ring",
-        description: "Action-RPG 3D dans le navigateur : combat à l'épée, roulade, verrouillage de cible et fioles de soin.",
-      },
-    ],
-    projectsLink: "voir les projets →",
-    writeMe: "m'écrire",
-    linkedin: "LinkedIn",
+    tagline: ["Étudiant en mathématiques", "à l'Université Paris Cité"],
+    getInTouch: "Pour me contacter",
     privacy: "Ce site utilise Google Analytics et GoatCounter pour compter les visites.",
   },
   en: {
-    pageTitle: "Contact | Benjamin Morel",
-    heading: "Contact",
-    name: "Benjamin Morel",
-    affiliation: "Bachelor's in Mathematics, Université Paris Cité — Paris 6th",
-    aboutLabel: "About.",
+    pageTitle: "About | Benjamin Morel",
+    affiliation: "Bachelor's in Mathematics, Université Paris Cité",
+    location: "Paris, France",
+    projectsCta: "SEE THE PROJECTS →",
+    writeMe: "EMAIL ME",
+    aboutLabel: "About",
     about:
-      "20-year-old student doing a Bachelor's in Mathematics at Université Paris Cité, after a CPGE ECG prep program and a MIASHS Bachelor's in Lille. I'm interested in mathematics, computer science and economics, and I share my projects here.",
-    timelineLabel: "Education.",
+      "20-year-old student doing a Bachelor's in Mathematics at Université Paris Cité, after a CPGE ECG prep program and a MIASHS Bachelor's in Lille. I'm interested in mathematics, computer science and economics, and I build apps and creative projects.",
+    skillsLabel: "SKILLS",
+    skills: [
+      { label: "Analysis and algebra" },
+      { label: "Probability and statistics" },
+      { label: "Reasoning and proof" },
+      { label: "Mathematical modelling" },
+      { label: "Algorithms" },
+      { label: "Economics (micro and macro)" },
+      { label: "Web development →", href: SITE_REPO_URL },
+      { label: "Browser game development →", to: "/platform" },
+      { label: "Languages: French (native), English" },
+    ],
+    toolsLabel: "TOOLS",
+    tools: [
+      { label: "Paper & Pencil" },
+      { label: "LaTeX" },
+      { label: "VS Code" },
+      { label: "Git & GitHub →", href: GITHUB_URL },
+      { label: "Excel / Google Sheets" },
+      { label: "Jupyter Notebook" },
+      { label: "Claude Code (VS Code extension)" },
+    ],
+    techLabel: "TECHNOLOGIES",
+    tech: [{ label: "Python" }, { label: "Pandas" }, { label: "Jupyter" }, { label: "React" }, { label: "Firebase" }],
+    projectsLabel: "Projects",
+    entries: [
+      {
+        name: "Mala",
+        place: "Study app",
+        role: "Personal project · live",
+        description:
+          "Study together, like you train: study sessions with their focus profile, a feed with friends, a map of libraries, groups and challenges. React, Vite, Firebase and Mapbox.",
+        link: { label: "OPEN THE APP ↗", href: RAYONN_URL },
+      },
+      {
+        name: "Browser games",
+        place: "Balls Crush · Elden Ring · The painted meadow",
+        role: "Personal projects",
+        description:
+          "Balls Crush: an in-page breakout game with combos, power-ups and 3 levels of rising difficulty. Elden Ring: a 3D action-RPG with sword combat, dodge rolls, target lock-on and healing flasks. The painted meadow: a 3D exploration painted stroke by stroke like an oil canvas.",
+        link: { label: "PLAY →", to: "/platform" },
+      },
+      {
+        name: "Animée",
+        place: "AI-generated animated film",
+        role: "Personal project · in progress",
+        description:
+          "An animated 3D biography, from birth to age 20, entirely generated with AI (images and videos on ElevenLabs): one character across 7 ages and a first scene, “Paris, in the evening”.",
+        link: { label: "WATCH →", to: "/animation-2-1" },
+      },
+      {
+        name: "This website",
+        place: "React, TypeScript, Tailwind CSS",
+        role: "Personal project",
+        description: "Personal site with projects, a playlist and an animation, in French and English.",
+        link: { label: "SOURCE CODE ↗", href: SITE_REPO_URL },
+      },
+    ],
+    educationLabel: "Education.",
     timeline: [
       { years: "2026 - 2027", title: "Bachelor's in Mathematics", place: "Université Paris Cité, Paris 6th" },
       { years: "2025 - 2026", title: "Bachelor's in MIASHS (Math, CS, Economics)", place: "University of Lille – Cité Scientifique campus" },
@@ -71,29 +211,64 @@ const STRINGS = {
         place: "Lycée Georges Clémenceau, Reims",
       },
     ],
-    projectsLabel: "Projects.",
-    projects: [
-      {
-        title: "Balls Crush",
-        description: "In-page breakout game: combos, power-ups and 3 levels of rising difficulty.",
-      },
-      {
-        title: "Elden Ring",
-        description: "3D action-RPG in the browser: sword combat, dodge rolls, target lock-on and healing flasks.",
-      },
-    ],
-    projectsLink: "see the projects →",
-    writeMe: "email me",
-    linkedin: "LinkedIn",
+    tagline: ["Mathematics student", "at Université Paris Cité"],
+    getInTouch: "Get in touch at",
     privacy: "This site uses Google Analytics and GoatCounter to count visits.",
   },
-} as const;
+};
 
 // logos par formation, dans le même ordre que timeline (du plus récent au plus ancien)
 const LOGOS: (string | null)[] = [logoParisCite, logoLille, logoMyPrepa, null];
 
-const SectionLabel = ({ children }: { children: string }) => (
-  <h2 className="text-[#141414] dark:text-white text-lg md:text-xl font-semibold">{children}</h2>
+/* couleurs : thème blanc = celles de la page d'origine (encre #141414, liens #ec0600) ;
+   thème noir (classe "dark") = celles du reste du site */
+const SANS = { fontFamily: '"Inter", sans-serif' };
+const SERIF = { fontFamily: '"Cormorant Garamond", Georgia, serif' };
+
+/* conteneur 1170px + grille 12 colonnes (gouttière 30px), colonnes empilées sur mobile */
+const Container = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
+  <div className={`mx-auto w-full max-w-[1200px] px-[15px] ${className}`}>
+    <div className="grid grid-cols-1 gap-x-[30px] gap-y-[30px] md:grid-cols-12">{children}</div>
+  </div>
+);
+
+const ItemLine = ({ item, className = "text-[#ec0600] dark:text-white hover:underline" }: { item: Item; className?: string }) => {
+  if (item.to)
+    return (
+      <Link to={item.to} className={className}>
+        {item.label}
+      </Link>
+    );
+  if (item.href)
+    return (
+      <a href={item.href} target="_blank" rel="noreferrer" className={className}>
+        {item.label}
+      </a>
+    );
+  return <span>{item.label}</span>;
+};
+
+/* carte "COMPÉTENCES / OUTILS / TECHNOLOGIES" : fond #f9fafe, padding 40/32/48 */
+const ListCard = ({ label, items }: { label: string; items: Item[] }) => (
+  <div className="md:col-span-4 bg-[#f9fafe] dark:bg-neutral-900/60 px-8 pt-10 pb-12">
+    <p className="text-[12px] font-bold tracking-[1px]" style={SANS}>
+      {label}
+    </p>
+    <ul className="mt-4 flex flex-col text-[16px] leading-[24px]" style={SANS}>
+      {items.map((item) => (
+        <li key={item.label}>
+          <ItemLine item={item} />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+/* titre en capitales 32/40, gras */
+const BigLabel = ({ children }: { children: ReactNode }) => (
+  <h2 className="uppercase text-[26px] leading-[34px] md:text-[32px] md:leading-[40px] font-bold tracking-[0.5px]" style={SANS}>
+    {children}
+  </h2>
 );
 
 const Contact = () => {
@@ -102,83 +277,75 @@ const Contact = () => {
   useDocumentTitle(s.pageTitle);
 
   return (
-    <section className="relative min-h-screen w-full bg-white dark:bg-black">
+    <div className="min-h-screen w-full bg-white dark:bg-black text-[#141414] dark:text-white">
       <Navbar />
 
-      {/* avatar à droite du nom, même taille/position que sur la home */}
-      {SHOW_AVATAR && (
-        <img
-          src={avatar}
-          alt="Benjamin Morel"
-          className="absolute z-20 left-[clamp(9rem,16vmin,15rem)] top-[clamp(0.75rem,2vmin,1.5rem)] h-[clamp(3.5rem,18vmin,18rem)] w-[clamp(3.5rem,18vmin,18rem)] md:h-[clamp(3.5rem,min(18vmin,13vw),18rem)] md:w-[clamp(3.5rem,min(18vmin,13vw),18rem)] shrink-0 rounded-full object-cover ring-1 ring-[#141414]/30 dark:ring-white/30"
-        />
-      )}
-
-      {/* contenu en haut de page (plus centré verticalement) : il défile s'il dépasse l'écran */}
-      <div className="flex flex-col items-start px-6 md:px-24 pt-[clamp(7rem,24vmin,20rem)] pb-24">
-        <h1 className="hero-title text-[#141414] dark:text-white font-medium text-[12vw] md:text-[6vw]">{s.heading}</h1>
-
-        <div className="mt-10 flex flex-col gap-12 max-w-3xl w-full">
-          {/* identité et coordonnées */}
-          <div className="flex flex-col gap-2">
-            <p className="text-[#141414] dark:text-white text-2xl md:text-3xl font-medium">{s.name}</p>
-            <p className="text-[#141414]/60 dark:text-white/60 text-sm md:text-base">{s.affiliation}</p>
+      {/* en-tête : nom, formation, coordonnées, boutons de contact */}
+      <section className="pt-36 md:pt-40">
+        <Container className="md:min-h-[240px] md:items-end">
+          <div className="md:col-span-8 md:self-end">
+            <h1 className="pb-2 text-[52px] leading-[60px] md:text-[84px] md:leading-[96px] font-light" style={SERIF}>
+              BENJAMIN MOREL
+            </h1>
+            <p className="text-[18px] leading-[28px] md:text-[20px] md:leading-[32px]" style={SANS}>
+              {s.affiliation}
+              <br />
+              <a href={`mailto:${EMAIL}`} className="hover:underline">
+                {EMAIL}
+              </a>
+              <br />
+              <span className="opacity-60">{s.location}</span>
+            </p>
+            <p className="mt-4 text-[12px] leading-[20px] font-medium tracking-[1px]" style={SANS}>
+              <Link to="/platform" className="text-[#6b6b6b] dark:text-white/60 hover:underline">
+                {s.projectsCta}
+              </Link>
+            </p>
+          </div>
+          {/* contact en un tap : pleine largeur sur téléphone */}
+          <div className="md:col-span-4 md:self-end grid grid-cols-2 gap-3 md:flex md:flex-wrap md:justify-end" style={SANS}>
             <a
               href={`mailto:${EMAIL}`}
-              className="text-[#141414]/80 dark:text-white/80 hover:text-[#141414] dark:hover:text-white text-sm md:text-base underline underline-offset-4 w-fit"
+              className="flex items-center justify-center border border-[#141414] bg-[#141414] px-6 py-4 text-[12px] tracking-[2px] text-white transition-colors hover:bg-white hover:text-[#141414] dark:border-white dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white"
             >
-              {EMAIL}
+              {s.writeMe}
             </a>
             <a
-              href={GITHUB_URL}
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noreferrer"
-              className="text-[#141414]/80 dark:text-white/80 hover:text-[#141414] dark:hover:text-white text-sm md:text-base underline underline-offset-4 w-fit"
+              className="flex items-center justify-center border border-[#141414]/30 dark:border-white/40 px-6 py-4 text-[12px] tracking-[2px] hover:border-[#141414] dark:hover:border-white transition-colors"
             >
-              github.com/BenjaminMorel1
+              LINKEDIN
             </a>
-            <a
-              href={YOUTUBE_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#141414]/80 dark:text-white/80 hover:text-[#141414] dark:hover:text-white text-sm md:text-base underline underline-offset-4 w-fit"
-            >
-              youtube.com/@pardise3604
-            </a>
-
-            {/* contact en un tap : gros boutons, pleine largeur sur téléphone */}
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:flex sm:w-fit">
-              <a
-                href={`mailto:${EMAIL}`}
-                className="flex items-center justify-center gap-2 rounded-full bg-[#141414] dark:bg-white px-6 py-3.5 text-sm font-medium text-white dark:text-black transition-colors hover:bg-[#333333] dark:hover:bg-neutral-200"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2" />
-                  <path d="m4 7 8 6 8-6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {s.writeMe}
-              </a>
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-full border border-[#141414]/20 dark:border-white/25 px-6 py-3.5 text-sm font-medium text-[#141414] dark:text-white transition-colors hover:border-[#141414]/50 dark:hover:border-white/60"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
-                  <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm7 0h3.8v1.6h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12v5.33h-4v-4.73c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5v4.81h-4v-11Z" />
-                </svg>
-                {s.linkedin}
-              </a>
-            </div>
+            {/* partager la page (menu de partage du téléphone, ou copie du lien) */}
+            <ShareButton
+              title="Benjamin Morel"
+              className="col-span-2 border border-[#141414]/30 dark:border-white/40 px-6 py-4 text-[12px] uppercase tracking-[2px] text-[#141414] dark:text-white hover:border-[#141414] dark:hover:border-white transition-colors"
+            />
           </div>
+        </Container>
+      </section>
 
-          <div className="flex flex-col gap-3">
-            <SectionLabel>{s.aboutLabel}</SectionLabel>
-            <p className="text-[#141414]/70 dark:text-white/70 text-sm md:text-base leading-relaxed">{s.about}</p>
+      {/* présentation */}
+      <section className="mt-[72px]">
+        <Container>
+          <div className="md:col-span-8">
+            <p className="text-[12px] font-bold tracking-[1px] uppercase" style={SANS}>
+              {s.aboutLabel}
+            </p>
+            <p className="mt-4 text-[18px] leading-[28px] md:text-[20px] md:leading-[32px]" style={SANS}>
+              {s.about}
+            </p>
           </div>
+        </Container>
+      </section>
 
-          <div className="flex flex-col gap-4">
-            <SectionLabel>{s.timelineLabel}</SectionLabel>
+      {/* formation : même présentation que l'ancienne page Contact, juste après la présentation */}
+      <section className="mt-[72px]">
+        <Container>
+          <div className="md:col-span-8 flex flex-col gap-4">
+            <h2 className="text-[#141414] dark:text-white text-lg md:text-xl font-semibold">{s.educationLabel}</h2>
             <div className="flex flex-col gap-5">
               {s.timeline.map((item, i) => (
                 <div key={item.years} className="grid grid-cols-[6.5rem_1fr] md:grid-cols-[8rem_2.5rem_1fr] gap-x-4 items-start">
@@ -202,27 +369,100 @@ const Contact = () => {
               ))}
             </div>
           </div>
+        </Container>
+      </section>
 
-          <div className="flex flex-col gap-4">
-            <SectionLabel>{s.projectsLabel}</SectionLabel>
-            <div className="flex flex-col gap-4">
-              {s.projects.map((project) => (
-                <div key={project.title}>
-                  <p className="text-[#141414] dark:text-white text-sm md:text-base font-medium">{project.title}</p>
-                  <p className="text-[#141414]/60 dark:text-white/60 text-sm">{project.description}</p>
-                </div>
-              ))}
-            </div>
-            <Link to="/platform" className="text-[#141414]/80 dark:text-white/80 hover:text-[#141414] dark:hover:text-white text-sm underline underline-offset-4 w-fit">
-              {s.projectsLink}
-            </Link>
+      {/* compétences / outils / technologies */}
+      <section className="mt-[72px]">
+        <Container>
+          <ListCard label={s.skillsLabel} items={s.skills} />
+          <ListCard label={s.toolsLabel} items={s.tools} />
+          <ListCard label={s.techLabel} items={s.tech} />
+        </Container>
+      </section>
+
+      {/* projets : décalés de 2 colonnes */}
+      <section className="pt-[72px] md:pt-[120px] md:pb-4">
+        <Container>
+          <div className="md:col-span-8 md:col-start-3">
+            <p className="text-[12px] font-bold tracking-[1px] uppercase" style={SANS}>
+              {s.projectsLabel}
+            </p>
           </div>
+        </Container>
+      </section>
+      {s.entries.map((entry) => (
+        <section key={entry.name}>
+          <Container className="py-12 md:py-16">
+            <div className="md:col-span-8 md:col-start-3">
+              <div className="pb-4">
+                <BigLabel>
+                  {entry.name}
+                  <br />
+                  <span className="opacity-60">{entry.place}</span>
+                </BigLabel>
+              </div>
+              <p className="pb-4 text-[18px] leading-[24px] opacity-50" style={SANS}>
+                {entry.role}
+              </p>
+              <p className="text-[16px] leading-[24px]" style={SANS}>
+                {entry.description}
+              </p>
+              {entry.link && (
+                <p className="mt-4 text-[12px] leading-[20px] font-medium tracking-[1px]" style={SANS}>
+                  <ItemLine item={entry.link} className="text-[#ec0600] dark:text-white hover:underline" />
+                </p>
+              )}
+            </div>
+          </Container>
+        </section>
+      ))}
 
-          {/* mention de la mesure d'audience (demandée par les conditions de Google Analytics) */}
-          <p className="text-xs text-[#141414]/40 dark:text-white/40">{s.privacy}</p>
-        </div>
-      </div>
-    </section>
+      <div className="h-[72px]" />
+      {/* pied de page noir plein écran */}
+      <section className="flex min-h-screen items-center bg-black">
+        <Container>
+          <div className="md:col-span-8 md:col-start-3 pt-14 text-center">
+            <p className="hidden md:block pb-2 text-[112px] leading-[112px] font-bold tracking-[0.5px] text-white" style={SERIF}>
+              BENJAMIN MOREL
+            </p>
+            <p className="md:hidden pb-2 text-[32px] leading-[40px] font-black tracking-[0.5px] text-[#757575]" style={SANS}>
+              BENJAMIN MOREL
+            </p>
+            <p className="pb-14 text-[16px] leading-[24px] tracking-[0.3px] text-[#939393]" style={SANS}>
+              {s.tagline[0]}
+              <br />
+              {s.tagline[1]}
+            </p>
+            <p className="text-[16px] leading-[24px] tracking-[0.3px] text-[#939393]" style={SANS}>
+              {s.getInTouch}
+            </p>
+            <p className="text-[20px] leading-[32px] md:text-[28px] md:leading-[40px] break-words" style={SANS}>
+              <a href={`mailto:${EMAIL}`} className="text-white hover:underline">
+                {EMAIL}
+              </a>
+            </p>
+            <p className="py-14 text-[12px] leading-[16px] font-black tracking-[2px] text-white" style={SANS}>
+              <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="hover:underline">
+                LINKEDIN
+              </a>
+              &nbsp; / &nbsp;
+              <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:underline">
+                GITHUB
+              </a>
+              &nbsp; / &nbsp;
+              <a href={YOUTUBE_URL} target="_blank" rel="noreferrer" className="hover:underline">
+                YOUTUBE
+              </a>
+            </p>
+            {/* mention de la mesure d'audience (demandée par les conditions de Google Analytics) */}
+            <p className="pb-10 text-[12px] leading-[16px] text-[#6b6b6b]" style={SANS}>
+              {s.privacy}
+            </p>
+          </div>
+        </Container>
+      </section>
+    </div>
   );
 };
 

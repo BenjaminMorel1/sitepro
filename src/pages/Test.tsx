@@ -6,13 +6,14 @@ import CustomCursor from "../components/CustomCursor";
 import AppShowcase from "../components/AppShowcase";
 import shotBallsCrush from "../assets/game-ballscrush.jpg";
 import shotEldenRing from "../assets/game-eldenring.jpg";
+import shotPrairie from "../assets/game-prairie.jpg";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 import { scrollToElement } from "../smoothScroll";
 
-// Page d'essai des effets : phrase d'ouverture animée mot par mot, flèche,
+// Page « intro » (ouverte par « projets » dans le menu) : phrase d'ouverture animée mot par mot, flèche,
 // bandeau défilant, cartes qui apparaissent au défilement, téléphones de l'appli
-// RayOnn 2, curseur personnalisé.
+// Mala, curseur personnalisé.
 
 // bordeaux de l'Université Paris Cité, éclairci pour rester lisible sur fond noir
 const ACCENT = "#dd5a7e";
@@ -33,7 +34,7 @@ const STRINGS: Record<
   }
 > = {
   fr: {
-    pageTitle: "Intro | Benjamin Morel",
+    pageTitle: "Projets | Benjamin Morel",
     intro: [
       { text: "Étudiant en " },
       { text: "Licence 3 de mathématiques", to: "/contact" },
@@ -44,15 +45,22 @@ const STRINGS: Record<
       { text: " et une " },
       { text: "licence MIASHS", to: "/contact" },
       { text: " à Lille. Je crée une appli de révision, " },
-      { text: "RayOnn 2", to: "/platform" },
+      { text: "Mala", to: "/platform" },
       { text: ", et un " },
       { text: "film d'animation", to: "/animation-2-1" },
       { text: " entièrement généré par IA." },
     ],
     scrollLabel: "descendre vers les jeux",
     marquee: ["Mathématiques", "Informatique", "Économie", "Université Paris Cité", "Jeux vidéo", "Musique"],
-    gamesHeading: "Deux jeux, codés à la main.",
+    gamesHeading: "Trois jeux, jouables dans le navigateur.",
     games: [
+      {
+        title: "La prairie peinte",
+        tag: "exploration 3D · au clavier, sur ordinateur",
+        description: "Une prairie peinte touche par touche comme une toile à l'huile, un dragon à chevaucher, et deux autres tableaux : Aurora et Autumn wood.",
+        image: shotPrairie,
+        href: `${import.meta.env.BASE_URL}games/prairie-peinte/jeu.html`,
+      },
       {
         title: "Balls Crush",
         tag: "casse-briques · dans la page",
@@ -70,7 +78,7 @@ const STRINGS: Record<
     ],
   },
   en: {
-    pageTitle: "Intro | Benjamin Morel",
+    pageTitle: "Projects | Benjamin Morel",
     intro: [
       { text: "3rd-year Mathematics", to: "/contact" },
       { text: " student at " },
@@ -80,15 +88,22 @@ const STRINGS: Record<
       { text: " and a " },
       { text: "MIASHS Bachelor's", to: "/contact" },
       { text: " in Lille. I'm building a revision app, " },
-      { text: "RayOnn 2", to: "/platform" },
+      { text: "Mala", to: "/platform" },
       { text: ", and an " },
       { text: "animated film", to: "/animation-2-1" },
       { text: " entirely generated with AI." },
     ],
     scrollLabel: "scroll down to the games",
     marquee: ["Mathematics", "Computer science", "Economics", "Université Paris Cité", "Video games", "Music"],
-    gamesHeading: "Two games, coded by hand.",
+    gamesHeading: "Three games, playable in your browser.",
     games: [
+      {
+        title: "The painted meadow",
+        tag: "3D exploration · keyboard, desktop only",
+        description: "A meadow painted stroke by stroke like an oil canvas, a dragon to ride, and two more paintings: Aurora and Autumn wood.",
+        image: shotPrairie,
+        href: `${import.meta.env.BASE_URL}games/prairie-peinte/jeu.html`,
+      },
       {
         title: "Balls Crush",
         tag: "breakout · in this page",
@@ -270,12 +285,14 @@ const Test = () => {
                 </motion.div>
               </motion.div>
             );
+            // le premier jeu (La prairie peinte) prend toute la largeur sur ordinateur
+            const cls = `group block ${i === 0 ? "md:col-span-2" : ""}`;
             return game.to ? (
-              <Link key={game.title} to={game.to} className="group block">
+              <Link key={game.title} to={game.to} className={cls}>
                 {card}
               </Link>
             ) : (
-              <a key={game.title} href={game.href} target="_blank" rel="noopener noreferrer" className="group block">
+              <a key={game.title} href={game.href} target="_blank" rel="noopener noreferrer" className={cls}>
                 {card}
               </a>
             );
