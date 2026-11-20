@@ -11,7 +11,7 @@ Site personnel de Benjamin Morel, étudiant en licence de mathématiques à l'Un
 | Page | Adresse | Contenu |
 |---|---|---|
 | Accueil | [`/`](https://benjaminmorel1.github.io/sitepro/) | Vidéo de fond, titre animé, présentation en quelques chiffres |
-| Projets | [`/platform`](https://benjaminmorel1.github.io/sitepro/platform) | **Mala**, l'appli pour réviser ensemble (carrousel de captures, lien vers l'appli), et trois jeux jouables dans le navigateur |
+| Projets | [`/platform`](https://benjaminmorel1.github.io/sitepro/platform) | **Mala**, l'appli pour réviser ensemble (carrousel de captures, lien vers l'appli), et quatre jeux jouables dans le navigateur |
 | Animation 2.1 | [`/animation-2-1`](https://benjaminmorel1.github.io/sitepro/animation-2-1) | Biographie animée en 3D, générée par IA |
 | Playlist | [`/music/`](https://benjaminmorel1.github.io/sitepro/music/) | Lecteur de musique avec pochettes et paroles synchronisées |
 | À propos | [`/contact`](https://benjaminmorel1.github.io/sitepro/contact) | Présentation, formation, compétences, projets et contact |
@@ -20,6 +20,7 @@ Les jeux de la page Projets :
 - **Balls Crush** : un casse-briques jouable directement dans la page, avec combos, bonus et 3 niveaux.
 - **Elden Ring** : un action-RPG 3D (combat à l'épée, roulade, verrouillage de cible).
 - **La prairie peinte** : une exploration 3D peinte touche par touche comme une toile à l'huile, avec un dragon à chevaucher.
+- **Chessmata** : des échecs 3D en ligne contre des amis ou des IA, avec classement Elo. C'est ma version du projet open source [Chessmata](https://github.com/BenjaminMorel1/chessmata), hébergée sur Render.
 
 ![Page Projets](docs/projets.jpg)
 
@@ -82,6 +83,7 @@ GitHub Pages ne sait pas renvoyer toutes les adresses vers une appli React. Apr�
 ## Crédits
 
 - **La prairie peinte** est construite sur le moteur *Oil paint* de [Patch](https://patch.gg) (code MIT, graphismes CC0) ; ses licences sont livrées avec le jeu dans `public/games/prairie-peinte/`.
+- **Chessmata** est un fork du projet open source de Metavert LLC (licence MIT), personnalisé et hébergé séparément.
 - Les musiques de la playlist appartiennent à leurs auteurs et ne sont là qu'à titre personnel.
 
 ## Contact

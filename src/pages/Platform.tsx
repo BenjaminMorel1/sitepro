@@ -4,6 +4,10 @@ import PlatformGame from "../components/PlatformGame";
 import AppShowcase from "../components/AppShowcase";
 import rayonnPreview from "../assets/rayonn-phone-01.webp";
 import prairiePreview from "../assets/game-prairie.jpg";
+import chessmataPreview from "../assets/game-chessmata.jpg";
+
+// Chessmata a besoin de son serveur : on ouvre la version en ligne (Render)
+const CHESSMATA_URL = "https://chessmata.onrender.com/";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -12,7 +16,7 @@ const STRINGS = {
     pageTitle: "Projets | Benjamin Morel",
     heading: "Projets",
     intro:
-      "ce que je construis sur mon temps libre : une appli pour réviser et trois jeux jouables directement dans le navigateur. clique sur une carte pour l'essayer.",
+      "ce que je construis sur mon temps libre : une appli pour réviser et quatre jeux jouables directement dans le navigateur. clique sur une carte pour l'essayer.",
     back: "← retour aux projets",
     games: {
       rayonn: {
@@ -23,9 +27,9 @@ const STRINGS = {
         cta: "découvrir",
       },
       jeux: {
-        tag: "3 jeux · dans le navigateur",
+        tag: "4 jeux · dans le navigateur",
         title: "Jeux",
-        description: "trois jeux jouables directement dans le navigateur.",
+        description: "quatre jeux jouables directement dans le navigateur.",
       },
       ballscrush: {
         tag: "casse-briques · dans la page",
@@ -44,12 +48,20 @@ const STRINGS = {
         icon: "⚔️",
       },
       prairie: {
-        tag: "exploration 3D · au clavier, sur ordinateur",
+        tag: "exploration 3D · sur ordinateur et téléphone",
         title: "La prairie peinte",
         description:
           "une prairie en 3D peinte touche par touche, comme une toile à l'huile. trouve les lueurs, rallume les braseros avec le feu du dragon que tu chevauches, puis rejoins le cercle de pierres. deux autres tableaux à explorer : Aurora et Autumn wood.",
         cta: "jouer",
         icon: "🎨",
+      },
+      chessmata: {
+        tag: "échecs 3D en ligne · multijoueur",
+        title: "Chessmata",
+        description:
+          "joue aux échecs en 3D contre des amis ou des IA, avec matchmaking et classement Elo. ma version du projet open source Chessmata, avec un plateau de verre au sommet d'une tour.",
+        cta: "jouer",
+        icon: "♟️",
       },
     },
   },
@@ -57,7 +69,7 @@ const STRINGS = {
     pageTitle: "Projects | Benjamin Morel",
     heading: "Projects",
     intro:
-      "what I build in my free time: an app for studying and three games you can play right in your browser. click a card to try it.",
+      "what I build in my free time: an app for studying and four games you can play right in your browser. click a card to try it.",
     back: "← back to projects",
     games: {
       rayonn: {
@@ -68,9 +80,9 @@ const STRINGS = {
         cta: "discover",
       },
       jeux: {
-        tag: "3 games · in your browser",
+        tag: "4 games · in your browser",
         title: "Games",
-        description: "three games you can play right in your browser.",
+        description: "four games you can play right in your browser.",
       },
       ballscrush: {
         tag: "breakout · in this page",
@@ -89,12 +101,20 @@ const STRINGS = {
         icon: "⚔️",
       },
       prairie: {
-        tag: "3D exploration · keyboard, desktop only",
+        tag: "3D exploration · desktop and mobile",
         title: "The painted meadow",
         description:
           "a 3D meadow painted stroke by stroke, like an oil canvas. find the glows, relight the braziers with the fire of the dragon you ride, then reach the stone circle. two more paintings to explore: Aurora and Autumn wood.",
         cta: "play",
         icon: "🎨",
+      },
+      chessmata: {
+        tag: "online 3D chess · multiplayer",
+        title: "Chessmata",
+        description:
+          "play 3D chess against friends or AI agents, with matchmaking and Elo ranking. my take on the open-source Chessmata, with a glass board on top of a tower.",
+        cta: "play",
+        icon: "♟️",
       },
     },
   },
@@ -158,10 +178,11 @@ const Platform = () => {
             </span>
           </button>
 
-          {/* carte « Jeux » : La prairie peinte (en premier), Balls Crush et Elden Ring regroupés */}
+          {/* carte « Jeux » : La prairie peinte (en premier), Chessmata, Balls Crush et Elden Ring regroupés */}
           <div className="text-left rounded-3xl border border-[#141414]/10 dark:border-white/10 bg-[#f9fafe] dark:bg-neutral-900/40 p-8">
             <div className="h-40 rounded-2xl mb-6 flex items-center justify-center gap-6 text-6xl bg-gradient-to-br from-amber-400/20 via-rose-500/10 to-neutral-900">
               <span>{s.games.prairie.icon}</span>
+              <span>{s.games.chessmata.icon}</span>
               <span>{s.games.ballscrush.icon}</span>
               <span>{s.games.eldenring.icon}</span>
             </div>
@@ -182,6 +203,22 @@ const Platform = () => {
                     className="inline-block mt-3 rounded-full bg-[#141414] dark:bg-white text-white dark:text-black text-sm font-normal px-5 py-2 transition-colors hover:bg-[#333333] dark:hover:bg-neutral-200"
                   >
                     {s.games.prairie.cta}
+                  </a>
+                </div>
+              </div>
+              <div className="flex gap-4 rounded-2xl border border-[#141414]/10 dark:border-white/10 bg-white/60 dark:bg-black/30 p-4">
+                <img src={chessmataPreview} alt="" className="h-14 w-14 shrink-0 rounded-xl object-cover" draggable={false} />
+                <div className="min-w-0 flex-1">
+                  <div className="text-[11px] uppercase tracking-wide text-[#141414]/40 dark:text-white/40">{s.games.chessmata.tag}</div>
+                  <h3 className="mt-0.5 text-lg font-medium">{s.games.chessmata.title}</h3>
+                  <p className="mt-1 text-sm text-[#141414]/60 dark:text-white/60">{s.games.chessmata.description}</p>
+                  <a
+                    href={CHESSMATA_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-3 rounded-full bg-[#141414] dark:bg-white text-white dark:text-black text-sm font-normal px-5 py-2 transition-colors hover:bg-[#333333] dark:hover:bg-neutral-200"
+                  >
+                    {s.games.chessmata.cta}
                   </a>
                 </div>
               </div>

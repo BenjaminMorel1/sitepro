@@ -17,7 +17,7 @@ const SITE = 'https://benjaminmorel1.github.io/sitepro/';
 const PAGES = {
   platform: {
     title: 'Projets | Benjamin Morel',
-    description: "Mala, l'appli pour réviser ensemble, et trois jeux jouables dans le navigateur.",
+    description: "Mala, l'appli pour réviser ensemble, et quatre jeux jouables dans le navigateur.",
   },
   'animation-2-1': {
     title: 'Animation 2.1 | Benjamin Morel',
@@ -31,7 +31,7 @@ const PAGES = {
   resume: { title: 'À propos | Benjamin Morel', description: '', canonical: 'contact' },
   intro: {
     title: 'Projets | Benjamin Morel',
-    description: "Mon parcours en une phrase, trois jeux jouables dans le navigateur et Mala, l'appli pour réviser ensemble.",
+    description: "Mon parcours en une phrase, quatre jeux jouables dans le navigateur et Mala, l'appli pour réviser ensemble.",
   },
   bientot: { title: 'Bientôt | Benjamin Morel', description: '' },
 };

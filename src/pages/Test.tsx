@@ -7,6 +7,7 @@ import AppShowcase from "../components/AppShowcase";
 import shotBallsCrush from "../assets/game-ballscrush.jpg";
 import shotEldenRing from "../assets/game-eldenring.jpg";
 import shotPrairie from "../assets/game-prairie.jpg";
+import shotChessmata from "../assets/game-chessmata.jpg";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useLanguage } from "../i18n/LanguageContext";
 import { scrollToElement } from "../smoothScroll";
@@ -52,14 +53,21 @@ const STRINGS: Record<
     ],
     scrollLabel: "descendre vers les jeux",
     marquee: ["Mathématiques", "Informatique", "Économie", "Université Paris Cité", "Jeux vidéo", "Musique"],
-    gamesHeading: "Trois jeux, jouables dans le navigateur.",
+    gamesHeading: "Quatre jeux, jouables dans le navigateur.",
     games: [
       {
         title: "La prairie peinte",
-        tag: "exploration 3D · au clavier, sur ordinateur",
+        tag: "exploration 3D · sur ordinateur et téléphone",
         description: "Une prairie peinte touche par touche comme une toile à l'huile, un dragon à chevaucher, et deux autres tableaux : Aurora et Autumn wood.",
         image: shotPrairie,
         href: `${import.meta.env.BASE_URL}games/prairie-peinte/jeu.html`,
+      },
+      {
+        title: "Chessmata",
+        tag: "échecs 3D en ligne · multijoueur",
+        description: "Joue aux échecs en 3D contre des amis ou des IA, avec classement Elo. Ma version du projet open source Chessmata : plateau de verre au sommet d'une tour.",
+        image: shotChessmata,
+        href: "https://chessmata.onrender.com/",
       },
       {
         title: "Balls Crush",
@@ -95,14 +103,21 @@ const STRINGS: Record<
     ],
     scrollLabel: "scroll down to the games",
     marquee: ["Mathematics", "Computer science", "Economics", "Université Paris Cité", "Video games", "Music"],
-    gamesHeading: "Three games, playable in your browser.",
+    gamesHeading: "Four games, playable in your browser.",
     games: [
       {
         title: "The painted meadow",
-        tag: "3D exploration · keyboard, desktop only",
+        tag: "3D exploration · desktop and mobile",
         description: "A meadow painted stroke by stroke like an oil canvas, a dragon to ride, and two more paintings: Aurora and Autumn wood.",
         image: shotPrairie,
         href: `${import.meta.env.BASE_URL}games/prairie-peinte/jeu.html`,
+      },
+      {
+        title: "Chessmata",
+        tag: "online 3D chess · multiplayer",
+        description: "Play 3D chess against friends or AI agents, with Elo ranking. My take on the open-source Chessmata: a glass board on top of a tower.",
+        image: shotChessmata,
+        href: "https://chessmata.onrender.com/",
       },
       {
         title: "Balls Crush",
@@ -285,8 +300,7 @@ const Test = () => {
                 </motion.div>
               </motion.div>
             );
-            // le premier jeu (La prairie peinte) prend toute la largeur sur ordinateur
-            const cls = `group block ${i === 0 ? "md:col-span-2" : ""}`;
+            const cls = "group block";
             return game.to ? (
               <Link key={game.title} to={game.to} className={cls}>
                 {card}

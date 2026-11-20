@@ -29,7 +29,6 @@ type Entry = { name: string; place: string; role: string; description: string; l
 
 type Strings = {
   pageTitle: string;
-  affiliation: string;
   location: string;
   projectsCta: string;
   writeMe: string;
@@ -53,7 +52,6 @@ type Strings = {
 const STRINGS: Record<"fr" | "en", Strings> = {
   fr: {
     pageTitle: "À propos | Benjamin Morel",
-    affiliation: "Licence Mathématiques, Université Paris Cité",
     location: "Paris, France",
     projectsCta: "VOIR LES PROJETS →",
     writeMe: "M'ÉCRIRE",
@@ -95,11 +93,11 @@ const STRINGS: Record<"fr" | "en", Strings> = {
         link: { label: "OUVRIR L'APPLI ↗", href: RAYONN_URL },
       },
       {
-        name: "Jeux dans le navigateur",
-        place: "Balls Crush · Elden Ring · La prairie peinte",
+        name: "Jeux",
+        place: "La prairie peinte · Chessmata · Balls Crush · Elden Ring",
         role: "Projets personnels",
         description:
-          "Balls Crush : casse-briques jouable dans la page, avec combos, bonus et 3 niveaux de difficulté croissante. Elden Ring : action-RPG 3D avec combat à l'épée, roulade, verrouillage de cible et fioles de soin. La prairie peinte : exploration 3D peinte touche par touche comme une toile à l'huile.",
+          "Balls Crush : casse-briques jouable dans la page, avec combos, bonus et 3 niveaux de difficulté croissante. Elden Ring : action-RPG 3D avec combat à l'épée, roulade, verrouillage de cible et fioles de soin. La prairie peinte : exploration 3D peinte touche par touche comme une toile à l'huile. Chessmata : échecs 3D en ligne contre des amis ou des IA, avec classement Elo (version personnalisée du projet open source).",
         link: { label: "JOUER →", to: "/platform" },
       },
       {
@@ -135,7 +133,6 @@ const STRINGS: Record<"fr" | "en", Strings> = {
   },
   en: {
     pageTitle: "About | Benjamin Morel",
-    affiliation: "Bachelor's in Mathematics, Université Paris Cité",
     location: "Paris, France",
     projectsCta: "SEE THE PROJECTS →",
     writeMe: "EMAIL ME",
@@ -177,11 +174,11 @@ const STRINGS: Record<"fr" | "en", Strings> = {
         link: { label: "OPEN THE APP ↗", href: RAYONN_URL },
       },
       {
-        name: "Browser games",
-        place: "Balls Crush · Elden Ring · The painted meadow",
+        name: "Games",
+        place: "The painted meadow · Chessmata · Balls Crush · Elden Ring",
         role: "Personal projects",
         description:
-          "Balls Crush: an in-page breakout game with combos, power-ups and 3 levels of rising difficulty. Elden Ring: a 3D action-RPG with sword combat, dodge rolls, target lock-on and healing flasks. The painted meadow: a 3D exploration painted stroke by stroke like an oil canvas.",
+          "Balls Crush: an in-page breakout game with combos, power-ups and 3 levels of rising difficulty. Elden Ring: a 3D action-RPG with sword combat, dodge rolls, target lock-on and healing flasks. The painted meadow: a 3D exploration painted stroke by stroke like an oil canvas. Chessmata: online 3D chess against friends or AI agents, with Elo ranking (a customised take on the open-source project).",
         link: { label: "PLAY →", to: "/platform" },
       },
       {
@@ -288,8 +285,6 @@ const Contact = () => {
               BENJAMIN MOREL
             </h1>
             <p className="text-[18px] leading-[28px] md:text-[20px] md:leading-[32px]" style={SANS}>
-              {s.affiliation}
-              <br />
               <a href={`mailto:${EMAIL}`} className="hover:underline">
                 {EMAIL}
               </a>
